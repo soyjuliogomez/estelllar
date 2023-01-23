@@ -47,11 +47,9 @@
         <h1 class="display display__desktop">
           La Conferencia Dirigida A Todos Los Apasionados De La Tecnología
         </h1>
-        <h1 class="display display__mobile">
-          La Conferencia Dirigida A Todos
-        </h1>
+        <h1 class="display display__mobile">La Conferencia Dirigida A Todos</h1>
         <p
-          class="paragraph__page paragraph__page--section paragraph__page--aligncenter"
+          class="paragraph paragraph__large  paragraph__large--section paragraph__large--aligncenter"
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt
@@ -64,7 +62,11 @@
             class="input input--margin-top input--margin-botton"
             required
           />
-          <a class="button button__primary button__primary--width100" title="CV" href="#" target="_blank"
+          <a
+            class="button button__primary button__primary--width100"
+            title="CV"
+            href="#"
+            target="_blank"
             >Registrarme<img
               src="./image/arrow_forward_ios.svg"
               class="logo-search"
@@ -78,7 +80,11 @@
             class="first-data__placeholder"
           />
 
-          <a class="button button__primary button__primary--absolute" title="CV" href="#" target="_blank"
+          <a
+            class="button button__primary button__primary--absolute"
+            title="CV"
+            href="#"
+            target="_blank"
             >Registrarme<img
               src="./image/arrow_forward_ios.svg"
               class="logo-search"
@@ -94,21 +100,21 @@
         <div class="info">
           <div>
             <h1 class="gradient">12+</h1>
-            <label>Expertos</label>
+            <p class="paragraph paragraph__small   paragraph__small--aligncenter">Expertos Desarrolladores</p>
           </div>
           <hr />
           <div>
             <h1 class="gradient">120+</h1>
-            <label>Miembros registrados</label>
+            <p class="paragraph paragraph__small   paragraph__small--aligncenter" >Miembros registrados</p>
           </div>
           <hr />
           <div>
             <h1 class="gradient">12+</h1>
-            <label>Sofware y Lenguajes</label>
+            <p class="paragraph paragraph__small paragraph__small--aligncenter" >Sofware y Lenguajes</p>
           </div>
         </div>
         <p
-          class="paragraph paragraph__page paragraph__page--section paragraph__page--aligncenter"
+          class="paragraph paragraph__large paragraph__large--section paragraph__large--aligncenter"
         >
           Si la tecnología te apasiona esta es tu oportunidad para crear
           vínculos que resolverán tus dudas y te ayudaran en tu crecimiento en
@@ -122,13 +128,13 @@
             Aprenderás de la mano de expertos en el mundo de la tecnología.
           </h1>
           <p
-            class="paragraph__page paragraph__page--section paragraph__page--alignleft"
+            class="paragraph paragraph__large paragraph__large--section paragraph__large--alignleft"
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-        <img  class="apps" src="./image/apps.svg" alt="" />
+        <img class="apps" src="./image/apps.svg" alt="" />
       </section>
       <section class="data">
         <img class="map-image" src="./image/map.svg" alt="" />
@@ -184,24 +190,30 @@
             </div>
             <div class="input__2">
               <div class="username-nombres">
-                <label class="label__input">Nombres</label>
+                <label class="label__input">Fecha de nacimiento</label>
                 <input
                   name="correo"
-                  type=""
-                  placeholder="Ingresa aquí tus nombres"
+                  type="date"
+                  placeholder="Ingrese su fecha de nacimiento"
                   class="input"
                   required
                 />
               </div>
               <div class="username-nombres">
-                <label class="label__input">Nombres</label>
-                <input
-                  name="correo"
-                  type="text"
-                  placeholder="Ingresa aquí tus nombres"
-                  class="input"
-                  required
-                />
+                <label class="label__input">Industria de interes</label>
+                <select class="select padding_select">
+                  <option class="options">Tecnología y Programación</option>
+                  <option class="options">Diseño y UX</option>
+                  <option class="options">Marketing</option>
+                  <option class="options">Videojuegos</option>
+                  <option class="options">Video y Fotografía</option>
+                  <option class="options">Finanzas (Fintech)</option>
+                  <option class="options">Startups</option>
+                  <option class="options">Salud y Bienestar (healthtech)</option>
+                  <option class="options">Agricultura (Agrotech)</option>
+                  <option class="options">Legal (Legaltech)</option>
+                  <option class="options">Otros</option>
+                </select>
               </div>
             </div>
           </div>

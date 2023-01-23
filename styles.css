@@ -61,7 +61,7 @@
 }
 
 .display {
-  color: #FFFFEE;
+  color: #ffffee;
   font-family: "Poppins", sans-serif;
   font-size: 5rem;
   text-align: center;
@@ -73,7 +73,7 @@
 }
 
 .h1__page {
-  color: #FFFFEE;
+  color: #ffffee;
   font-family: "Poppins", sans-serif;
   font-size: 48px;
   text-align: center;
@@ -91,24 +91,47 @@
   text-align: left;
 }
 
-.paragraph__page {
+.paragraph {
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+}
+.paragraph__large {
   color: #ffffff;
   font-family: "Poppins", sans-serif;
   font-size: 24px;
 }
-.paragraph__page--section {
+.paragraph__large--section {
   margin-top: 48px;
 }
-.paragraph__page--aligncenter {
+.paragraph__large--aligncenter {
   text-align: center;
 }
-.paragraph__page--alignleft {
+.paragraph__large--alignleft {
   text-align: left;
 }
 @media (max-width: 600px) {
-  .paragraph__page {
+  .paragraph__large {
     font-size: 18px;
     margin-top: 32px;
+  }
+}
+.paragraph__small {
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+.paragraph__small--section {
+  margin-top: 16px;
+}
+.paragraph__small--aligncenter {
+  text-align: center;
+}
+.paragraph__small--alignleft {
+  text-align: left;
+}
+@media (max-width: 600px) {
+  .paragraph__small {
+    font-size: 14px;
   }
 }
 
@@ -146,13 +169,19 @@ a {
   display: inline-block;
 }
 
-.input {
+.options {
+  height: 72px;
+  display: block;
+  min-height: 8.2em;
+}
+
+.select {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 16px;
-  background: #0E0E25;
+  padding: 0px 16px;
+  background: #0e0e25;
   border-radius: 8px;
   height: 48px;
   background-color: none;
@@ -163,6 +192,49 @@ a {
   border-color: rgba(255, 255, 255, 0.2);
   font-size: 14px;
   color: #ffffff;
+  /* &--type {} */
+}
+.select:hover {
+  border-style: solid;
+  /* border-width: 1px; */
+  border-color: #888c99;
+}
+.select:focus {
+  /* border-style: solid;
+  border-color: #07cdbd;
+
+  border-width: 1px;
+  outline-offset: 5px; */
+  border: 1px solid #2997ff;
+  outline: 4px solid rgba(41, 151, 255, 0.1529411765);
+  /* outline-offset: 4px; */
+}
+.select--margin-top {
+  margin-top: 32px;
+}
+.select--margin-botton {
+  margin-bottom: 16px;
+}
+
+.input {
+  /* border-right: 16px solid transparent; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 16px;
+  background: #0e0e25;
+  border-radius: 8px;
+  height: 48px;
+  background-color: none;
+  outline: none;
+  margin: 8px 0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+  color: #ffffff;
+  color-scheme: dark;
   /* &--type {} */
 }
 .input:hover {
@@ -185,6 +257,24 @@ a {
 }
 .input--margin-botton {
   margin-bottom: 16px;
+}
+
+.padding_select {
+  padding-right: 16px solid #2997ff;
+}
+.padding_select:focus {
+  /* border-style: solid;
+  border-color: #07cdbd;
+
+  border-width: 1px;
+  outline-offset: 5px; */
+  border: 1px solid #2997ff;
+  outline: 4px solid rgba(41, 151, 255, 0.1529411765);
+  border-right: 16px solid #2997ff;
+  /* outline-offset: 4px; */
+}
+.padding_select:active {
+  border-right: 16px solid transparent;
 }
 
 body {
@@ -321,16 +411,21 @@ body main .why {
   }
 }
 body main .why .info {
+  max-width: 100%;
+  margin-top: 32px;
   display: grid;
   /* max-width: 600px; */
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+  grid-template-columns: repeat(5, min-content);
+  gap: 32px;
+  /* grid-template-columns: 1fr min-content; */
   /* grid-auto-flow: dense; */
   justify-items: center;
   align-items: center;
   /* margin-top: $xl; */
 }
 body main .why .info div .gradient {
-  background: linear-gradient(270deg, #E5204F 37.13%, #FFFACD 100%);
+  background: linear-gradient(270deg, #e5204f 37.13%, #fffacd 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -338,6 +433,12 @@ body main .why .info div .gradient {
   font-size: 48px;
   font-family: "Poppins", sans-serif;
   text-align: center;
+  /* display: inline-block; */
+}
+@media (max-width: 600px) {
+  body main .why .info div .gradient {
+    font-size: 32px;
+  }
 }
 body main .why .info div > label {
   text-align: center;
@@ -346,7 +447,7 @@ body main .why .info div > label {
 }
 body main .why .info hr {
   border-style: none;
-  height: 72px;
+  height: 132px;
   width: 1px;
   /* background-color: $Neutrals-Light-40; */
   /* opacity: 50%; */
