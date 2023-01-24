@@ -424,6 +424,13 @@ body main .why .info {
   align-items: center;
   /* margin-top: $xl; */
 }
+@media (max-width: 600px) {
+  body main .why .info {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, min-content);
+    gap: 12px;
+  }
+}
 body main .why .info div .gradient {
   background: linear-gradient(270deg, #e5204f 37.13%, #fffacd 100%);
   -webkit-background-clip: text;
@@ -453,6 +460,12 @@ body main .why .info hr {
   /* opacity: 50%; */
   background-color: rgba(255, 255, 255, 0.16);
   border-radius: 2px;
+}
+@media (max-width: 600px) {
+  body main .why .info hr {
+    height: 1px;
+    width: 100%;
+  }
 }
 body main .learn {
   margin-top: 144px;

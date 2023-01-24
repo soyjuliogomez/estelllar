@@ -469,6 +469,12 @@ body {
         justify-items:center;
         
         align-items:center;
+        @media (max-width: 600px) {
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(5, min-content);
+          gap: 12px;
+          
+        }
         /* margin-top: $xl; */
 
         div .gradient {
@@ -502,6 +508,12 @@ body {
           /* opacity: 50%; */
           background-color: rgba(255, 255, 255, 0.16);
           border-radius: 2px;
+          @media (max-width: 600px) {
+            height: 1px;
+          width: 100%;
+            
+            
+          }
         }
       }
     }
