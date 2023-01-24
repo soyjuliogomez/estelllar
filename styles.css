@@ -514,18 +514,21 @@ body main .data {
   grid-template-columns: 1fr 1fr;
   max-width: 1076px;
   align-self: center;
+  align-items: center;
   height: fit-content;
   grid-auto-flow: dense;
+  gap: 32px;
 }
 @media (max-width: 600px) {
   body main .data {
     grid-template-columns: 1fr;
     grid-row: 1fr 1fr;
+    gap: 32px;
     /* min-width: 1076px; */
   }
 }
 body main .data .map-image {
-  max-width: 100%;
+  max-width: 90%;
   height: auto;
 }
 @media (max-width: 600px) {
