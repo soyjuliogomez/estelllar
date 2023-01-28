@@ -335,13 +335,18 @@ body .barranavegacion {
 @media (max-width: 600px) {
   body .barranavegacion {
     justify-content: center;
-    height: 92px;
+    height: 72px;
   }
 }
 body .barranavegacion .logo-barra {
   width: auto;
   display: inline-block;
   height: 48px;
+}
+@media (max-width: 600px) {
+  body .barranavegacion .logo-barra {
+    height: 32px;
+  }
 }
 body .barranavegacion .menu {
   /* max-width: 100% !important; */
@@ -617,7 +622,7 @@ body main .hero_image {
 }
 @media (max-width: 600px) {
   body main .hero_image {
-    margin-top: 160px;
+    margin-top: 128px;
   }
 }
 body main .hero_image .ubication {

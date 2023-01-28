@@ -371,13 +371,17 @@ body {
 
     @media (max-width: 600px) {
       justify-content: center;
-      height: 92px;
+      height: 72px;
     }
 
     .logo-barra {
       width: auto;
       display: inline-block;
       height: 48px;
+      @media (max-width: 600px) {
+        
+        height: 32px;
+      }
     }
 
     .menu {
@@ -667,7 +671,7 @@ body {
       align-items: center;
       margin-top: 250px;
       @media (max-width: 600px) {
-        margin-top: 160px;
+        margin-top: 128px;
       }
 
       .ubication {
