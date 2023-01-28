@@ -35,7 +35,7 @@
 @media (max-width: 600px) {
   .display__mobile {
     display: block;
-    font-size: 48px;
+    font-size: 3rem;
     text-align: center;
     line-height: 140%;
   }
@@ -296,11 +296,28 @@ body .gradient-1 {
     top: 600px;
   }
 }
-body .heroImage {
+body .background-image-desktop {
   width: 100%;
   position: absolute;
   top: 0px;
   z-index: -2;
+}
+@media (max-width: 600px) {
+  body .background-image-desktop {
+    display: none;
+  }
+}
+body .background-image-mobile {
+  display: none;
+}
+@media (max-width: 600px) {
+  body .background-image-mobile {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: -2;
+  }
 }
 body .barranavegacion {
   width: 100%;

@@ -43,7 +43,7 @@ $xxxl: 92px;
 
   @media (max-width: 600px) {
     display: block;
-    font-size: 48px;
+    font-size: 3rem;
     text-align: center;
     line-height: 140%;
   }
@@ -335,11 +335,25 @@ body {
     }
   }
 
-  .heroImage {
+  .background-image-desktop {
     width: 100%;
     position: absolute;
     top: 0px;
     z-index: -2;
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  .background-image-mobile {
+    display: none;
+    @media (max-width: 600px) {
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: 0px;
+      z-index: -2;
+    }
   }
 
   .barranavegacion {
