@@ -662,7 +662,7 @@ body {
         }
       }
     }
-
+    
     .hero_image {
       display: flex;
       width: 100%;
@@ -742,5 +742,27 @@ body {
         }
       }
     }
+    
+  }
+  .footer {
+    padding: 176px 0;
+    display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+    
+    .logo-footer {
+      display: block;
+      margin: 0 auto;
+      
+    }
+
+    .footer-social-media {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      
+    }
+    
   }
 }

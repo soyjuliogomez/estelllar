@@ -687,5 +687,21 @@ body main .hero_image .first-data__placeholder:focus {
   border: 1px solid #2997ff;
   outline: 4px solid rgba(41, 151, 255, 0.1529411765);
 }
+body .footer {
+  padding: 176px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+body .footer .logo-footer {
+  display: block;
+  margin: 0 auto;
+}
+body .footer .footer-social-media {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 /*# sourceMappingURL=styles.css.map */
