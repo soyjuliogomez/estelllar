@@ -598,6 +598,11 @@ body main .hero_image {
   align-items: center;
   margin-top: 250px;
 }
+@media (max-width: 600px) {
+  body main .hero_image {
+    margin-top: 160px;
+  }
+}
 body main .hero_image .ubication {
   color: #ffffff;
   font-size: 24px;

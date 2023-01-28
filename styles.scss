@@ -652,6 +652,9 @@ body {
       justify-content: center;
       align-items: center;
       margin-top: 250px;
+      @media (max-width: 600px) {
+        margin-top: 160px;
+      }
 
       .ubication {
         color: #ffffff;
