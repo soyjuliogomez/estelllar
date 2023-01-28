@@ -279,7 +279,8 @@ a {
 
 body {
   background-color: #000019;
-  overflow-x: hidden;
+  width: 100%;
+  /* overflow-x: hidden; */
   /* overflow: hidden; */
 }
 body .gradient-1 {
@@ -288,6 +289,12 @@ body .gradient-1 {
   top: 300px;
   left: -50px;
   z-index: -1;
+}
+@media (max-width: 600px) {
+  body .gradient-1 {
+    width: 100%;
+    top: 600px;
+  }
 }
 body .heroImage {
   width: 100%;

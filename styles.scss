@@ -318,16 +318,21 @@ a {
 }
 body {
   background-color: #000019;
-  overflow-x: hidden;
+  width: 100%;
+  /* overflow-x: hidden; */
   /* overflow: hidden; */
 
   .gradient-1 {
     width: 800px;
-    position: absolute;
+    position:absolute;
     top: 300px;
     left: -50px;
 
     z-index: -1;
+    @media (max-width: 600px) {
+      width: 100%;
+      top: 600px;
+    }
   }
 
   .heroImage {
