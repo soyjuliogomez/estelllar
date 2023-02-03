@@ -68,7 +68,7 @@
 }
 @media (max-width: 600px) {
   .display {
-    font-size: 48px;
+    font-size: 3rem;
   }
 }
 
@@ -300,6 +300,7 @@ body .background-image-desktop {
   width: 100%;
   position: absolute;
   top: 0px;
+  display: block;
   z-index: -2;
 }
 @media (max-width: 600px) {

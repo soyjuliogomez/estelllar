@@ -78,7 +78,7 @@ $xxxl: 92px;
   text-align: center;
 
   @media (max-width: 600px) {
-    font-size: 48px;
+    font-size: 3rem;
   }
 }
 
@@ -339,6 +339,7 @@ body {
     width: 100%;
     position: absolute;
     top: 0px;
+    display: block;
     z-index: -2;
     @media (max-width: 600px) {
       display: none;
