@@ -1,3 +1,22 @@
+.success {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 44px;
+}
+.success .success-art {
+  width: 389px;
+}
+.success .success-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 32px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -91,6 +110,25 @@
   text-align: left;
 }
 
+.h2__page {
+  color: #ffffee;
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  text-align: center;
+  line-height: 140%;
+}
+@media (max-width: 600px) {
+  .h2__page {
+    font-size: 32px;
+  }
+}
+.h2__page--section {
+  margin-top: 16px;
+}
+.h2__page--alignleft {
+  text-align: left;
+}
+
 .paragraph {
   color: #ffffff;
   font-family: "Poppins", sans-serif;
@@ -163,6 +201,9 @@ a {
 }
 .button__primary--width100 {
   width: 100%;
+}
+.button__primary--widthfit {
+  width: fit-content;
 }
 .button .logo-search {
   padding-right: 8px;

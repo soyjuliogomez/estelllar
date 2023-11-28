@@ -1,3 +1,4 @@
+@import "css/_registro.scss";
 $color-primary: #e5204f;
 
 * {
@@ -101,6 +102,25 @@ $xxxl: 92px;
   }
 }
 
+.h2__page {
+  color: #ffffee;
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  text-align: center;
+  line-height: 140%;
+  @media (max-width: 600px) {
+    font-size: 32px;
+  }
+
+  &--section {
+    margin-top: 16px;
+  }
+
+  &--alignleft {
+    text-align: left;
+  }
+}
+
 .paragraph {
   color: #ffffff;
   font-family: "Poppins", sans-serif;
@@ -181,6 +201,9 @@ a {
 
     &--width100 {
       width: 100%;
+    }
+    &--widthfit {
+      width:fit-content;
     }
   }
 
