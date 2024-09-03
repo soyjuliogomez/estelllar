@@ -55,3 +55,54 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Error:', error);
   }
 });
+
+document.querySelector('#registrationForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const firstName = document.querySelector('input[name="firstName"]').value;
+  const lastName = document.querySelector('input[name="lastName"]').value;
+  const email = document.querySelector('input[name="email"]').value;
+  const phone = document.querySelector('input[name="phone"]').value;
+  const dateOfBirth = document.querySelector('input[name="dateOfBirth"]').value;
+  const industryId = document.querySelector('select[name="industryId"]').value;
+
+  const data = {
+    firstName,
+    lastName,
+    email,
+    phone,
+    dateOfBirth,
+    industryId
+  };
+
+  const messageContainer = document.getElementById('messageContainer');
+  const messageContent = document.getElementById('messageContent');
+  const spinner = document.getElementById('spinner');
+
+  messageContainer.style.display = 'block';
+  spinner.style.display = 'block';
+  messageContent.innerHTML = '';
+
+  try {
+    const response = await fetch('https://api.estelllar.com/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    spinner.style.display = 'none';
+
+    if (response.ok) {
+      messageContent.innerHTML = `<p class="success-message">${result.message}</p>`;
+    } else {
+      messageContent.innerHTML = `<p class="error-message">${result.error}</p>`;
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    spinner.style.display = 'none';
+    messageContent.innerHTML = `<p class="error-message">${error.message}</p>`;
+  }
+});
