@@ -663,3 +663,30 @@ body {
     color: red;
   }
 }
+
+#registrationForm {
+  .data_button {
+    margin-top: 32px;
+        /* right: $xs; */
+        background-color: $color-primary;
+        color: #ffffff;
+        height: 48px;
+        border-radius: 40px;
+        box-sizing: border-box;
+        text-decoration: none;
+        max-width: fit-content;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 0 32px;
+        justify-content: center;
+        font-family: "Poppins", sans-serif;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        border-style: none;
+        transition: 0.3s;
+        &:hover {
+          background-color:#2997ff;
+        }
+  }
+}
