@@ -9,6 +9,10 @@ body {
   width: 100%;
   /* overflow: hidden; */
   overflow-x: hidden;
+  @media (max-width: 600px) {
+    width: 100vw;
+    
+  }
   /* overflow: hidden; */
 
   .gradient-1 {
@@ -335,6 +339,96 @@ body {
             grid-template-columns: 1fr;
           }
         }
+
+        /*# Cargando */
+         #messageContainer { 
+          background: none;
+        #spinner {
+          width: 200px;
+          height: 60px;
+          position: relative;
+          z-index: 1;
+        }
+        
+        .circle,
+        .shadow {
+          width: 20px;
+          height: 20px;
+          position: absolute;
+          border-radius: 50%;
+          transform-origin: 50%;
+          animation: circle7124 0.5s alternate infinite ease;
+        
+          &:nth-child(2) {
+            left: 45%;
+            animation-delay: 0.2s;
+          }
+        
+          &:nth-child(3) {
+            right: 15%;
+            left: auto;
+            animation-delay: 0.3s;
+          }
+        }
+        
+        .circle {
+          background-color: #fff;
+          left: 15%;
+        
+          @keyframes circle7124 {
+            0% {
+              top: 60px;
+              height: 5px;
+              border-radius: 50px 50px 25px 25px;
+              transform: scaleX(1.7);
+            }
+            40% {
+              height: 20px;
+              border-radius: 50%;
+              transform: scaleX(1);
+            }
+            100% {
+              top: 0%;
+            }
+          }
+        }
+        
+        .shadow {
+          height: 4px;
+          background-color: rgba(0, 0, 0, 0.9);
+          top: 62px;
+          z-index: -1;
+          left: 15%;
+          filter: blur(1px);
+          animation: shadow046 0.5s alternate infinite ease;
+        
+          &:nth-child(4) {
+            left: 45%;
+            animation-delay: 0.2s;
+          }
+        
+          &:nth-child(5) {
+            right: 15%;
+            left: auto;
+            animation-delay: 0.3s;
+          }
+        
+          @keyframes shadow046 {
+            0% {
+              transform: scaleX(1.5);
+            }
+            40% {
+              transform: scaleX(1);
+              opacity: 0.7;
+            }
+            100% {
+              transform: scaleX(0.2);
+              opacity: 0.4;
+            }
+          }
+        }
+      } 
+        
       }
 
       .father-right > .data_button {

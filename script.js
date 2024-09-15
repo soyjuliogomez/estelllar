@@ -96,7 +96,7 @@ document.querySelector('#registrationForm').addEventListener('submit', async (ev
     spinner.style.display = 'none';
 
     if (response.ok) {
-      messageContent.innerHTML = `<p class="success-message">${result.message}</p>`;
+      /* messageContent.innerHTML = `<p class="success-message">${result.message}</p>`; */
       // Take 3 seconds to redirect the user
       setTimeout(() => {
         window.location.href = 'registro.html';
