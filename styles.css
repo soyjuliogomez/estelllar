@@ -1,4 +1,13 @@
 @charset "UTF-8";
+.barranavegacionExito {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.barranavegacionExito .logo-barraExito {
+  margin-top: 24px;
+}
+
 .success {
   margin-top: 7.5rem;
   display: flex;
@@ -6,6 +15,12 @@
   justify-content: center;
   align-items: center;
   gap: 2.75rem;
+}
+@media (max-width: 600px) {
+  .success {
+    width: 100%;
+    padding: 16px 16px;
+  }
 }
 .success .success-art {
   width: 24.3125rem;
