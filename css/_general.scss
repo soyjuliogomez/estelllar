@@ -6,14 +6,34 @@ $color-primary: #E53F4C;
   padding: 0;
 }
 
-$xxs: 4px;
+/* $xxs: 4px;
 $xs: 8px;
-$s: 16px;
+$s: $m;
 $m: 24px;
 $l: 32px;
 $xl: 48px;
 $xxl: 64px;
-$xxxl: 92px;
+$xxxl: 92px; */
+
+$xxxs: 0.125rem;   // 2px
+$xxs: 0.25rem;     // 4px
+$xs: 0.375rem;     // 6px
+$x: 0.5rem;        // 8px
+$s: 0.75rem;       // 12px
+$m: 1rem;          // $m
+$l: 1.25rem;       // 20px
+$xl: 1.5rem;       // 24px
+$xxl: 2rem;        // 32px
+$xxxl: 2.5rem;     // 40px
+$xxxxl: 3rem;      // 48px
+$xxxxxl: 3.5rem;   // 56px
+
+
+Font
+/* $6xl: 72;
+$7xl: 96;
+$8xl: 128;
+$9xl: 176; */
 
 
 .material-symbols-rounded {
@@ -28,16 +48,16 @@ $xxxl: 92px;
 
 .caption {
   color: #ffffff7a;
-  font-size: 10px;
+  font-size: 0.625rem;
   font-family: "Poppins", sans-serif;
-  margin-top: 16px;
+  margin-top: $xs;
   font-weight: 400;
   letter-spacing: 0.04rem;
 }
 
 .label__input {
   color: #ffffff;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-family: "Poppins", sans-serif;
 }
 
@@ -65,7 +85,7 @@ $xxxl: 92px;
   width: 100vw;
   color: #ffffee;
   font-family: "Poppins", sans-serif;
-  font-size: 72px;
+  font-size: 4.5rem;
   text-align: center;
   line-height: 120%;
 
@@ -123,18 +143,18 @@ $xxxl: 92px;
   /* --------------------------- */
 
   @media (max-width: 600px) {
-    font-size: 44px;
+    font-size: 2.75rem;
   }
 }
 
 .label__page {
   color: #ffffff;
   font-family: "Poppins", sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #9f92ff;
-  padding: 8px 16px;
+  padding: $x $m;
   background-color: #7868f62a;
-  border-radius: 8px;
+  border-radius: $x;
 
   &--left {
     text-align: left;
@@ -154,7 +174,7 @@ $xxxl: 92px;
 .h1__page {
   color: #FFFFEE;
   font-family: "Poppins", sans-serif;
-  font-size: 48px;
+  font-size: 3rem;
   text-align: center;
   line-height: 140%;
 
@@ -162,11 +182,11 @@ $xxxl: 92px;
 
   
   @media (max-width: 600px) {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   &--section {
-    margin-top: 16px;
+    margin-top: $m;
   }
 
   &--alignleft {
@@ -180,7 +200,7 @@ $xxxl: 92px;
 .h2__page {
   color: #ffffee;
   font-family: "Poppins", sans-serif;
-  font-size: 32px;
+  font-size: 2rem;
   text-align: center;
   line-height: 140%;
   @media (max-width: 600px) {
@@ -188,7 +208,7 @@ $xxxl: 92px;
   }
 
   &--section {
-    margin-top: 16px;
+    margin-top: $m;
   }
 
   &--alignleft {
@@ -203,13 +223,13 @@ $xxxl: 92px;
   &__large {
     color: #ffffff;
     font-family: "Poppins", sans-serif;
-    font-size: 24px;
+    font-size: 1.5rem;
 
     &--sectionLarge {
-      margin-top: 48px;
+      margin-top: 3rem;
     }
     &--sectionMedium {
-        margin-top: 32px;
+        margin-top: 2rem;
       }
 
     &--aligncenter {
@@ -220,18 +240,18 @@ $xxxl: 92px;
       text-align: left;
     }
     @media (max-width: 600px) {
-      font-size: 18px;
-      margin-top: 32px;
+      font-size: 1.125rem;
+      margin-top: 2rem;
     }
   }
 
   &__small {
     color: #ffffff;
     font-family: "Poppins", sans-serif;
-    font-size: 16px;
+    font-size: $m;
 
     &--section {
-      margin-top: 16px;
+      margin-top: $m;
     }
 
     &--aligncenter {
@@ -242,7 +262,7 @@ $xxxl: 92px;
       text-align: left;
     }
     @media (max-width: 600px) {
-      font-size: 14px;
+      font-size: 0.875rem;
     }
   }
 }
@@ -253,11 +273,11 @@ a {
 
 .button {
   color: #ffffff;
-  height: 48px;
+  height: 3rem;
 
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
-  padding: 0 32px;
+  padding: 0 2rem;
   justify-content: center;
   font-family: "Poppins", sans-serif;
 
@@ -270,7 +290,7 @@ a {
     box-sizing: border-box;
     text-decoration: none;
 
-    border-radius: 40px;
+    border-radius: 2.5rem;
 
     &--absolute {
       position: absolute;
@@ -290,8 +310,8 @@ a {
       /* box-sizing: border-box; */
       text-decoration: none;
   
-      border-radius: 40px;
-      border-width: 2px;
+      border-radius: 2.5rem;
+      border-width: 0.125rem;
       /* Cambiado de border-style a border-width */
       border-style: solid;
       /* Agregado border-style */
@@ -312,18 +332,18 @@ a {
 
       &--space {
         display: flex;
-        gap: 8px;
+        gap: $x;
         
       }
     }
 
   .logo-search {
-    padding-right: 8px;
+    padding-right: $x;
     display: inline-block;
   }
 }
 .options {
-  height: 72px;
+  height: 4.5rem;
   display: block;
   min-height: 8.2em;
 }
@@ -332,17 +352,17 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 16px;
+  padding: 0rem $m;
   background: #0e0e25;
-  border-radius: 8px;
-  height: 48px;
+  border-radius: $x;
+  height: 3rem;
   background-color: none;
   outline: none;
-  margin: 8px 0;
+  margin: $x 0;
   border-style: solid;
-  border-width: 1px;
+  border-width: 0.0625rem;
   border-color: rgba(255, 255, 255, 0.2);
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #ffffff;
 
   /* &--type {} */
@@ -359,8 +379,8 @@ a {
     
     border-width: 1px;
     outline-offset: 5px; */
-    border: 1px solid #2997ff;
-    outline: 4px solid #2997ff27;
+    border: 0.0625rem solid #2997ff;
+    outline: 0.25rem solid #2997ff27;
     /* outline-offset: 4px; */
   }
   &--margin-top {
@@ -373,22 +393,22 @@ a {
 }
 
 .input {
-  /* border-right: 16px solid transparent; */
+  /* border-right: $m solid transparent; */
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 16px;
+  padding: 0rem $m;
   background: #0e0e25;
-  border-radius: 8px;
-  height: 48px;
+  border-radius: $x;
+  height: 3rem;
   background-color: none;
   outline: none;
-  margin: 8px 0;
+  margin: $x 0;
   border-style: solid;
-  border-width: 1px;
+  border-width: 0.0625rem;
   border-color: rgba(255, 255, 255, 0.2);
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #ffffff;
   color-scheme: dark;
 
@@ -406,8 +426,8 @@ a {
     
     border-width: 1px;
     outline-offset: 5px; */
-    border: 1px solid #2997ff;
-    outline: 4px solid #2997ff27;
+    border: 0.0625rem solid #2997ff;
+    outline: 0.25rem solid #2997ff27;
     /* outline-offset: 4px; */
   }
   &--margin-top {
@@ -420,21 +440,21 @@ a {
 }
 
 .padding_select {
-  padding-right: 16px solid #2997ff;
+  padding-right: $m solid #2997ff;
   &:focus {
     /* border-style: solid;
   border-color: #07cdbd;
   
   border-width: 1px;
   outline-offset: 5px; */
-    border: 1px solid #2997ff;
-    outline: 4px solid #2997ff27;
-    border-right: 16px solid #2997ff;
+    border: 0.0625rem solid #2997ff;
+    outline: 0.25rem solid #2997ff27;
+    border-right: $m solid #2997ff;
 
     /* outline-offset: 4px; */
   }
 
   &:active {
-    border-right: 16px solid transparent;
+    border-right: $m solid transparent;
   }
 }

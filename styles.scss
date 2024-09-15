@@ -12,15 +12,15 @@ body {
   /* overflow: hidden; */
 
   .gradient-1 {
-    width: 800px;
+    width: 50rem;
     position: absolute;
-    top: 300px;
-    left: -50px;
+    top: 18.75rem;
+    left: -3.125rem;
 
     z-index: -1;
-    @media (max-width: 600px) {
+    @media (max-width: 37.5rem) {
       width: 100%;
-      top: 600px;
+      top: 37.5rem;
     }
   }
 
@@ -32,7 +32,7 @@ body {
     z-index: -2;
     
     
-    @media (max-width: 600px) {
+    @media (max-width: 37.5rem) {
       display: none;
     }
     
@@ -50,7 +50,7 @@ body {
   }
   .background-image-mobile {
     display: none;
-    @media (max-width: 600px) {
+    @media (max-width: 37.5rem) {
       display: block;
       width: 100%;
       position: absolute;
@@ -66,7 +66,7 @@ body {
     justify-content: space-between;
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(16px);
-    height: 88px;
+    height: 5.5rem;
     position: fixed;
     z-index: 4;
     padding: 0 $xxl;
@@ -106,7 +106,7 @@ body {
 
       hr {
         border-style: none;
-        height: 24px;
+        height: 1.5rem;
         width: 1px;
         /* background-color: $Neutrals-Light-40; */
         opacity: 50%;
@@ -136,12 +136,12 @@ body {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 48px;
+          height: 3rem;
           background-color: $color-primary;
           color: #ffffff;
-          border-radius: 28px;
-          padding: 0 32px;
-          font-size: 20px;
+          border-radius: 1.75rem;
+          padding: 0 2rem;
+          font-size: 1.25rem;
           font-family: "Poppins", sans-serif;
           text-decoration: none;
         }
@@ -171,26 +171,26 @@ body {
       display: grid;
       justify-items: center;
       align-items: stretch;
-      padding: 72px;
-      margin-top: 144px;
+      padding: 4.5rem;
+      margin-top: 9rem;
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(8px);
-      border-radius: 44px;
+      border-radius: 2.75rem;
 
       @media (max-width: 600px) {
-        padding: 72px 16px;
+        padding: 4.5rem 1rem;
         align-items: stretch;
         /* min-width: 1076px; */
       }
 
       .info {
         max-width: 100%;
-        margin-top: 32px;
+        margin-top: 2rem;
         display: grid;
         /* max-width: 600px; */
         /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
         grid-template-columns: repeat(5, min-content);
-        gap: 32px;
+        gap: 2rem;
         /* grid-template-columns: 1fr min-content; */
         /* grid-auto-flow: dense; */
         justify-items: center;
@@ -210,12 +210,12 @@ body {
           -webkit-text-fill-color: transparent;
           background-clip: text;
           text-fill-color: transparent;
-          font-size: 48px;
+          font-size: 3rem;
           font-family: "Poppins", sans-serif;
           text-align: center;
           /* display: inline-block; */
           @media (max-width: 600px) {
-            font-size: 32px;
+            font-size: 2rem;
           }
         }
 
@@ -227,7 +227,7 @@ body {
 
         hr {
           border-style: none;
-          height: 132px;
+          height: 8.25rem;
           width: 1px;
           /* background-color: $Neutrals-Light-40; */
           /* opacity: 50%; */
@@ -294,11 +294,11 @@ body {
       align-items: center;
       height: fit-content;
       grid-auto-flow: dense;
-      gap: 32px;
+      gap: 2rem;
       @media (max-width: 600px) {
         grid-template-columns: 1fr;
         grid-row: 1fr 1fr;
-        gap: 32px;
+        gap: 2rem;
 
         /* min-width: 1076px; */
       }
@@ -330,7 +330,7 @@ body {
         .input__2 {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 16px;
+          gap: 1rem;
           @media (max-width: 600px) {
             grid-template-columns: 1fr;
           }
@@ -342,14 +342,14 @@ body {
         /* right: $xs; */
         background-color: $color-primary;
         color: #ffffff;
-        height: 48px;
-        border-radius: 40px;
+        height: 3rem;
+        border-radius: 2.5rem;
         box-sizing: border-box;
         text-decoration: none;
         max-width: fit-content;
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 700;
-        padding: 0 32px;
+        padding: 0 2rem;
         justify-content: center;
         font-family: "Poppins", sans-serif;
 
@@ -358,7 +358,7 @@ body {
         border-style: none;
 
         .logo-search {
-          padding-right: 8px;
+          padding-right: 0.5rem;
           display: inline-block;
         }
       }
@@ -370,10 +370,10 @@ body {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-top: 192px;
+      margin-top: 12rem;
       gap: 0px;
       @media (max-width: 600px) {
-        margin-top: 128px;
+        margin-top: 8rem;
       }
 
       .ubication {
@@ -385,7 +385,7 @@ body {
         /* flex-direction: column; */
         justify-content: center;
         align-items: center;
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
       }
 
       .first-data-mobile {
@@ -396,11 +396,11 @@ body {
         }
       }
       .card {
-        width: 200px;
-        height: 270px;
-        border-radius: 10px;
+        width: 12.5rem;
+        height: 16.875rem;
+        border-radius: 0.625rem;
         overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
         text-align: center;
         font-family: Arial, sans-serif;
     }
@@ -412,15 +412,15 @@ body {
 
     
       .first-data {
-        margin-top: 32px;
+        margin-top: 2rem;
         position: relative;
-        width: 620px;
+        width: 38.75rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 32px;
+        padding-top: 2rem;
 
-        @media (max-width: 600px) {
+        @media (max-width: 37.5rem) {
           display: none;
         }
 
@@ -428,19 +428,19 @@ body {
           position: absolute;
 
           /* top: 0; */
-          font-size: 16px;
+          font-size: 1rem;
           /* padding-left: 16px; */
-          padding-left: 24px;
+          padding-left: 1.5rem;
           border-style: solid;
           border-color: #ffffff80;
           border-width: 1px;
           outline: none;
           width: 100%;
-          height: 64px;
+          height: 4rem;
           color: #ffffff;
           outline: none;
           background-color: #ffffff17;
-          border-radius: 32px;
+          border-radius: 2rem;
 
           &:hover {
             border-style: solid;
@@ -453,8 +453,8 @@ body {
             border-color: #2997ff;
             border-width: 1px; */
 
-            border: 1px solid #2997ff;
-            outline: 4px solid #2997ff27;
+            border: 0.0625rem solid #2997ff;
+            outline: 0.25rem solid #2997ff27;
           }
         }
       }
@@ -462,9 +462,9 @@ body {
   }
   
   .avatarImageCards {
-    margin-top: 72px;
+    margin-top: 4.5rem;
     display: flex;
-    gap: 32px;
+    gap: 2rem;
     overflow-x: hidden; // Permite el desplazamiento horizontal si el contenido es más ancho
     overflow-y: hidden; // Evita el desplazamiento vertical
     position: relative;
@@ -473,8 +473,8 @@ body {
     width: 100vw; // Asegura que el contenedor ocupe todo el ancho disponible
     cursor: grab;
   
-    @media (max-width: 600px) {
-      gap: 20px;
+    @media (max-width: 37.5rem) {
+      gap: 1.25rem;
     }
   
     &.grabbing {
@@ -488,9 +488,9 @@ body {
     }
   
     .cardAvatar {
-      min-width: 200px;
-      height: 270px;
-      border-radius: 24px;
+      min-width: 12.5rem;
+      height: 16.875rem;
+      border-radius: 1.5rem;
       overflow: hidden;
       text-align: center;
       font-family: Poppins, sans-serif;
@@ -500,8 +500,8 @@ body {
       animation: slide 10s linear infinite;
   
       @media (max-width: 600px) {
-        min-width: 163px;
-        height: 220px;
+        min-width: 10.1875rem;
+        height: 13.75rem;
       }
   
       .avatar-img {
@@ -511,36 +511,36 @@ body {
       }
   
       .info {
-        padding: 16px;
+        padding: 1rem;
         bottom: 0px;
         position: absolute;
         width: 100%;
         gap: 0px;
         z-index: 1;
   
-        @media (max-width: 600px) {
+        @media (max-width: 37.5rem) {
           bottom: 0px;
           padding: 12px;
         }
   
         .name {
           text-align: left;
-          font-size: 18px;
+          font-size: 1.125rem;
           font-weight: 500;
           color: rgb(255, 255, 255);
   
-          @media (max-width: 600px) {
-            font-size: 14px;
+          @media (max-width: 37.5rem) {
+            font-size: 0.875rem;
           }
         }
   
         .job {
           text-align: left;
-          font-size: 14px;
+          font-size: 0.875rem;
           color: rgba(255, 255, 255, 0.7);
   
-          @media (max-width: 600px) {
-            font-size: 12px;
+          @media (max-width: 37.5rem) {
+            font-size: 0.75rem;
           }
         }
   
@@ -578,10 +578,10 @@ body {
 
 .sponsors {
   /* padding: 120px; */
-  margin: 192px 0px 0px 0px; 
+  margin: 12rem 0rem 0rem 0rem; 
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 2rem;
 }
 
 .hrcontainer { 
@@ -618,8 +618,8 @@ body {
    
     align-items: center;
     flex-direction: column;
-    gap: 16px;
-    margin-top: 176px;
+    gap: 1rem;
+    margin-top: 11rem;
 
     .logo-footer {
       display: block;
@@ -629,7 +629,7 @@ body {
     .footer-social-media {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 0.5rem;
     }
   }
   .background-footer {
@@ -643,13 +643,13 @@ body {
 #messageContainer {
   display: none;
   background: white;
-  padding: 15px;
+  padding: 0.9375rem;
   color: #000019;
   width: 100%;
   text-align: center;
   font-weight: bold;
-  margin: 20px 0;
-  border-radius: 10px;
+  margin: 1.25rem 0;
+  border-radius: 0.625rem;
 
   #spinner {
     display: none;
@@ -666,18 +666,18 @@ body {
 
 #registrationForm {
   .data_button {
-    margin-top: 32px;
+    margin-top: 2rem;
         /* right: $xs; */
         background-color: $color-primary;
         color: #ffffff;
-        height: 48px;
-        border-radius: 40px;
+        height: 3rem;
+        border-radius: 2.5rem;
         box-sizing: border-box;
         text-decoration: none;
         max-width: fit-content;
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 700;
-        padding: 0 32px;
+        padding: 0 2rem;
         justify-content: center;
         font-family: "Poppins", sans-serif;
         cursor: pointer;
