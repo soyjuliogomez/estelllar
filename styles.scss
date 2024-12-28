@@ -130,7 +130,7 @@ body {
           align-items: center;
           justify-content: center;
           height: 48px;
-          background-color: $color-primary;
+          background-color: $color-primary-00;
           color: #ffffff;
           border-radius: 28px;
           padding: 0 32px;
@@ -143,7 +143,7 @@ body {
           align-items: center;
           justify-content: center;
           height: 3rem;
-          background-color: $color-primary;
+          background-color: $color-primary-00;
           color: #ffffff;
           border-radius: 1.75rem;
           padding: 0 2rem;
@@ -441,7 +441,7 @@ body {
       .father-right > .data_button {
         margin-top: 32px;
         /* right: $xs; */
-        background-color: $color-primary;
+        background-color: $color-primary-00;
         color: #ffffff;
         height: 3rem;
         border-radius: 2.5rem;
@@ -792,7 +792,7 @@ body {
   .data_button {
     margin-top: 2rem;
         /* right: $xs; */
-        background-color: $color-primary;
+        background-color: $color-primary-00;
         color: #ffffff;
         height: 3rem;
         border-radius: 2.5rem;
@@ -800,7 +800,7 @@ body {
         text-decoration: none;
         max-width: fit-content;
         font-size: 1.125rem;
-        font-weight: 700;
+        font-weight: 500;
         padding: 0 2rem;
         justify-content: center;
         font-family: "Poppins", sans-serif;
@@ -810,7 +810,7 @@ body {
         border-style: none;
         transition: 0.3s;
         &:hover {
-          background-color:#2997ff;
+          background-color: $color-primary-10;
         }
   }
 }

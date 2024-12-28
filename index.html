@@ -42,7 +42,7 @@
       <hr />
       <div class="botones-usuario">
         <!-- <a class="boton-iniciarSesion" href="Login.html">Iniciar sesion</a> -->
-        <a class="boton-registrarme" href="Register.html">Registrarme</a>
+        <a class="button button__primary" onclick="scrollToData()" >Registrarme &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
   </nav>
@@ -69,10 +69,9 @@
             src="./image/arrow_forward_ios.svg" class="logo-search" alt="Descargar CV" /></a>
       </div>
       <div class="first-data">
-        <input type="text" placeholder="Ingrese su correo electronico" class="first-data__placeholder" />
+        <input type="email" placeholder="Ingrese su correo electronico" class="first-data__placeholder" id="input1" />
 
-        <a class="button button__primary button__primary--absolute" title="CV" href="#" target="_blank">Registrarme<img
-            src="./image/arrow_forward_ios.svg" class="logo-search" alt="Descargar CV" /></a>
+        <a class="button button__primary button__primary--absolute"  onclick="scrollToData()" class="logo-search" >Registrarme&nbsp;<i class="fa-solid fa-arrow-right"></i> </a>
       </div>
     </section>
 
@@ -240,7 +239,7 @@
             <div class="input__2">
               <div class="username-nombres">
                 <label class="label__input">Correo electronico</label>
-                <input name="email" type="email" placeholder="Ingresa aquí tu correo" class="input" required />
+                <input name="email" type="email" placeholder="Ingresa aquí tu correo" class="input" required id="input2"/>
               </div>
               <div class="username">
                 <label class="label__input">Número de celular</label>
@@ -265,7 +264,7 @@
             respecto a tus intereses. Si eres menos edad previamente tus padres
             debieron leer junto contigo este termino de uso de datos.
           </p>
-          <button type="submit" class="data_button">Registrarme &nbsp;<i class="fa-solid fa-arrow-right"></i></button>
+          <button type="submit"  class="data_button">Registrarme &nbsp;<i class="fa-solid fa-arrow-right"></i></button>
         </form>
       </div>
     </section>
@@ -288,13 +287,49 @@
         <img class="logo-footer" src="./image/social-media/footer-Instagram.svg" alt="logo-footer" />
       </a>
     </div>
-    <p class="paragraph paragraph__small">Copyright © EstelllarConf 2024. All rights reserved.</p>
+    <p class="paragraph paragraph__small">Copyright © EstellarConf <span id="currentYear"></span>. All rights reserved.</p>
   </footer>
   <img class="background-footer" src="./image/bg-footer.png" alt="bg-footer" />
   <img class="gradient-1" src="./image/gradient.svg" alt="eclipse-imagen-de-fondo" />
   <img class="background-image-desktop" src="./image/background-image.png" alt="personas-en-conferencia" />
   <img class="background-image-mobile" src="./image/background-image-mobile.png" alt="personas-en-conferencia" />
+  <script>
+    // Actualizar el año automáticamente
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
 
+<script>
+  function scrollToData() {
+    // Encontrar el elemento con la clase "data"
+    const dataSection = document.querySelector('.data');
+    if (dataSection) {
+      // Desplazarse hacia el elemento con un pequeño espacio encima
+      window.scrollTo({
+        top: dataSection.offsetTop - 110, // Restamos 110px de la posición original
+        behavior: 'smooth'
+      });
+    }
+  }
+</script>
+<script>
+  // Obtener ambos inputs
+  const input1 = document.getElementById('input1');
+  const input2 = document.getElementById('input2');
+
+  // Función para sincronizar el valor de ambos inputs
+  function syncInputs(event) {
+    // Actualizar el valor del otro input
+    if (event.target === input1) {
+      input2.value = input1.value;
+    } else if (event.target === input2) {
+      input1.value = input2.value;
+    }
+  }
+
+  // Escuchar el evento 'input' en ambos campos
+  input1.addEventListener('input', syncInputs);
+  input2.addEventListener('input', syncInputs);
+</script>
 </body>
 
 </html>
