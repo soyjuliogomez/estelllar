@@ -16,14 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Configuración para Móvil
   const mobileConfig = {
-    triggerStart: 1000,        // Móvil comienza el efecto más tarde (menos scroll)
-    triggerFull: 4600,          // Efecto más rápido en móvil (menos scroll necesario)
+    triggerStart: 200,        // Móvil comienza el efecto más tarde (menos scroll)
+    triggerFull: 1600,          // Efecto más rápido en móvil (menos scroll necesario)
     offsetActivation: 100,     // Punto de inicio diferente para móvil
-    visibilityThreshold: 0.9,  // Porcentaje de pantalla donde se activa (0.9 = 90% superior)
+    visibilityThreshold: 0.6,  // Porcentaje de pantalla donde se activa (0.9 = 90% superior)
     bottomOffset: -50,         // Cuánto puede salir por abajo y seguir siendo "visible"
     expandWidth: 100,           // Porcentaje de expansión máxima
     translateY: 0,             // Desplazamiento vertical cuando está expandido
-    initialOpacity: 0.8,       // Opacidad inicial
+    initialOpacity: 1,       // Opacidad inicial
     finalOpacity: 1            // Opacidad final
   };
   
@@ -58,10 +58,17 @@ document.addEventListener('DOMContentLoaded', function() {
   // Función para verificar si un elemento está visible en la ventana (configuración para móvil)
   function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
-    return (
-      rect.top <= (window.innerHeight * mobileConfig.visibilityThreshold) &&
-      rect.bottom >= mobileConfig.bottomOffset
-    );
+    const windowHeight = window.innerHeight;
+    
+    // Calcular el centro de la tarjeta
+    const cardCenter = rect.top + (rect.height / 2);
+    
+    // Calcular el centro de la pantalla
+    const screenCenter = windowHeight * mobileConfig.visibilityThreshold;
+    
+    // Determinar si la tarjeta está en la zona "central" de la pantalla
+    // Si está por encima o por debajo del centro, no se considera en la zona central
+    return (cardCenter > screenCenter - 150) && (cardCenter < screenCenter + 150);
   }
   
   // Función para manejar el evento de scroll
@@ -84,27 +91,22 @@ document.addEventListener('DOMContentLoaded', function() {
       cards.forEach((card) => {
         const initialWidthPercent = getInitialWidth(card);
         
-        // Comprobamos si la tarjeta está visible
+        // Comprobamos si la tarjeta está en la zona central
         if (isElementInViewport(card)) {
-          // Hacer tarjeta completamente visible
+          // Hacer tarjeta completamente expandida cuando está en el centro
           card.setAttribute('style', `
             width: ${config.expandWidth}% !important; 
-            opacity: ${config.finalOpacity} !important; 
+            opacity: 1 !important; 
             transform: translateY(${config.translateY}px) !important; 
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
           `);
           card.classList.add('card-in-view');
         } else {
-          // Calculamos el ancho en función del scroll
-          const currentWidth = initialWidthPercent + ((config.expandWidth - initialWidthPercent) * expandFactor);
-          const currentOpacity = config.initialOpacity + ((config.finalOpacity - config.initialOpacity) * expandFactor);
-          const translateY = 15 * (1 - expandFactor);
-          
-          // Tarjeta no visible, aplicamos transición basada en scroll
+          // Tarjeta no está en el centro, volver al estado inicial
           card.setAttribute('style', `
-            width: ${currentWidth}% !important; 
-            opacity: ${currentOpacity} !important; 
-            transform: translateY(${translateY}px) !important;
+            width: ${initialWidthPercent}% !important; 
+            opacity: 1 !important; 
+            transform: translateY(15px) !important;
           `);
           card.classList.remove('card-in-view');
         }
