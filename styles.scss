@@ -291,15 +291,31 @@ body {
         }
       }
     }
+
 // Archivo SCSS para la sección de tecnologías
 // Variables
 $max-width: 1076px;
-$card-height: 360px;
-$border-radius: 16px;
-$transition-speed: 0.5s;
-$bg-dark: #121212;
+$card-height: 260px;
+$card-height-tablet: 220px;
+$card-height-mobile: 200px;
+$border-radius: 44px;
+$transition-speed: 0.3s; // Reducido para hacer la animación más suave con JS
 $text-color: #ffffff;
 $gap-size: 24px;
+$gap-size-tablet: 16px;
+$gap-size-mobile: 12px;
+
+// Variables para el ancho inicial de cada tarjeta (porcentaje del ancho final)
+$card-innovation-init-width: 30%; // Tarjeta grande (span 12)
+$card-ml-init-width: 20%;         // Machine Learning (span 3)
+$card-ai-init-width: 40%;         // IA (span 9)
+$card-cyber-init-width: 20%;      // Cyberseguridad (span 4)
+$card-cloud-init-width: 20%;      // Cloud (span 4)
+$card-blockchain-init-width: 20%; // Blockchain (span 4)
+
+// Variables para dispositivos más pequeños
+$card-tablet-init-width: 85%;     // Ancho inicial en tablets
+$card-mobile-init-width: 75%;     // Ancho inicial en móviles
 
 // Mixins
 @mixin card-base {
@@ -313,13 +329,11 @@ $gap-size: 24px;
   background-size: cover;
   background-position: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  transition: transform $transition-speed ease, 
-              background-size $transition-speed ease;
+  transition: width $transition-speed ease, transform $transition-speed ease, opacity $transition-speed ease;
   overflow: hidden;
+  margin: 0 auto; // Para centrar cuando es más pequeño
   
-  // Estado inicial (contraído)
-  transform: scale(0.9);
-  transform-origin: center;
+  will-change: width, transform, opacity; // Mejora el rendimiento de la animación
   
   .card-overlay {
     position: absolute;
@@ -327,8 +341,9 @@ $gap-size: 24px;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5); // Overlay más oscuro para mejorar legibilidad
     z-index: 1;
+    transition: background $transition-speed ease;
   }
   
   .card-content {
@@ -336,13 +351,31 @@ $gap-size: 24px;
     z-index: 2;
     width: 100%;
     text-align: center;
+    transform: translateY(0);
+    transition: transform $transition-speed ease;
     
     h3 {
       color: $text-color;
       font-weight: bold;
-      font-size: 18px;
-      transition: font-size $transition-speed ease;
+      font-size: 32px;
+      font-weight: 500;
       margin: 0;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Sombra para mejorar legibilidad
+      transition: font-size $transition-speed ease;
+    }
+  }
+  
+  // Efecto hover para desktop
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    
+    .card-overlay {
+      background: rgba(0, 0, 0, 0.4); // Más transparente en hover
+    }
+    
+    .card-content {
+      transform: translateY(-5px);
     }
   }
 }
@@ -350,81 +383,235 @@ $gap-size: 24px;
 // Estilos principales
 .tech-container {
   max-width: $max-width;
-  margin: 0 auto;
-  padding: 44px 20px 24px; // Padding superior 44px, inferior y laterales 24px
-  background-color: $bg-dark;
+  width: 100%; // Asegurar que ocupe todo el ancho disponible
+  margin: 120px auto;
+  // Padding superior 44px, inferior y laterales 24px
   color: $text-color;
   font-family: 'Arial', sans-serif;
   
   // Se utilizan las clases específicas para el H1
-  .h1__page {
-    margin-bottom: $gap-size;
-    font-size: 32px;
-    line-height: 1.2;
-    
-    &.h1__page--section {
-      margin-bottom: $gap-size;
-    }
-    
-    &.h1__page--aligncenter {
-      text-align: center;
-    }
-  }
+  
   
   .tech-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: $gap-size; // Gap uniforme de 24px
+    width: 100%; // Asegurar que ocupe todo el ancho
   }
   
   // Definición de cada card y su posición en la grid
   .tech-card {
     @include card-base;
     
+    // PLACEHOLDERS DE IMÁGENES - REEMPLAZA ESTAS URLS CON TUS PROPIAS IMÁGENES
     &.card-innovation {
       grid-column: 1 / span 12;
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-      // Placeholder para imagen
-      // background-image: url('path/to/innovation.jpg');
+      width: $card-innovation-init-width; // Ancho inicial
+      // Placeholder temporal de gradiente
+      /* background: linear-gradient(to right, #ff416c, #ff4b2b); */
+      // REEMPLAZA ESTA LÍNEA CON TU IMAGEN:
+      background-image: url('./image/innovacion.png');
     }
     
     &.card-machine-learning {
       grid-column: 1 / span 3;
-      background: linear-gradient(to right, #4e54c8, #8f94fb);
-      // background-image: url('path/to/machine-learning.jpg');
+      width: $card-ml-init-width; // Ancho inicial
+      // Placeholder temporal de gradiente
+      /* background: linear-gradient(to right, #4e54c8, #8f94fb); */
+      // REEMPLAZA ESTA LÍNEA CON TU IMAGEN:
+      background-image: url('./image/machine.png');
+
     }
     
     &.card-ai {
       grid-column: 4 / span 9;
-      background: linear-gradient(to right, #232526, #414345);
-      // background-image: url('path/to/ai.jpg');
+      width: $card-ai-init-width; // Ancho inicial
+      // Placeholder temporal de gradiente
+     /*  background: linear-gradient(to right, #232526, #414345); */
+      // REEMPLAZA ESTA LÍNEA CON TU IMAGEN:
+      background-image: url('./image/ciborg.png');
     }
     
     &.card-cybersecurity {
       grid-column: 1 / span 4;
+      width: $card-cyber-init-width; // Ancho inicial
+      // Placeholder temporal de gradiente
       background: linear-gradient(to right, #834d9b, #d04ed6);
-      // background-image: url('path/to/cybersecurity.jpg');
+      // REEMPLAZA ESTA LÍNEA CON TU IMAGEN:
+      // background-image: url('ruta/a/tu/imagen/ciberseguridad.jpg');
     }
     
     &.card-cloud {
       grid-column: 5 / span 4;
-      background: linear-gradient(to right, #5614b0, #dbd65c);
-      // background-image: url('path/to/cloud.jpg');
+      width: $card-cloud-init-width; // Ancho inicial
+      // Placeholder temporal de gradiente
+      /* background: linear-gradient(to right, #5614b0, #dbd65c); */
+      // REEMPLAZA ESTA LÍNEA CON TU IMAGEN:
+      background-image: url('./image/cloudComputing.png');
     }
     
     &.card-blockchain {
       grid-column: 9 / span 4;
-      background: linear-gradient(to right, #c31432, #240b36);
-      // background-image: url('path/to/blockchain.jpg');
+      width: $card-blockchain-init-width; // Ancho inicial
+      // Placeholder temporal de gradiente
+      /* background: linear-gradient(to right, #c31432, #240b36); */
+      // REEMPLAZA ESTA LÍNEA CON TU IMAGEN:
+      background-image: url('./image/blockchain.png');
+
     }
   }
 }
 
-// Animación al hacer scroll
-// Esta clase se añadirá mediante JavaScript
-.scrolled {
-  .tech-card {
-    transform: scale(1);
+// ==========================================
+// RESPONSIVE DESIGN
+// ==========================================
+
+// Tablets y dispositivos medianos (768px a 1024px)
+@media (max-width: 1024px) {
+  .tech-container {
+    padding: 32px 16px 20px;
+    
+    .h1__page {
+      font-size: 28px;
+      margin-bottom: $gap-size-tablet;
+    }
+    
+    .tech-grid {
+      grid-gap: $gap-size-tablet;
+    }
+    
+    .tech-card {
+      height: $card-height-tablet;
+      padding: 16px;
+      width: $card-tablet-init-width !important; // Ancho inicial uniforme para tablets
+      
+      .card-content h3 {
+        font-size: 16px;
+      }
+      
+      // Animación para tablets (al tocar o hacer hover)
+      &:hover, &:active {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        width: 95% !important; // Expandir al 95% al interactuar
+        
+        .card-overlay {
+          background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-content h3 {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+// Tablets pequeñas y dispositivos grandes (601px a 767px)
+@media (max-width: 767px) {
+  .tech-container {
+    .tech-grid {
+      // Reorganizar el grid para pantallas medianas
+      grid-template-columns: repeat(6, 1fr);
+      
+      .tech-card {
+        // Animación para tablets pequeñas
+        opacity: 0.9;
+        transform: translateY(10px);
+        
+        // Primera fila - Innovación ocupa todo el ancho
+        &.card-innovation {
+          grid-column: 1 / span 6;
+        }
+        
+        // Segunda fila - ML e IA ocupan la mitad cada uno
+        &.card-machine-learning {
+          grid-column: 1 / span 3;
+          width: $card-tablet-init-width;
+        }
+        
+        &.card-ai {
+          grid-column: 4 / span 3;
+          width: $card-tablet-init-width;
+        }
+        
+        // Tercera fila - Redistribución 3-3
+        &.card-cybersecurity {
+          grid-column: 1 / span 3;
+        }
+        
+        &.card-cloud {
+          grid-column: 4 / span 3;
+        }
+        
+        // Cuarta fila - Blockchain ocupa todo el ancho
+        &.card-blockchain {
+          grid-column: 1 / span 6;
+          margin-top: $gap-size-tablet; // Añadir espacio para separar de la fila anterior
+        }
+        
+        // Animación al tocar o hacer hover
+        &:hover, &:active {
+          opacity: 1;
+          transform: translateY(0);
+          width: 95% !important; // Expandir al 95% al interactuar
+        }
+      }
+    }
+  }
+  
+  // Clase para animar las tarjetas al hacer scroll
+  .card-in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+}
+
+// Móviles (600px o menos)
+@media (max-width: 600px) {
+  .tech-container {
+    padding: 24px 12px 16px;
+    
+    .h1__page {
+      font-size: 24px;
+      margin-bottom: $gap-size-mobile;
+    }
+    
+    .tech-grid {
+      grid-template-columns: 1fr; // Una sola columna en móviles
+      grid-gap: $gap-size-mobile;
+      
+      .tech-card {
+        height: $card-height-mobile;
+        padding: 12px;
+        grid-column: 1 / span 1 !important; // Forzar todas las tarjetas a ocupar la única columna
+        width: $card-mobile-init-width !important; // Ancho inicial uniforme en móviles
+        opacity: 0.8;
+        transform: translateY(15px);
+        transition: all 0.4s ease;
+        
+        .card-content h3 {
+          font-size: 16px;
+        }
+        
+        // Restauramos el orden original para móviles (todas en columna)
+        &.card-innovation,
+        &.card-machine-learning,
+        &.card-ai,
+        &.card-cybersecurity,
+        &.card-cloud,
+        &.card-blockchain {
+          margin-top: 0; // Eliminar margen adicional
+        }
+        
+        // Animación al tocar
+        &:active {
+          width: 95% !important;
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
   }
 }
 /* FIN DE CARDS tecnologias */

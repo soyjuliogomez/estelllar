@@ -180,13 +180,15 @@ $9xl: 176; */
   padding: $x $m;
   background-color: #7868f62a;
   border-radius: $x;
+  width: fit-content;
 
   &--left {
     text-align: left;
   }
 
   &--center {
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   &--right {
@@ -203,22 +205,35 @@ $9xl: 176; */
   text-align: center;
   line-height: 140%;
 
-
-
-  
   @media (max-width: 600px) {
     font-size: 2rem;
   }
 
+  // Modificadores de margen top
   &--section {
     margin-top: $m;
   }
 
+  // Alineación
   &--alignleft {
     text-align: left;
   }
+
   &--aligncenter {
     text-align: center;
+  }
+
+  // Márgenes inferiores
+  &--mb-s {
+    margin-bottom: $s;
+  }
+
+  &--mb-m {
+    margin-bottom: $m;
+  }
+
+  &--mb-l {
+    margin-bottom: $l;
   }
 }
 
