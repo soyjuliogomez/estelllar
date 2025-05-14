@@ -309,9 +309,9 @@ $gap-size-mobile: 12px;
 $card-innovation-init-width: 30%; // Tarjeta grande (span 12)
 $card-ml-init-width: 20%;         // Machine Learning (span 3)
 $card-ai-init-width: 40%;         // IA (span 9)
-$card-cyber-init-width: 20%;      // Cyberseguridad (span 4)
-$card-cloud-init-width: 20%;      // Cloud (span 4)
-$card-blockchain-init-width: 20%; // Blockchain (span 4)
+$card-cyber-init-width: 10%;      // Cyberseguridad (span 4)
+$card-cloud-init-width: 10%;      // Cloud (span 4)
+$card-blockchain-init-width: 10%; // Blockchain (span 4)
 
 // Variables para dispositivos más pequeños
 $card-tablet-init-width: 85%;     // Ancho inicial en tablets
@@ -570,7 +570,8 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
 // Móviles (600px o menos)
 @media (max-width: 600px) {
   .tech-container {
-    padding: 24px 12px 16px;
+    width: 100%;
+    padding: 12px 12px;
     
     .h1__page {
       font-size: 24px;
@@ -582,6 +583,7 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
       grid-gap: $gap-size-mobile;
       
       .tech-card {
+        width: 100% !important; // Ancho completo en móviles
         height: $card-height-mobile;
         padding: 12px;
         grid-column: 1 / span 1 !important; // Forzar todas las tarjetas a ocupar la única columna
@@ -606,7 +608,7 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
         
         // Animación al tocar
         &:active {
-          width: 95% !important;
+          width: 100% !important;
           opacity: 1;
           transform: translateY(0);
         }
