@@ -65,17 +65,18 @@ body {
   }
 
   .barranavegacion {
-    width: 100vw;
+    width: 1076px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(16px);
-    height: 5.5rem;
+    height: 64px;
     position: fixed;
     z-index: 4;
-    padding: 0 $xxl;
-    top: 0px;
+    padding: 0 8px 0 24px;
+    top: 24px;
+    border-radius: 56px;
 
     @media (max-width: 600px) {
       width: 100vw;
@@ -106,8 +107,31 @@ body {
       .linksNavegacion {
         color: white;
         text-decoration: none;
-        font-size: 16px;
-        font-weight: 500;
+        font-size: 14px;
+        font-weight: 400;
+        position: relative;
+        padding-bottom: 3px;
+        transition: all 0.3s ease;
+        
+        &:after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          background: linear-gradient(270deg, #e5204f 37.13%, #fffacd 100%);
+          transition: width 0.3s ease;
+          border-radius: 2px;
+        }
+        
+        &:hover {
+          color: #fffacd;
+          
+          &:after {
+            width: 100%;
+          }
+        }
       }
 
       hr {
@@ -181,8 +205,17 @@ body {
       margin-top: 9rem;
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(8px);
-      border-radius: 2.75rem;
+      border-radius: 32px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 
+      p {
+        margin-top: 2rem;
+      }
+      
+
+    
+
+     
       @media (max-width: 600px) {
         padding: 4.5rem 1rem;
         align-items: stretch;
@@ -194,26 +227,21 @@ body {
         max-width: 100%;
         margin-top: 2rem;
         display: grid;
-        /* max-width: 600px; */
-        /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
-        grid-template-columns: repeat(5, min-content);
-        gap: 2rem;
-        /* grid-template-columns: 1fr min-content; */
-        /* grid-auto-flow: dense; */
+        // Cambiamos a 3 columnas para los tres elementos
+        grid-template-columns: 1fr 1px 1fr 1px 1fr;
+        gap: 20px; // Quitamos el gap porque usaremos hr como separadores
         justify-items: center;
-
         align-items: center;
+        
         @media (max-width: 600px) {
           width: 100%;
           grid-template-columns: 1fr;
-          grid-template-rows: repeat(5, min-content);
+          grid-template-rows: auto auto auto;
           gap: 12px;
         }
-        /* margin-top: $xl; */
-
+        
         div .gradient {
           background: linear-gradient(270deg, #e5204f 37.13%, #fffacd 100%);
-
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -221,34 +249,185 @@ body {
           font-size: 3rem;
           font-family: "Poppins", sans-serif;
           text-align: center;
-          /* display: inline-block; */
+          margin-bottom: 0.5rem; // Añadimos margen inferior para separar del texto
+          
           @media (max-width: 600px) {
-            
             font-size: 2rem;
           }
         }
-
+        
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+        
         div > label {
           text-align: center;
           color: #ffffff;
           font-family: "Poppins", sans-serif;
         }
-
+        
+        .paragraph {
+          margin: 0; // Eliminamos márgenes para evitar espacios inesperados
+          text-align: center;
+          width: 100%;
+        }
+        
         .hr-info {
           border-style: none;
           height: 8.25rem;
           width: 1px;
-          /* background-color: $Neutrals-Light-40; */
-          /* opacity: 50%; */
           background-color: rgba(255, 255, 255, 0.16);
           border-radius: 2px;
+          margin: 0; // Aseguramos que no tenga márgenes
+          
           @media (max-width: 600px) {
             height: 1px;
-            width: 100%;
+            width: 80%;
+            margin: 10px auto;
           }
         }
       }
     }
+// Archivo SCSS para la sección de tecnologías
+// Variables
+$max-width: 1076px;
+$card-height: 360px;
+$border-radius: 16px;
+$transition-speed: 0.5s;
+$bg-dark: #121212;
+$text-color: #ffffff;
+$gap-size: 24px;
+
+// Mixins
+@mixin card-base {
+  height: $card-height;
+  border-radius: $border-radius;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  align-items: center; // Centrado vertical
+  justify-content: center; // Centrado horizontal
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform $transition-speed ease, 
+              background-size $transition-speed ease;
+  overflow: hidden;
+  
+  // Estado inicial (contraído)
+  transform: scale(0.9);
+  transform-origin: center;
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+  
+  .card-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    
+    h3 {
+      color: $text-color;
+      font-weight: bold;
+      font-size: 18px;
+      transition: font-size $transition-speed ease;
+      margin: 0;
+    }
+  }
+}
+
+// Estilos principales
+.tech-container {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 44px 20px 24px; // Padding superior 44px, inferior y laterales 24px
+  background-color: $bg-dark;
+  color: $text-color;
+  font-family: 'Arial', sans-serif;
+  
+  // Se utilizan las clases específicas para el H1
+  .h1__page {
+    margin-bottom: $gap-size;
+    font-size: 32px;
+    line-height: 1.2;
+    
+    &.h1__page--section {
+      margin-bottom: $gap-size;
+    }
+    
+    &.h1__page--aligncenter {
+      text-align: center;
+    }
+  }
+  
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: $gap-size; // Gap uniforme de 24px
+  }
+  
+  // Definición de cada card y su posición en la grid
+  .tech-card {
+    @include card-base;
+    
+    &.card-innovation {
+      grid-column: 1 / span 12;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      // Placeholder para imagen
+      // background-image: url('path/to/innovation.jpg');
+    }
+    
+    &.card-machine-learning {
+      grid-column: 1 / span 3;
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      // background-image: url('path/to/machine-learning.jpg');
+    }
+    
+    &.card-ai {
+      grid-column: 4 / span 9;
+      background: linear-gradient(to right, #232526, #414345);
+      // background-image: url('path/to/ai.jpg');
+    }
+    
+    &.card-cybersecurity {
+      grid-column: 1 / span 4;
+      background: linear-gradient(to right, #834d9b, #d04ed6);
+      // background-image: url('path/to/cybersecurity.jpg');
+    }
+    
+    &.card-cloud {
+      grid-column: 5 / span 4;
+      background: linear-gradient(to right, #5614b0, #dbd65c);
+      // background-image: url('path/to/cloud.jpg');
+    }
+    
+    &.card-blockchain {
+      grid-column: 9 / span 4;
+      background: linear-gradient(to right, #c31432, #240b36);
+      // background-image: url('path/to/blockchain.jpg');
+    }
+  }
+}
+
+// Animación al hacer scroll
+// Esta clase se añadirá mediante JavaScript
+.scrolled {
+  .tech-card {
+    transform: scale(1);
+  }
+}
+/* FIN DE CARDS tecnologias */
 
     .learn {
       margin-top: 144px;
@@ -305,6 +484,29 @@ body {
       height: fit-content;
       grid-auto-flow: dense;
       gap: 2rem;
+      scroll-margin-top: 90px;
+      .data_button {
+        position: relative;
+        
+        .button-loading {
+            animation: spin 1s infinite linear;
+        }
+        
+        &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    }
+    
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+      
       @media (max-width: 600px) {
         width: 100%;
         grid-template-columns: 1fr;
@@ -473,6 +675,60 @@ body {
       align-items: center;
       margin-top: 8rem;
       gap: 0px;
+
+      /* efecto en texto */
+      .display.display__desktop.heroAncho {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .typing-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1.5em;
+        margin-top: 0px;
+      }
+      
+      #changing-word {
+        color: linear-gradient(270deg, #e5204f 37.13%, #fffacd 100%); /* Ajusta según tu paleta de colores */
+        font-weight: bold;
+      }
+      .gradient-text {
+        background: linear-gradient(270deg, #9285FF 20%, #fffacd 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+      }
+      
+      .cursor {
+        display: inline-block;
+        width: 3px;
+        height: 1em;
+        background-color: #9285FF; /* Mismo color que el texto */
+        margin-left: 2px;
+        animation: blink 1s infinite;
+      }
+      
+      @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      /* fin efecto texto */
+
+      h1 .changing-word {
+        display: inline-block;
+    transition: opacity 0.5s ease;
+      }
+
+      .heroAncho{
+        max-width: 80%;
+      }
       @media (max-width: 600px) {
         width: 100%;
         margin-top: 8rem;

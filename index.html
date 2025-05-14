@@ -24,9 +24,15 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet" />
   <!-- "material symbols" -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
   <script src="script.js" defer></script>
 </head>
 
@@ -35,14 +41,15 @@
     <img class="logo-barra" src="./image/estelllarconf-logo.svg" alt="logo" />
 
     <div class="menu">
-      <a class="linksNavegacion" href="#">Porque Nosotros</a>
-      <a class="linksNavegacion" href="#">Donde Sera</a>
-      <a class="linksNavegacion" href="#">¿Qué Aprenderé?</a>
+      <a class="linksNavegacion" href="#comunidad">Porque Nosotros</a>
+      <a class="linksNavegacion" href="#experienciaGuiada">¿Qué Aprenderé?</a>
+      <a class="linksNavegacion" href="#dataSection">Donde Sera</a>
 
       <hr />
       <div class="botones-usuario">
         <!-- <a class="boton-iniciarSesion" href="Login.html">Iniciar sesion</a> -->
-        <a class="button button__primary" onclick="scrollToData()" >Registrarme &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+        <a class="button button__primary" onclick="scrollToData()">Registrarme &nbsp;<i
+            class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
   </nav>
@@ -50,17 +57,22 @@
   <main>
     <section class="hero_image">
 
-      <a class="ubication" title="CV" href="Documents/CV-Julio-2022_compressed.pdf" target="_blank"><img
-          src="./image/ubication.svg" class="logo-search" alt="Descargar CV" /><span> </span>Quito, Ecuador</a>
+      <a class="ubication" title="CV"><img src="./image/ubication.svg" class="logo-search" /><span> </span>Quito,
+        Ecuador</a>
       <!-- <h1 class="display display__desktop">
             Conferencia para apasionados<br>de la <span class="typing">tecnología</span>
           </h1> -->
-      <h1 class="display display__desktop">
-        Conferencia para<br>apasionados de <span class="typing">tecnología</span>
-      </h1>
+          <h1 class="display display__desktop heroAncho">
+            <span>Conferencia Tech Quito Ecuador 2025</span>
+            <div class="typing-container">
+              <span id="changing-word" class="gradient-text">Innovación</span>
+              <span class="cursor"></span>
+            </div>
+          </h1>
       <!-- <h1 class="display display__mobile">Conferencia para apasionados de la tecnología</h1> -->
       <p class="paragraph paragraph__large  paragraph__large--sectionMedium paragraph__large--aligncenter">
-        Expanda su circulo social en el mundo de la tecnología
+        Expande tu círculo social, haz nuevos amigos y crece en el mundo de la tecnología.
+
       </p>
       <div class="first-data-mobile">
         <input name="correo" type="" placeholder="Ingresa aquí tus nombres"
@@ -71,7 +83,8 @@
       <div class="first-data">
         <input type="email" placeholder="Ingrese su correo electronico" class="first-data__placeholder" id="input1" />
 
-        <a class="button button__primary button__primary--absolute"  onclick="scrollToData()" class="logo-search" >Registrarme&nbsp;<i class="fa-solid fa-arrow-right"></i> </a>
+        <a class="button button__primary button__primary--absolute" onclick="scrollToData()"
+          class="logo-search">Registrarme&nbsp;<i class="fa-solid fa-arrow-right"></i> </a>
       </div>
     </section>
 
@@ -152,67 +165,130 @@
     </section>
     <section class="sponsors">
       <h1 class="h1__page h1__page--section h1__page--aligncenter">
-        Nuestros Patrocinadores
+        Nuestra comunidad de Apoyo
       </h1>
       <img class="sponsorImages" src="./image/sponsorLogos.svg" alt="Patrocinadores">
     </section>
-    <section class="why">
-      <p class="label__page label__page--right">Lorem ipsum</p>
+    <section class="why" id="comunidad">
+      <p class="label__page label__page--right">Comunidad</p>
 
       <h1 class="h1__page h1__page--section">
-        Una Conferencia Que Sin Duda Te Ayudara En Tu Crecimiento
-      </h1>
+        Haz nuevos amigos, comparte tu pasión y expande tu red profesional. </h1>
       <div class="informacionContainer">
         <div>
-          <h1 class="gradient">12+</h1>
+          <h1 class="gradient">10+</h1>
           <p class="paragraph paragraph__small   paragraph__small--aligncenter">Expertos Desarrolladores</p>
         </div>
-        <hr class="hr-info"/>
+        <hr class="hr-info" />
         <div>
-          <h1 class="gradient">120+</h1>
+          <h1 class="gradient">100+</h1>
           <p class="paragraph paragraph__small   paragraph__small--aligncenter">Miembros registrados</p>
         </div>
-        <hr class="hr-info"/>
+        <hr class="hr-info" />
         <div>
           <h1 class="gradient">12+</h1>
           <p class="paragraph paragraph__small paragraph__small--aligncenter">Sofware y Lenguajes</p>
         </div>
       </div>
       <p class="paragraph paragraph__large paragraph__large--section paragraph__large--aligncenter">
-        Si la tecnología te apasiona esta es tu oportunidad para crear
-        vínculos que resolverán tus dudas y te ayudaran en tu crecimiento en
-        este apasionante mundo de la tecnología.
+        Esta conferencia es tu oportunidad para hacer amigos, crear conexiones reales y crecer dentro y fuera del mundo
+        de la tecnología.
       </p>
     </section>
-    <section class="learn">
-      <div class="heading__learn">
-        <p class="label__page label__page--left">Lorem ipsum</p>
-        <h1 class="h1__page h1__page--section h1__page--alignleft">
-          SuperDev Pro
-          logo
 
+<!-- 
+  SECCIÓN DE TECNOLOGÍAS DEL FUTURO
+  - Un solo contenedor con tarjetas que se expanden al hacer scroll
+  - Disposición: 1 tarjeta grande (fila 1), 2 tarjetas (fila 2), 3 tarjetas (fila 3)
+  - Todas las tarjetas tienen altura fija de 360px
+  - Ancho total de 1076px en una grid de 12 columnas
+-->
+<div class="tech-container">
+  <!-- Título de la sección -->
+  <h1 class="h1__page h1__page--section h1__page--aligncenter">
+    Del presente al futuro:
+    descubre lo que está marcando el cambio
+  </h1>
+  
+  <!-- Grid de tarjetas tecnológicas -->
+  <div class="tech-grid">
+    <!-- FILA 1: Tarjeta grande (span 12) -->
+    <div class="tech-card card-innovation">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <h3>Innovasión</h3>
+      </div>
+    </div>
+    
+    <!-- FILA 2: Dos tarjetas (25% y 75%) -->
+    <div class="tech-card card-machine-learning">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <h3>Machine Learning</h3>
+      </div>
+    </div>
+    
+    <div class="tech-card card-ai">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <h3>Inteligencia Artificial</h3>
+      </div>
+    </div>
+    
+    <!-- FILA 3: Tres tarjetas iguales -->
+    <div class="tech-card card-cybersecurity">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <h3>Ciberseguridad</h3>
+      </div>
+    </div>
+    
+    <div class="tech-card card-cloud">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <h3>Cloud Computing</h3>
+      </div>
+    </div>
+    
+    <div class="tech-card card-blockchain">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <h3>Blockchain</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- fin cards de tecnologias -->
+
+    <section class="learn" id="experienciaGuiada">
+      <div class="heading__learn">
+        <p class="label__page label__page--left">Experiencia guiada
+
+        </p>
+        <h1 class="h1__page h1__page--section h1__page--alignleft">
           Aprenderás de la mano de expertos en el mundo de la tecnología.
         </h1>
         <p class="paragraph paragraph__large paragraph__large--section paragraph__large--alignleft">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Aprende junto a expertos líderes en tecnología y potencia tus habilidades con conocimientos prácticos y
+          actualizados.
         </p>
       </div>
       <img class="apps" src="./image/apps.svg" alt="" />
     </section>
-    <section class="data">
+    <section class="data" id="dataSection">
       <img class="map-image" src="./image/mapaQuito.svg" alt="" />
       <div class="father-right">
-        <p class="label__page label__page--left">Lorem ipsum</p>
+        <p class="label__page label__page--left">Ubicación</p>
         <h1 class="h1__page h1__page--section h1__page--alignleft">
-          Te Esperamos en Quito - Ecuador. Regístrate Ahora
+          Nos vemos en Quito. ¡Inscríbete ya!
         </h1>
         <!-- <div id="messageContainer" style="display: none;">
           <div id="spinner">Cargando...</div>
           <div id="messageContent"></div>
         </div> -->
         <div id="messageContainer" style="display: none;">
-        <!-- /* From Uiverse.io by mobinkakei */  -->
+  
           <div id="spinner">
             <div class="circle"></div>
             <div class="circle"></div>
@@ -239,17 +315,20 @@
             <div class="input__2">
               <div class="username-nombres">
                 <label class="label__input">Correo electronico</label>
-                <input name="email" type="email" placeholder="Ingresa aquí tu correo" class="input" required id="input2"/>
+                <input name="email" type="email" placeholder="Ingresa aquí tu correo" class="input" required
+                  id="input2" />
               </div>
               <div class="username">
                 <label class="label__input">Número de celular</label>
-                <input name="phone" type="text" placeholder="Ingresa aquí tu número de celular" class="input" required />
+                <input name="phone" type="text" placeholder="Ingresa aquí tu número de celular" class="input"
+                  required />
               </div>
             </div>
             <div class="input__2">
               <div class="username-nombres">
                 <label class="label__input">Fecha de nacimiento</label>
-                <input name="dateOfBirth" type="date" placeholder="Ingrese su fecha de nacimiento" class="input" required />
+                <input name="dateOfBirth" type="date" placeholder="Ingrese su fecha de nacimiento" class="input"
+                  required />
               </div>
               <div class="username-nombres">
                 <label class="label__input">Industria de interes</label>
@@ -258,20 +337,61 @@
               </div>
             </div>
           </div>
-          <p class="caption">
+          <p class="caption" class="roboto-regular">
             Al dar clic en el botón registrarte estas aceptando entregar tus
             datos con fines de marketing y brindarte una mejor experiencia con
             respecto a tus intereses. Si eres menos edad previamente tus padres
             debieron leer junto contigo este termino de uso de datos.
           </p>
-          <button type="submit"  class="data_button">Registrarme &nbsp;<i class="fa-solid fa-arrow-right"></i></button>
+          <button type="submit" class="data_button" id="submitButton">
+            <span class="button-loading" style="display: none;">
+              <i class="fa-solid fa-spinner fa-spin"></i>&nbsp;
+            </span>
+            <span class="button-text">Inscríbete Hoy</span>
+            <span class="button-icon">&nbsp;<i class="fa-solid fa-arrow-right"></i></span>
+          </button>
         </form>
+
+        <!-- Panel informativo para usuarios ya registrados - reemplazará al formulario cuando corresponda -->
+        <div id="alreadyRegisteredPanel" style="display: none;">
+          <!-- Título de confirmación con el nombre del usuario -->
+          <h2 class="h2__page h2__page--alignleft">¡Gracias por registrarte, <span
+              id="userRegisteredName">Nombre</span>!</h2>
+
+          <!-- Información del evento - puedes modificar estos datos según necesites -->
+          <p class="paragraph paragraph__medium">
+            Tu lugar para Stelllar 2025 está confirmado. Te esperamos el <strong id="eventDate">15 de junio</strong> a
+            las <strong id="eventTime">9:00 am</strong> en el <strong id="eventLocation">Centro de Convenciones
+              Quito</strong> (Av. Amazonas y Naciones Unidas).
+          </p>
+
+          <!-- Instrucciones adicionales -->
+          <p class="paragraph paragraph__small">
+            No olvides llevar tu identificación para el check-in. Hemos enviado todos los detalles a tu correo
+            electrónico.
+          </p>
+
+          <!-- Contenedor para los botones -->
+          <div class="buttons-container" style="margin-top: 2rem; display: flex; gap: 1rem;">
+            <!-- Botón para agregar al calendario -->
+            <button id="addToCalendarBtn" class="button button__primary">
+              <i class="fa-solid fa-calendar-plus"></i>&nbsp;Agregar a calendario
+            </button>
+
+            <!-- Botón para compartir en stories -->
+            <button id="shareToStoriesBtn" class="button button__primary">
+              <i class="fa-solid fa-share-nodes"></i>&nbsp;Compartir en mis stories
+            </button>
+          </div>
+        </div>
+        <!-- find de Usuario ya registra AI -->
       </div>
     </section>
   </main>
   <section class="hrcontainer">
     <hr class="hr-footer" />
   </section>
+  <iframe src='https://my.spline.design/squarecircleiconscopy-7H8blrYF6dgMSIox5TYoUKMV/' frameborder='0' width='100%' height='100%'></iframe>
 
   <footer class="footer">
 
@@ -287,7 +407,8 @@
         <img class="logo-footer" src="./image/social-media/footer-Instagram.svg" alt="logo-footer" />
       </a>
     </div>
-    <p class="paragraph paragraph__small">Copyright © EstellarConf <span id="currentYear"></span>. All rights reserved.</p>
+    <p class="paragraph paragraph__small">Copyright © EstellarConf <span id="currentYear"></span>. All rights reserved.
+    </p>
   </footer>
   <img class="background-footer" src="./image/bg-footer.png" alt="bg-footer" />
   <img class="gradient-1" src="./image/gradient.svg" alt="eclipse-imagen-de-fondo" />
@@ -298,38 +419,49 @@
     document.getElementById('currentYear').textContent = new Date().getFullYear();
   </script>
 
-<script>
-  function scrollToData() {
-    // Encontrar el elemento con la clase "data"
-    const dataSection = document.querySelector('.data');
-    if (dataSection) {
-      // Desplazarse hacia el elemento con un pequeño espacio encima
-      window.scrollTo({
-        top: dataSection.offsetTop - 110, // Restamos 110px de la posición original
-        behavior: 'smooth'
-      });
+  <script>
+    function scrollToData() {
+      // Encontrar el elemento con la clase "data"
+      const dataSection = document.querySelector('.data');
+      if (dataSection) {
+        // Desplazarse hacia el elemento con un pequeño espacio encima
+        window.scrollTo({
+          top: dataSection.offsetTop - 110, // Restamos 110px de la posición original
+          behavior: 'smooth'
+        });
+      }
     }
-  }
-</script>
-<script>
-  // Obtener ambos inputs
-  const input1 = document.getElementById('input1');
-  const input2 = document.getElementById('input2');
+  </script>
+  <script>
+    // Obtener ambos inputs
+    const input1 = document.getElementById('input1');
+    const input2 = document.getElementById('input2');
 
-  // Función para sincronizar el valor de ambos inputs
-  function syncInputs(event) {
-    // Actualizar el valor del otro input
-    if (event.target === input1) {
-      input2.value = input1.value;
-    } else if (event.target === input2) {
-      input1.value = input2.value;
+    // Función para sincronizar el valor de ambos inputs
+    function syncInputs(event) {
+      // Actualizar el valor del otro input
+      if (event.target === input1) {
+        input2.value = input1.value;
+      } else if (event.target === input2) {
+        input1.value = input2.value;
+      }
     }
-  }
 
-  // Escuchar el evento 'input' en ambos campos
-  input1.addEventListener('input', syncInputs);
-  input2.addEventListener('input', syncInputs);
-</script>
+    // Escuchar el evento 'input' en ambos campos
+    input1.addEventListener('input', syncInputs);
+    input2.addEventListener('input', syncInputs);
+  </script>
+  <script src="scriptsEstelllar/smoothScroll.js" defer></script>
+  <script src="scriptsEstelllar/enviandoBoton.js" defer></script>
+  <script src="scriptsEstelllar/cambiarPalabrasHero.js" defer></script>
+  <script src="scriptsEstelllar/usuarioYaRegistrado.js" defer></script>
+  <script src="scriptsEstelllar/cardsTecnologias.js" defer></script>
+
+
+  
+
+
+
 </body>
 
 </html>
