@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // CONFIGURACIÓN DE LA ANIMACIÓN - AJUSTA ESTOS VALORES
   // Configuración para Desktop
   const desktopConfig = {
-    triggerStart: -200,        // Cuando comienza el efecto (negativo = comienza antes de ver la sección)
-    triggerFull: 600,          // Cuando el efecto está al máximo (mayor valor = expansión más lenta)
-    offsetActivation: 400      // Ajusta este valor para controlar el punto de inicio
+    triggerStart: -400,        // Cuando comienza el efecto (negativo = comienza antes de ver la sección)
+    triggerFull: 400,          // Cuando el efecto está al máximo (mayor valor = expansión más lenta)
+    offsetActivation: 100      // Ajusta este valor para controlar el punto de inicio
   };
   
   // Configuración para Móvil
