@@ -436,6 +436,107 @@ outline-offset: 5px; */
     padding-right: 0.5rem;
     display: inline-block; }
 
+.learn#experienciaGuiada {
+  margin-top: 200px;
+  margin-bottom: 160px;
+  max-width: 100%; }
+  .learn#experienciaGuiada .experiencia-content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 40px; */ }
+    @media (max-width: 992px) {
+      .learn#experienciaGuiada .experiencia-content-wrapper {
+        flex-direction: column-reverse;
+        align-items: flex-start; } }
+  .learn#experienciaGuiada .heading__learn {
+    flex: 1;
+    max-width: 50%; }
+    @media (max-width: 992px) {
+      .learn#experienciaGuiada .heading__learn {
+        max-width: 100%; } }
+  .learn#experienciaGuiada .sponsors-section {
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    position: relative;
+    /* Necesario si .appsBack tiene position: absolute; */
+    /* Otros estilos de tu contenedor padre */
+    flex: 1;
+    max-width: 45%; }
+    .learn#experienciaGuiada .sponsors-section .appsBack {
+      position: absolute;
+      scale: 180%; }
+      @media (max-width: 600px) {
+        .learn#experienciaGuiada .sponsors-section .appsBack {
+          max-width: 100%;
+          overflow: hidden; } }
+    @media (max-width: 992px) {
+      .learn#experienciaGuiada .sponsors-section {
+        max-width: 100%;
+        width: 100%;
+        margin-top: 30px; } }
+  .learn#experienciaGuiada .sponsors-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; }
+  .learn#experienciaGuiada .sponsors-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px; }
+  .learn#experienciaGuiada .logo-perspective {
+    width: 72px;
+    height: 72px;
+    perspective: 1000px; }
+  .learn#experienciaGuiada .logo-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d; }
+    .learn#experienciaGuiada .logo-card.flipping {
+      transform: rotateY(180deg); }
+  .learn#experienciaGuiada .logo-front, .learn#experienciaGuiada .logo-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+    .learn#experienciaGuiada .logo-front img, .learn#experienciaGuiada .logo-back img {
+      max-width: 70%;
+      max-height: 70%;
+      transition: transform 0.3s ease; }
+  .learn#experienciaGuiada .logo-back {
+    transform: rotateY(180deg); }
+  .learn#experienciaGuiada .hidden-logos {
+    display: none; }
+
+@media (max-width: 1200px) {
+  .learn#experienciaGuiada .logo-perspective {
+    width: 64.8px;
+    height: 64.8px; }
+  .learn#experienciaGuiada .sponsors-container, .learn#experienciaGuiada .sponsors-row {
+    gap: 19.2px; } }
+@media (max-width: 768px) {
+  .learn#experienciaGuiada .logo-perspective {
+    width: 50.4px;
+    height: 50.4px; }
+  .learn#experienciaGuiada .sponsors-container, .learn#experienciaGuiada .sponsors-row {
+    gap: 14.4px; } }
+@media (max-width: 576px) {
+  .learn#experienciaGuiada .logo-perspective {
+    width: 36px;
+    height: 36px; }
+  .learn#experienciaGuiada .sponsors-container, .learn#experienciaGuiada .sponsors-row {
+    gap: 9.6px; } }
 body {
   display: flex;
   flex-direction: column;
@@ -585,7 +686,49 @@ body {
     align-items: center;
     flex-direction: column;
     margin: 0 auto;
-    /* FIN DE CARDS tecnologias */ }
+    /* FIN DE CARDS tecnologias */
+    /* .learn {
+      margin-top: 144px;
+      display: grid;
+      max-width: 100%;
+      grid-template-columns: 1fr 1fr;
+      justify-items: start;
+      align-items: center;
+      @media (max-width: 600px) {
+        width: 100vw;
+        grid-template-columns: 1fr;
+        grid-row: 1fr 1fr;
+        justify-items: center;
+        overflow-x: hidden;
+
+        
+      }
+
+
+      .apps {
+        max-width: 100%;
+        height: auto;
+
+        @media (max-width: 600px) {
+          grid-row: 1;
+          max-width: 100%;
+
+          
+        }
+      }
+
+      .heading__learn {
+        max-width: 100%;
+        display: grid;
+        justify-items: start;
+        @media (max-width: 600px) {
+          grid-row: 2;
+          margin-top: 32px;
+
+          
+        }
+      }
+    } */ }
     @media (max-width: 600px) {
       body main {
         width: 100%;
@@ -817,7 +960,7 @@ body {
             padding: 12px;
             grid-column: 1 / span 1 !important;
             width: 75% !important;
-            opacity: 0.8;
+            opacity: 1;
             transform: translateY(15px);
             transition: all 0.4s ease; }
             body main .tech-container .tech-grid .tech-card .card-content h3 {
@@ -828,39 +971,6 @@ body {
               width: 100% !important;
               opacity: 1;
               transform: translateY(0); } }
-    body main .learn {
-      margin-top: 144px;
-      display: grid;
-      max-width: 100%;
-      grid-template-columns: 1fr 1fr;
-      justify-items: start;
-      align-items: center;
-      /* grid-template-columns: repeat(auto-fill minmax(min(100%, 400px) 1fr 1fr)); */ }
-      @media (max-width: 600px) {
-        body main .learn {
-          width: 100vw;
-          grid-template-columns: 1fr;
-          grid-row: 1fr 1fr;
-          justify-items: center;
-          overflow-x: hidden;
-          /* width: 1076px; */ } }
-      body main .learn .apps {
-        max-width: 100%;
-        height: auto; }
-        @media (max-width: 600px) {
-          body main .learn .apps {
-            grid-row: 1;
-            max-width: 100%;
-            /* width: 1076px; */ } }
-      body main .learn .heading__learn {
-        max-width: 100%;
-        display: grid;
-        justify-items: start; }
-        @media (max-width: 600px) {
-          body main .learn .heading__learn {
-            grid-row: 2;
-            margin-top: 32px;
-            /* width: 1076px; */ } }
     body main .data {
       margin-top: 144px;
       margin-bottom: 144px;

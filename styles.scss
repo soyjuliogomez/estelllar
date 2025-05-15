@@ -1,5 +1,6 @@
 @import "css/_registro.scss";
 @import "css/_general.scss";
+@import "css/_sponsors-grid.scss";
 
 body {
   display: flex;
@@ -588,7 +589,7 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
         padding: 12px;
         grid-column: 1 / span 1 !important; // Forzar todas las tarjetas a ocupar la única columna
         width: $card-mobile-init-width !important; // Ancho inicial uniforme en móviles
-        opacity: 0.8;
+        opacity: 1;
         transform: translateY(15px);
         transition: all 0.4s ease;
         
@@ -618,7 +619,7 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
 }
 /* FIN DE CARDS tecnologias */
 
-    .learn {
+    /* .learn {
       margin-top: 144px;
       display: grid;
       max-width: 100%;
@@ -632,10 +633,9 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
         justify-items: center;
         overflow-x: hidden;
 
-        /* width: 1076px; */
+        
       }
 
-      /* grid-template-columns: repeat(auto-fill minmax(min(100%, 400px) 1fr 1fr)); */
 
       .apps {
         max-width: 100%;
@@ -645,7 +645,7 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
           grid-row: 1;
           max-width: 100%;
 
-          /* width: 1076px; */
+          
         }
       }
 
@@ -657,10 +657,10 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
           grid-row: 2;
           margin-top: 32px;
 
-          /* width: 1076px; */
+          
         }
       }
-    }
+    } */
 
     .data {
       margin-top: 144px;

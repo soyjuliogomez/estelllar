@@ -1,0 +1,180 @@
+// Variables
+$logo-size: 72px;
+$logo-border-radius: 16px;
+$grid-gap: 24px;
+$animation-duration: 0.6s;
+
+// Colores
+$background-colors: (
+  '#F5F5F5', '#E0E0E0', '#D3D3D3', '#C0C0C0', '#A9A9A9',
+  '#F0F8FF', '#F8F8FF', '#FFFAFA', '#F5FFFA', '#F0FFF0',
+  '#FFFFF0', '#FAEBD7', '#FAF0E6', '#FFF5EE', '#F5F5DC',
+  '#FFF8DC', '#FFFACD'
+);
+
+// Wrapper para colocar contenido en dos columnas
+.learn#experienciaGuiada {
+  margin-top: 200px;
+  margin-bottom: 160px;
+  max-width: 100%;
+  .experiencia-content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 40px; */
+    
+    @media (max-width: 992px) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+  }
+  
+  // Ajustes para el texto introductorio
+  .heading__learn {
+    flex: 1;
+    max-width: 50%;
+    
+    @media (max-width: 992px) {
+      max-width: 100%;
+    }
+  }
+  
+  // Contenedor de la sección de sponsors
+  .sponsors-section {
+    display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  position: relative; /* Necesario si .appsBack tiene position: absolute; */
+  /* Otros estilos de tu contenedor padre */
+    flex: 1;
+    max-width: 45%;
+
+    .appsBack{
+      position: absolute;
+      scale: 180%;
+      @media (max-width: 600px) {
+        max-width: 100%;
+        overflow: hidden;
+       
+      }
+      
+    }
+    
+    @media (max-width: 992px) {
+      max-width: 100%;
+      width: 100%;
+      margin-top: 30px;
+    }
+  }
+  
+  // Contenedor del grid
+  .sponsors-container {
+    display: flex;
+    flex-direction: column;
+    gap: $grid-gap;
+  }
+  
+  // Filas del grid
+  .sponsors-row {
+    display: flex;
+    justify-content: center;
+    gap: $grid-gap;
+  }
+  
+  // Contenedor para la perspectiva 3D
+  .logo-perspective {
+    width: $logo-size;
+    height: $logo-size;
+    perspective: 1000px;
+  }
+  
+  // Tarjeta que rota
+  .logo-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform $animation-duration;
+    transform-style: preserve-3d;
+    
+    &.flipping {
+      transform: rotateY(180deg);
+    }
+  }
+  
+  // Estilos comunes para ambas caras
+  %logo-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: $logo-border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    img {
+      max-width: 70%;
+      max-height: 70%;
+      transition: transform 0.3s ease;
+    }
+  }
+  
+  // Cara frontal
+  .logo-front {
+    @extend %logo-face;
+  }
+  
+  // Cara trasera
+  .logo-back {
+    @extend %logo-face;
+    transform: rotateY(180deg);
+  }
+  
+  // Contenedor oculto
+  .hidden-logos {
+    display: none;
+  }
+}
+
+// Media queries para ajustar tamaños en pantallas más pequeñas
+@media (max-width: 1200px) {
+  .learn#experienciaGuiada {
+    .logo-perspective {
+      width: $logo-size * 0.9;
+      height: $logo-size * 0.9;
+    }
+    
+    .sponsors-container, .sponsors-row {
+      gap: $grid-gap * 0.8;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .learn#experienciaGuiada {
+    .logo-perspective {
+      width: $logo-size * 0.7;
+      height: $logo-size * 0.7;
+    }
+    
+    .sponsors-container, .sponsors-row {
+      gap: $grid-gap * 0.6;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .learn#experienciaGuiada {
+    .logo-perspective {
+      width: $logo-size * 0.5;
+      height: $logo-size * 0.5;
+    }
+    
+    .sponsors-container, .sponsors-row {
+      gap: $grid-gap * 0.4;
+    }
+  }
+}
