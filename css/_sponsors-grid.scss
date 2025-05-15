@@ -156,8 +156,8 @@ $background-colors: (
 @media (max-width: 768px) {
   .learn#experienciaGuiada {
     .logo-perspective {
-      width: $logo-size * 0.7;
-      height: $logo-size * 0.7;
+      width: $logo-size * 0.8;
+      height: $logo-size * 0.8;
     }
     
     .sponsors-container, .sponsors-row {
@@ -169,12 +169,12 @@ $background-colors: (
 @media (max-width: 576px) {
   .learn#experienciaGuiada {
     .logo-perspective {
-      width: $logo-size * 0.5;
-      height: $logo-size * 0.5;
+      width: $logo-size * 0.8;
+      height: $logo-size * 0.8;
     }
     
     .sponsors-container, .sponsors-row {
-      gap: $grid-gap * 0.4;
+      gap: $grid-gap * 0.8;
     }
   }
 }

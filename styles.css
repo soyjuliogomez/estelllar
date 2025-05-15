@@ -527,16 +527,16 @@ outline-offset: 5px; */
     gap: 19.2px; } }
 @media (max-width: 768px) {
   .learn#experienciaGuiada .logo-perspective {
-    width: 50.4px;
-    height: 50.4px; }
+    width: 57.6px;
+    height: 57.6px; }
   .learn#experienciaGuiada .sponsors-container, .learn#experienciaGuiada .sponsors-row {
     gap: 14.4px; } }
 @media (max-width: 576px) {
   .learn#experienciaGuiada .logo-perspective {
-    width: 36px;
-    height: 36px; }
+    width: 57.6px;
+    height: 57.6px; }
   .learn#experienciaGuiada .sponsors-container, .learn#experienciaGuiada .sponsors-row {
-    gap: 9.6px; } }
+    gap: 19.2px; } }
 body {
   display: flex;
   flex-direction: column;
