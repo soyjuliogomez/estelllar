@@ -1,0 +1,40 @@
+// Tokens base para secciones
+$section-spacing: (
+  'xs': 32px,    // Secciones muy pequeñas
+  'sm': 48px,    // Secciones pequeñas
+  'md': 64px,    // Secciones medianas
+  'lg': 96px,    // Secciones estándar ⭐ (tu favorito)
+  'xl': 128px,   // Secciones grandes
+  '2xl': 160px,  // Secciones muy grandes
+  '3xl': 192px,  // Secciones gigantes
+);
+
+// =========================================
+// MÉTODO 1: CLASES UTILITARIAS PARA SECCIONES
+// =========================================
+
+// Clases simples para aplicar a cualquier sección
+.section-py-xs  { padding-top: map-get($section-spacing, 'xs'); padding-bottom: map-get($section-spacing, 'xs'); }
+.section-py-sm  { padding-top: map-get($section-spacing, 'sm'); padding-bottom: map-get($section-spacing, 'sm'); }
+.section-py-md  { padding-top: map-get($section-spacing, 'md'); padding-bottom: map-get($section-spacing, 'md'); }
+.section-py-lg  { padding-top: map-get($section-spacing, 'lg'); padding-bottom: map-get($section-spacing, 'lg'); }
+.section-py-xl  { padding-top: map-get($section-spacing, 'xl'); padding-bottom: map-get($section-spacing, 'xl'); }
+.section-py-2xl { padding-top: map-get($section-spacing, '2xl'); padding-bottom: map-get($section-spacing, '2xl'); }
+.section-py-3xl { padding-top: map-get($section-spacing, '3xl'); padding-bottom: map-get($section-spacing, '3xl'); }
+
+// Solo padding top para secciones
+.section-pt-xs  { padding-top: map-get($section-spacing, 'xs'); }
+.section-pt-sm  { padding-top: map-get($section-spacing, 'sm'); }
+.section-pt-md  { padding-top: map-get($section-spacing, 'md'); }
+.section-pt-lg  { padding-top: map-get($section-spacing, 'lg'); }
+.section-pt-xl  { padding-top: map-get($section-spacing, 'xl'); }
+.section-pt-2xl { padding-top: map-get($section-spacing, '2xl'); }
+.section-pt-3xl { padding-top: map-get($section-spacing, '3xl'); }
+
+// Solo padding bottom para secciones
+.section-pb-xs  { padding-bottom: map-get($section-spacing, 'xs'); }
+.section-pb-sm  { padding-bottom: map-get($section-spacing, 'sm'); }
+.section-pb-md  { padding-bottom: map-get($section-spacing, 'md'); }
+.section-pb-lg  { padding-bottom: map-get($section-spacing, 'lg'); }
+.section-pb-xl  { padding-bottom: map-get($section-spacing, 'xl'); }
+.section-pb-2xl { padding-bottom: map-get($section-spacing, '2xl'); }

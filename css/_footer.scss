@@ -1,0 +1,285 @@
+// =========================================
+// FOOTER CSS ESCALABLE PARA CUALQUIER RED SOCIAL
+// =========================================
+
+.footer {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 2rem;
+    margin-top: 11rem;
+    
+    .footerCopy {
+      color: $neutral-light-color-40;
+      font-family: "Poppins", sans-serif;
+      font-size: 14px;
+    }
+    
+    @media (max-width: 600px) {
+      max-width: 100vw;
+      gap: 1.5rem;
+    }
+  
+    .logo-footer {
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-social-media {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      
+      @media (max-width: 600px) {
+        gap: 1rem;
+      }
+    }
+    
+    // =========================================
+    // CONTENEDORES GENÉRICOS (funcionan para cualquier red social)
+    // =========================================
+    
+    .social-container {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      transition: transform 0.3s ease;
+      
+      // Hover effect para el contenedor
+      &:hover {
+        transform: translateY(-2px);
+      }
+      
+      // Focus state para accesibilidad
+      &.focused {
+        outline: 2px solid rgba(146, 133, 255, 0.6);
+        outline-offset: 4px;
+        border-radius: 4px;
+      }
+    }
+    
+    // =========================================
+    // ELEMENTO GLOW GENÉRICO
+    // =========================================
+    
+    .glow-element {
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      top: -25%;
+      left: -25%;
+      background-image: url('../image/social-media/glowToIcons.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 1;
+    }
+    
+    // =========================================
+    // ENLACES SOCIALES GENÉRICOS
+    // =========================================
+    
+    .social {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-size: 36px 36px;
+      background-repeat: no-repeat;
+      background-position: center;
+      transform: scale(1);
+      transition: transform 0.3s ease, filter 0.3s ease;
+      z-index: 2;
+      text-decoration: none;
+      
+      // Estados de interacción
+      &:focus {
+        outline: none; // El outline lo maneja el contenedor
+      }
+      
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+    
+    // =========================================
+    // EFECTOS HOVER GENÉRICOS
+    // =========================================
+    
+    .social-container:hover {
+      .glow-element {
+        opacity: 0.6;
+        transform: scale(1.8);
+      }
+      
+      .social {
+        transform: translateY(-2px) scale(1);
+        filter: drop-shadow(0 0 5px rgba(146, 133, 255, 0.7));
+      }
+    }
+    
+    // =========================================
+    // COLORES ESPECÍFICOS POR PLATAFORMA (opcional)
+    // =========================================
+    
+    .social-container[data-platform="facebook"]:hover .social {
+      filter: drop-shadow(0 0 5px rgba(24, 119, 242, 0.8));
+    }
+    
+    .social-container[data-platform="twitter"]:hover .social,
+    .social-container[data-platform="x"]:hover .social {
+      filter: drop-shadow(0 0 5px rgba(29, 161, 242, 0.8));
+    }
+    
+    .social-container[data-platform="instagram"]:hover .social {
+      filter: drop-shadow(0 0 5px rgba(225, 48, 108, 0.8));
+    }
+    
+    .social-container[data-platform="linkedin"]:hover .social {
+      filter: drop-shadow(0 0 5px rgba(0, 119, 181, 0.8));
+    }
+    
+    .social-container[data-platform="youtube"]:hover .social {
+      filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8));
+    }
+    
+    .social-container[data-platform="tiktok"]:hover .social {
+      filter: drop-shadow(0 0 5px rgba(255, 0, 80, 0.8));
+    }
+    
+    .social-container[data-platform="discord"]:hover .social {
+      filter: drop-shadow(0 0 5px rgba(114, 137, 218, 0.8));
+    }
+    
+    .social-container[data-platform="whatsapp"]:hover .social {
+      filter: drop-shadow(0 0 5px rgba(37, 211, 102, 0.8));
+    }
+    
+    .social-container[data-platform="telegram"]:hover .social {
+      filter: drop-shadow(0 0 5px rgba(0, 136, 204, 0.8));
+    }
+    
+    .social-container[data-platform="snapchat"]:hover .social {
+      filter: drop-shadow(0 0 5px rgba(255, 252, 0, 0.8));
+    }
+    
+    // Fallback para redes sociales nuevas (color genérico)
+    .social-container:not([data-platform="facebook"]):not([data-platform="twitter"]):not([data-platform="instagram"]):not([data-platform="linkedin"]):not([data-platform="youtube"]):not([data-platform="tiktok"]):not([data-platform="discord"]):not([data-platform="whatsapp"]):not([data-platform="telegram"]):not([data-platform="snapchat"]):hover .social {
+      filter: drop-shadow(0 0 5px rgba(146, 133, 255, 0.8));
+    }
+    
+    // =========================================
+    // RESPONSIVE DESIGN
+    // =========================================
+    
+    @media (max-width: 768px) {
+      .social-container {
+        width: 32px;
+        height: 32px;
+      }
+      
+      .social {
+        background-size: 32px 32px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .social-container {
+        width: 28px;
+        height: 28px;
+      }
+      
+      .social {
+        background-size: 28px 28px;
+      }
+      
+      .footer-social-media {
+        gap: 0.75rem;
+      }
+    }
+    
+    // =========================================
+    // ANIMACIONES DE ENTRADA
+    // =========================================
+    
+    .social-container {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      
+      // Delays escalonados automáticos
+      &:nth-child(1) { animation-delay: 0.1s; }
+      &:nth-child(2) { animation-delay: 0.2s; }
+      &:nth-child(3) { animation-delay: 0.3s; }
+      &:nth-child(4) { animation-delay: 0.4s; }
+      &:nth-child(5) { animation-delay: 0.5s; }
+      &:nth-child(6) { animation-delay: 0.6s; }
+      &:nth-child(7) { animation-delay: 0.7s; }
+      &:nth-child(8) { animation-delay: 0.8s; }
+      &:nth-child(9) { animation-delay: 0.9s; }
+      &:nth-child(10) { animation-delay: 1.0s; }
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    // =========================================
+    // ESTADOS DE ACCESIBILIDAD
+    // =========================================
+    
+    .social {
+      &:focus-visible {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 8px rgba(146, 133, 255, 0.9));
+      }
+    }
+    
+    // Reducir animaciones para usuarios con preferencias de accesibilidad
+    @media (prefers-reduced-motion: reduce) {
+      .social-container,
+      .social,
+      .glow-element {
+        animation: none;
+        transition: none;
+      }
+    }
+    
+    // =========================================
+    // DARK MODE SUPPORT
+    // =========================================
+    
+    @media (prefers-color-scheme: dark) {
+      .glow-element {
+        opacity: 0.4;
+      }
+      
+      .social-container:hover .glow-element {
+        opacity: 0.7;
+      }
+    }
+    
+    // =========================================
+    // PRINT STYLES
+    // =========================================
+    
+    @media print {
+      .footer-social-media {
+        display: none; // Ocultar en impresión
+      }
+    }
+  }

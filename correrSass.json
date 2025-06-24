@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "sass": "sass --watch styles.scss:styles.css --style=expanded"
+  }
+}

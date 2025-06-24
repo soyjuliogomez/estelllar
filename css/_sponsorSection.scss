@@ -1,0 +1,302 @@
+// Variables para sponsors
+$sponsor-transition: 0.3s ease-in-out;
+$sponsor-hover-scale: 1.05;
+$sponsor-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+$sponsor-hover-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+
+// Sección principal de sponsors
+.sponsors {
+  padding: 4rem 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+  
+  // Título de la sección
+  .h1__page {
+    margin-bottom: 3rem;
+    
+    @media (max-width: 768px) {
+      margin-bottom: 2rem;
+      font-size: 1.75rem;
+    }
+  }
+}
+
+// Grid de sponsors - SIEMPRE 4 POR FILA
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  
+  // Responsive breakpoints
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 750px;
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    max-width: 500px;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 250px;
+  }
+}
+
+// Item individual de sponsor - TAMAÑO FIJO
+.sponsor-item {
+  width: 200px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  @media (max-width: 1024px) {
+    width: 180px;
+    height: 110px;
+  }
+  
+  @media (max-width: 768px) {
+    width: 160px;
+    height: 100px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 200px;
+    height: 120px;
+  }
+}
+
+// Link del sponsor
+.sponsor-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform $sponsor-transition, box-shadow $sponsor-transition;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &:hover {
+    transform: translateY(-4px) scale($sponsor-hover-scale);
+    box-shadow: $sponsor-hover-shadow;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  &:focus {
+    outline: 2px solid rgba(146, 133, 255, 0.6);
+    outline-offset: 4px;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+    border-radius: 8px;
+  }
+}
+
+// Contenedor del logo
+.sponsor-logo {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    height: 60px;
+  }
+  
+  @media (max-width: 480px) {
+    height: 70px;
+  }
+}
+
+// Imágenes del sponsor
+.sponsor-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: opacity $sponsor-transition, transform $sponsor-transition;
+  
+  // Imagen por defecto (visible por defecto)
+  &--default {
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  // Imagen con colores (oculta por defecto)
+  &--hover {
+    opacity: 0;
+    z-index: 1;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+}
+
+// Efectos hover para las imágenes
+.sponsor-link:hover {
+  .sponsor-img--default {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  
+  .sponsor-img--hover {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+// Efectos adicionales para cada sponsor (opcional)
+.sponsor-logo {
+  &--1:hover { filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3)); }
+  &--2:hover { filter: drop-shadow(0 4px 8px rgba(16, 98, 185, 0.3)); }
+  &--3:hover { filter: drop-shadow(0 4px 8px rgba(245, 101, 101, 0.3)); }
+  &--4:hover { filter: drop-shadow(0 4px 8px rgba(246, 92, 115, 0.3)); }
+  &--5:hover { filter: drop-shadow(0 4px 8px rgba(249, 115, 22, 0.3)); }
+  &--6:hover { filter: drop-shadow(0 4px 8px rgba(236, 72, 153, 0.3)); }
+  &--7:hover { filter: drop-shadow(0 4px 8px rgba(233, 131, 14, 0.3)); }
+  &--8:hover { filter: drop-shadow(0 4px 8px rgba(22, 149, 204, 0.3)); }
+  &--9:hover { filter: drop-shadow(0 4px 8px rgba(36, 43, 251, 0.3)); }
+  &--10:hover { filter: drop-shadow(0 4px 8px rgba(168, 85, 247, 0.3)); }
+  &--11:hover { filter: drop-shadow(0 4px 8px rgba(34, 197, 94, 0.3)); }
+  &--12:hover { filter: drop-shadow(0 4px 8px rgba(239, 68, 68, 0.3)); }
+}
+
+// Animación de entrada escalonada (solo CSS)
+.sponsor-item {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  
+  // Delays escalonados para hasta 20 sponsors
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+  &:nth-child(4) { animation-delay: 0.4s; }
+  &:nth-child(5) { animation-delay: 0.5s; }
+  &:nth-child(6) { animation-delay: 0.6s; }
+  &:nth-child(7) { animation-delay: 0.7s; }
+  &:nth-child(8) { animation-delay: 0.8s; }
+  &:nth-child(9) { animation-delay: 0.9s; }
+  &:nth-child(10) { animation-delay: 1.0s; }
+  &:nth-child(11) { animation-delay: 1.1s; }
+  &:nth-child(12) { animation-delay: 1.2s; }
+  &:nth-child(13) { animation-delay: 1.3s; }
+  &:nth-child(14) { animation-delay: 1.4s; }
+  &:nth-child(15) { animation-delay: 1.5s; }
+  &:nth-child(16) { animation-delay: 1.6s; }
+  &:nth-child(17) { animation-delay: 1.7s; }
+  &:nth-child(18) { animation-delay: 1.8s; }
+  &:nth-child(19) { animation-delay: 1.9s; }
+  &:nth-child(20) { animation-delay: 2.0s; }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Estados focus y active para accesibilidad
+.sponsor-link {
+  &:focus-visible {
+    .sponsor-img--default {
+      opacity: 0;
+    }
+    
+    .sponsor-img--hover {
+      opacity: 1;
+    }
+  }
+  
+  &:active {
+    transform: translateY(-2px) scale(0.98);
+  }
+}
+
+// Utilidades para centrar mejor la última fila incompleta
+.sponsors-grid {
+  // Para centrar 1 elemento en la última fila
+  &.single-last .sponsor-item:last-child:nth-child(4n+1) {
+    grid-column: 2 / 4;
+  }
+  
+  // Para centrar 2 elementos en la última fila  
+  &.double-last .sponsor-item:nth-last-child(-n+2):nth-child(4n+1),
+  &.double-last .sponsor-item:nth-last-child(-n+2):nth-child(4n+2) {
+    grid-column-start: auto;
+  }
+  
+  // Para centrar 3 elementos en la última fila
+  &.triple-last .sponsor-item:nth-last-child(-n+3):first-child {
+    grid-column: 1 / 2;
+  }
+}
+
+// Auto-centrado inteligente para cualquier cantidad
+.sponsors-grid {
+  // Si el último elemento está solo, lo centra
+  .sponsor-item:last-child:nth-child(4n+1) {
+    grid-column: 2 / 4;
+    
+    @media (max-width: 1024px) {
+      grid-column: 2 / 3; // 3 columnas en tablet
+    }
+    
+    @media (max-width: 768px) {
+      grid-column: 1 / 3; // 2 columnas en móvil
+    }
+    
+    @media (max-width: 480px) {
+      grid-column: 1; // 1 columna en móvil pequeño
+    }
+  }
+  
+  // Si los últimos 2 elementos están en fila incompleta, los centra
+  .sponsor-item:nth-last-child(2):nth-child(4n+1) + .sponsor-item:last-child {
+    @media (min-width: 1025px) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .sponsor-link {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.05);
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+// Spacing adicional para mejor visualización
+.sponsors {
+  // Agregar padding bottom si la última fila está incompleta
+  &:has(.sponsor-item:last-child:nth-child(4n+1)),
+  &:has(.sponsor-item:last-child:nth-child(4n+2)),
+  &:has(.sponsor-item:last-child:nth-child(4n+3)) {
+    padding-bottom: 5rem;
+  }
+}

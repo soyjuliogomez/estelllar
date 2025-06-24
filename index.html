@@ -37,22 +37,25 @@
 </head>
 
 <body>
-  <nav class="barranavegacion" id="barracenter">
+  <!-- <nav class="barranavegacion" id="barracenter">
     <img class="logo-barra" src="./image/estelllarconf-logo.svg" alt="logo" />
 
     <div class="menu">
       <a class="linksNavegacion" href="#comunidad">Porque Nosotros</a>
       <a class="linksNavegacion" href="#experienciaGuiada">¿Qué Aprenderé?</a>
       <a class="linksNavegacion" href="#dataSection">Donde Sera</a>
+      <a class="linksNavegacion" href="mision.html">Misión</a>
 
       <hr />
       <div class="botones-usuario">
-        <!-- <a class="boton-iniciarSesion" href="Login.html">Iniciar sesion</a> -->
+        
         <a class="button button__primary" onclick="scrollToData()">Registrarme &nbsp;<i
             class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
-  </nav>
+  </nav> -->
+  <div id="navbar-container"></div>
+
 
   <main>
     <section class="hero_image">
@@ -70,7 +73,7 @@
             </div>
           </h1>
       <!-- <h1 class="display display__mobile">Conferencia para apasionados de la tecnología</h1> -->
-      <p class="paragraph paragraph__large  paragraph__large--sectionMedium paragraph__large--aligncenter">
+      <p class="paragraph paragraph__large paragraph__large--aligncenter">
         Expande tu círculo social, haz nuevos amigos y crece en el mundo de la tecnología.
 
       </p>
@@ -89,86 +92,283 @@
     </section>
 
     <section class="avatarImageCards">
-      <div class="cardAvatar">
-        <img class="avatar-img" src="./image/avatar1.png" alt="Diego Espinosa">
-        <div class="info">
-          <p class="name">Diego Espinosa</p>
+      <div class="cardAvatarHero">
+        <img class="avatar-imgHero" src="./image/avatar1.png" alt="Diego Espinosa">
+        <div class="infoCardHero">
+          <p class="nameCardHero">Diego Espinosa</p>
           <p class="job">Software Developer</p>
         </div>
       </div>
-      <div class="cardAvatar">
-        <img class="avatar-img" src="./image/avatar2.png" alt="Diego Espinosa">
-        <div class="info">
-          <p class="name">Gabriela Vallejo</p>
+      <div class="cardAvatarHero">
+        <img class="avatar-imgHero" src="./image/avatar2.png" alt="Diego Espinosa">
+        <div class="infoCardHero">
+          <p class="nameCardHero">Gabriela Vallejo</p>
           <p class="job">Front-End Developer</p>
         </div>
       </div>
 
-      <div class="cardAvatar">
-        <img class="avatar-img" src="./image/avatar3.png" alt="Diego Espinosa3">
-        <div class="info">
-          <p class="name">Ivan Vera</p>
+      <div class="cardAvatarHero">
+        <img class="avatar-imgHero" src="./image/avatar3.png" alt="Diego Espinosa3">
+        <div class="infoCardHero">
+          <p class="nameCardHero">Ivan Vera</p>
           <p class="job">Data Analyst</p>
         </div>
       </div>
-      <div class="cardAvatar">
-        <img class="avatar-img" src="./image/avatar4.png" alt="Diego Espinosa4">
-        <div class="info">
-          <p class="name">Camila Zambrano</p>
+      <div class="cardAvatarHero">
+        <img class="avatar-imgHero" src="./image/avatar4.png" alt="Diego Espinosa4">
+        <div class="infoCardHero">
+          <p class="nameCardHero">Camila Zambrano</p>
           <p class="job">IT Consultant</p>
         </div>
       </div>
-      <div class="cardAvatar">
-        <img class="avatar-img" src="./image/avatar5.png" alt="Diego Espinosa5">
-        <div class="info">
-          <p class="name">Ricardo Palma</p>
+      <div class="cardAvatarHero">
+        <img class="avatar-imgHero" src="./image/avatar5.png" alt="Diego Espinosa5">
+        <div class="infoCardHero">
+          <p class="nameCardHero">Ricardo Palma</p>
           <p class="job">UX/UI Designer</p>
         </div>
       </div>
-      <div class="cardAvatar">
-        <img class="avatar-img" src="./image/avatar6.png" alt="Diego Espinosa6">
-        <div class="info">
-          <p class="name">Fernanda Villacís</p>
+      <div class="cardAvatarHero">
+        <img class="avatar-imgHero" src="./image/avatar6.png" alt="Diego Espinosa6">
+        <div class="infoCardHero">
+          <p class="nameCardHero">Fernanda Villacís</p>
           <p class="job">IT Especialista</p>
         </div>
       </div>
-      <div class="cardAvatar">
-        <img class="avatar-img" src="./image/avatar7.png" alt="Diego Espinosa7">
-        <div class="info">
-          <p class="name">Danilo Rojas</p>
+      <div class="cardAvatarHero">
+        <img class="avatar-imgHero" src="./image/avatar7.png" alt="Diego Espinosa7">
+        <div class="infoCardHero">
+          <p class="nameCardHero">Danilo Rojas</p>
           <p class="job">UX/UI Designer</p>
         </div>
       </div>
-      <div class="cardAvatar">
-        <img class="avatar-img" src="./image/avatar8.png" alt="Diego Espinosa8">
-        <div class="info">
-          <p class="name">Mónica Viteri</p>
+      <div class="cardAvatarHero">
+        <img class="avatar-imgHero" src="./image/avatar8.png" alt="Diego Espinosa8">
+        <div class="infoCardHero">
+          <p class="nameCardHero">Mónica Viteri</p>
           <p class="job">Systems Administrator</p>
         </div>
       </div>
-      <div class="cardAvatar">
-        <img class="avatar-img" src="./image/avatar9.png" alt="Diego Espinosa9">
-        <div class="info">
-          <p class="name">Carlos Ordóñez</p>
+      <div class="cardAvatarHero">
+        <img class="avatar-imgHero" src="./image/avatar9.png" alt="Diego Espinosa9">
+        <div class="infoCardHero">
+          <p class="nameCardHero">Carlos Ordóñez</p>
           <p class="job">Cybersecurity Specialist</p>
         </div>
       </div>
-      <div class="cardAvatar">
-        <img class="avatar-img" src="./image/avatar10.png" alt="Diego Espinosa10">
-        <div class="info">
-          <p class="name">Sofía Salazar</p>
+      <div class="cardAvatarHero">
+        <img class="avatar-imgHero" src="./image/avatar10.png" alt="Diego Espinosa10">
+        <div class="infoCardHero">
+          <p class="">Sofía Salazar</p>
           <p class="job">Front-End Developer</p>
         </div>
       </div>
 
       <!-- Añade más cards aquí -->
     </section>
-    <section class="sponsors">
-      <h1 class="h1__page h1__page--section h1__page--aligncenter">
-        Nuestra comunidad de Apoyo
-      </h1>
-      <img class="sponsorImages" src="./image/sponsorLogos.svg" alt="Patrocinadores">
-    </section>
+    <!-- Sponsor empieza aqui -->
+     <!-- Sección de Sponsors -->
+<!-- Sección de Sponsors -->
+<section class="sponsors">
+  <h1 class="h1__page h1__page--section h1__page--aligncenter">
+    Nuestra comunidad de Apoyo
+  </h1>
+  
+  <div class="sponsors-grid">
+    <!-- Sponsor 1 - Hostinger -->
+    <div class="sponsor-item">
+      <a href="https://www.hostinger.com/es" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Hostinger">
+        <div class="sponsor-logo sponsor-logo--1">
+          <img src="./image/sponsors/sponsor1.svg" 
+               alt="Hostinger" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor1Hover.svg" 
+               alt="Hostinger" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 2 - IBM -->
+    <div class="sponsor-item">
+      <a href="https://www.ibm.com/account/ec/es/" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de IBM">
+        <div class="sponsor-logo sponsor-logo--2">
+          <img src="./image/sponsors/sponsor2.svg" 
+               alt="IBM" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor2Hover.svg" 
+               alt="IBM" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 3 - Rappi -->
+    <div class="sponsor-item">
+      <a href="https://www.rappi.com.ec/" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Rappi">
+        <div class="sponsor-logo sponsor-logo--3">
+          <img src="./image/sponsors/sponsor3.svg" 
+               alt="Rappi" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor3Hover.svg"
+               alt="Rappi" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 4 - Metro de Quito -->
+    <div class="sponsor-item">
+      <a href="https://metrodequito.gob.ec/" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Metro de Quito">
+        <div class="sponsor-logo sponsor-logo--4">
+          <img src="./image/sponsors/sponsor4.svg" 
+               alt="Metro de Quito" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor4Hover.svg" 
+               alt="Metro de Quito" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 5 - Banco Pichincha -->
+    <div class="sponsor-item">
+      <a href="https://www.pichincha.com/" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Banco Pichincha">
+        <div class="sponsor-logo sponsor-logo--5">
+          <img src="./image/sponsors/sponsor5.svg" 
+               alt="Banco Pichincha" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor5Hover.svg" 
+               alt="Banco Pichincha" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 6 -->
+    <div class="sponsor-item">
+      <a href="https://www.sponsor6.com" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Sponsor 6">
+        <div class="sponsor-logo sponsor-logo--6">
+          <img src="./image/sponsors/sponsor6.svg" 
+               alt="Sponsor 6" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor6.svg"  
+               alt="Sponsor 6" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 7 -->
+    <div class="sponsor-item">
+      <a href="https://krugercorp.com/" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Sponsor 7">
+        <div class="sponsor-logo sponsor-logo--7">
+          <img src="./image/sponsors/sponsor7.svg" 
+               alt="Sponsor 7" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor7Hover.svg" 
+               alt="Sponsor 7" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 8 -->
+    <div class="sponsor-item">
+      <a href="https://fundaciontelefonica.com.ec/" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Sponsor 8">
+        <div class="sponsor-logo sponsor-logo--8">
+          <img src="./image/sponsors/sponsor8.svg" 
+               alt="Sponsor 8" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor8Hover.svg" 
+               alt="Sponsor 8" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 9 -->
+    <div class="sponsor-item">
+      <a href="https://www.sponsor9.com" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Sponsor 9">
+        <div class="sponsor-logo sponsor-logo--9">
+          <img src="./image/sponsors/sponsor9.svg" 
+               alt="Sponsor 9" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor9Hover.svg" 
+               alt="Sponsor 9" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 10 -->
+    <div class="sponsor-item">
+      <a href="https://www.sponsor10.com" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Sponsor 10">
+        <div class="sponsor-logo sponsor-logo--10">
+          <img src="./image/sponsors/sponsor10.svg" 
+               alt="Sponsor 10" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor10.svg" 
+               alt="Sponsor 10" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 11 -->
+    <div class="sponsor-item">
+      <a href="https://www.sponsor11.com" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Sponsor 11">
+        <div class="sponsor-logo sponsor-logo--11">
+          <img src="./image/sponsors/sponsor11.svg" 
+               alt="Sponsor 11" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor11.svg" 
+               alt="Sponsor 11" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sponsor 12 -->
+    <div class="sponsor-item">
+      <a href="https://www.sponsor12.com" target="_blank" rel="noopener noreferrer" 
+         class="sponsor-link" aria-label="Visitar sitio web de Sponsor 12">
+        <div class="sponsor-logo sponsor-logo--12">
+          <img src="./image/sponsors/sponsor12.svg" 
+               alt="Sponsor 12" 
+               class="sponsor-img sponsor-img--default">
+          <img src="./image/sponsors/sponsor12Hover.svg" 
+               alt="Sponsor 12" 
+               class="sponsor-img sponsor-img--hover">
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- sponsor termina aqui -->
+    <section class="events-timeline">
+      <div>
+        <h2 class="h2__page  h2__page--aligncenter h2__page--mt-xxxxl">
+          Próximos eventos
+        </h2>
+        <p class="paragraph paragraph__large--aligncenter">
+          Explora los eventos más importantes de la comunidad tech en Quito. Desde conferencias hasta talleres, ¡no te
+          pierdas nada!
+        </p>
+      </div>
+      <div class="timeline" id="eventsTimeline"></div>
+  </section>
     <section class="why" id="comunidad">
       <p class="label__page label__page--right">Comunidad</p>
 
@@ -401,9 +601,12 @@
   <section class="hrcontainer">
     <hr class="hr-footer" />
   </section>
-  <iframe src='https://my.spline.design/squarecircleiconscopy-7H8blrYF6dgMSIox5TYoUKMV/' frameborder='0' width='100%' height='100%'></iframe>
+  <footer class="footer" role="contentinfo" itemscope itemtype="https://schema.org/Organization">
+    <div id="footer-container"></div>
+</footer>
 
-  <footer class="footer">
+  <!-- fin de componente footer -->
+  <!-- <footer class="footer">
 
     <img class="logo-footer" src="./image/logo-footer.svg" alt="logo-footer" />
     <div class="footer-social-media">
@@ -419,7 +622,8 @@
     </div>
     <p class="paragraph paragraph__small">Copyright © EstellarConf <span id="currentYear"></span>. All rights reserved.
     </p>
-  </footer>
+  </footer> -->
+  
   <img class="background-footer" src="./image/bg-footer.png" alt="bg-footer" />
   <img class="gradient-1" src="./image/gradient.svg" alt="eclipse-imagen-de-fondo" />
   <img class="background-image-desktop" src="./image/background-image.png" alt="personas-en-conferencia" />
@@ -467,6 +671,17 @@
   <script src="scriptsEstelllar/usuarioYaRegistrado.js" defer></script>
   <script src="scriptsEstelllar/cardsTecnologias.js" defer></script>
   <script src="scriptsEstelllar/sponsor-grid.js"></script>
+  <script src="components/navbar.js"></script>
+  <script src="scriptsEstelllar/timelineScript.js"></script>
+  <script src="components/footer.js"></script>
+<!--   <script src="sponsorsControlar.js"></script> -->
+
+  
+
+  
+
+  
+
 
 
   

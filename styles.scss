@@ -1,6 +1,13 @@
 @import "css/_registro.scss";
 @import "css/_general.scss";
 @import "css/_sponsors-grid.scss";
+@import "css/_mision.scss";
+@import "css/_timeline.scss";
+@import "css/_sponsorSection.scss";
+@import "css/_spacingSections.scss";
+@import "css/_footer.scss";
+
+
 
 body {
   display: flex;
@@ -70,41 +77,50 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(16px);
+    
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     height: 64px;
     position: fixed;
     z-index: 4;
     padding: 0 8px 0 24px;
     top: 24px;
+    
+    // Agregar estas líneas para centrar:
+    left: 50%;
+    transform: translateX(-50%);
+    
     border-radius: 56px;
-
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  
     @media (max-width: 600px) {
-      width: 100vw;
+      width: 60%;
       justify-content: center;
-      height: 72px;
+      height: 56px;
     }
-
+  
     .logo-barra {
       width: auto;
       display: inline-block;
-      height: 48px;
+      height: 28px;
       @media (max-width: 600px) {
-        height: 32px;
+        height: 28px;
       }
     }
-
+  
     .menu {
-      /* max-width: 100% !important; */
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 32px;
-
+  
       @media (max-width: 600px) {
         display: none;
       }
-
+  
       .linksNavegacion {
         color: white;
         text-decoration: none;
@@ -114,6 +130,7 @@ body {
         padding-bottom: 3px;
         transition: all 0.3s ease;
         
+        // Pseudoelemento para el subrayado (hover y active)
         &:after {
           content: '';
           position: absolute;
@@ -126,6 +143,7 @@ body {
           border-radius: 2px;
         }
         
+        // Estado hover
         &:hover {
           color: #fffacd;
           
@@ -133,23 +151,49 @@ body {
             width: 100%;
           }
         }
+  
+        // =============================
+        // ESTADO ACTIVO (NUEVA SECCIÓN)
+        // =============================
+        
+        // Estado activo - página actual
+        &.active {
+          color: #fffacd; // Color del texto activo
+          font-weight: 500; // Slightly bolder
+          
+          &:after {
+            width: 100%; // Subrayado siempre visible
+            background: linear-gradient(270deg, #e5204f 37.13%, #fffacd 100%);
+            height: 3px; // Slightly thicker than hover
+            animation: activeGlow 2s ease-in-out infinite alternate;
+          }
+          
+          // Hover sobre elemento activo
+          &:hover {
+            color: #ffffff; // Color ligeramente diferente en hover
+            
+            &:after {
+              height: 3px; // Mantiene el grosor
+              background: linear-gradient(270deg, #fffacd 0%, #e5204f 100%); // Invierte el gradiente
+            }
+          }
+        }
       }
-
+  
       hr {
         border-style: none;
         height: 1.5rem;
         width: 1px;
-        /* background-color: $Neutrals-Light-40; */
         opacity: 50%;
         border-radius: 2px;
       }
-
+  
       .botones-usuario {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: $s;
-
+  
         .boton-iniciarSesion {
           display: flex;
           align-items: center;
@@ -162,7 +206,7 @@ body {
           font-size: 20px;
           text-decoration: none;
         }
-
+  
         .boton-registrarme {
           display: flex;
           align-items: center;
@@ -179,6 +223,88 @@ body {
       }
     }
   }
+  
+  // =============================
+  // ANIMACIÓN PARA ESTADO ACTIVO
+  // =============================
+  
+  @keyframes activeGlow {
+    0% {
+      box-shadow: 0 0 5px rgba(229, 32, 79, 0.3);
+      opacity: 0.9;
+    }
+    100% {
+      box-shadow: 0 0 10px rgba(255, 250, 205, 0.4);
+      opacity: 1;
+    }
+  }
+  
+  // =============================
+  // VARIANTES DE ESTADO ACTIVO (OPCIONALES)
+  // =============================
+  
+  // Opción 1: Estado activo más sutil
+  .linksNavegacion.active.subtle {
+    color: #fffacd;
+    
+    &:after {
+      width: 100%;
+      height: 2px;
+      background: #fffacd;
+      animation: none;
+    }
+  }
+  
+  // Opción 2: Estado activo con punto en lugar de línea
+  .linksNavegacion.active.dot {
+    &:after {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -2px;
+      background: #fffacd;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: translateX(-50%) scale(1.2);
+    }
+  }
+  
+  // Opción 3: Estado activo con background
+  .linksNavegacion.active.background {
+    background: rgba(229, 32, 79, 0.2);
+    padding: 4px 12px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    
+    &:after {
+      display: none; // No mostrar línea si hay background
+    }
+  }
+  
+  // =============================
+  // RESPONSIVE PARA ESTADO ACTIVO
+  // =============================
+  
+  @media (max-width: 600px) {
+    // Si en móvil muestras el menú, mantén el estado activo
+    .linksNavegacion.active {
+      &:after {
+        height: 2px; // Más delgado en móvil
+      }
+    }
+  }
+/* find de barra navegacion */
 
   main {
     display: flex;
@@ -862,7 +988,7 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-top: 8rem;
+      /* margin-top: 8rem; */
       gap: 0px;
 
       /* efecto en texto */
@@ -877,7 +1003,7 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 1.5em;
+        height: 1.2em;
         margin-top: 0px;
       }
       
@@ -1035,7 +1161,7 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
       margin-left: -10px; // Ajuste opcional para evitar cortes visibles
     }
   
-    .cardAvatar {
+    .cardAvatarHero {
       min-width: 12.5rem;
       height: 16.875rem;
       border-radius: 1.5rem;
@@ -1052,18 +1178,19 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
         height: 13.75rem;
       }
   
-      .avatar-img {
+      .avatar-imgHero {
         width: 100%;
         height: 100%; // Para que la imagen mantenga su proporción
         object-fit: cover;
       }
   
-      .info {
+      .infoCardHero {
         padding: 1rem;
         bottom: 0px;
         position: absolute;
         width: 100%;
         gap: 0px;
+        height:fit-content;
         z-index: 1;
   
         @media (max-width: 37.5rem) {
@@ -1071,11 +1198,12 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
           padding: 12px;
         }
   
-        .name {
+        .nameCardHero {
           text-align: left;
           font-size: 1.125rem;
           font-weight: 500;
           color: rgb(255, 255, 255);
+          margin: 0px;
   
           @media (max-width: 37.5rem) {
             font-size: 0.875rem;
@@ -1086,6 +1214,9 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
           text-align: left;
           font-size: 0.875rem;
           color: rgba(255, 255, 255, 0.7);
+          height: fit-content;
+          margin: 0px;
+          line-height: 120%;
   
           @media (max-width: 37.5rem) {
             font-size: 0.75rem;
@@ -1164,48 +1295,41 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
   
 }
 
-  
+
+
+/* GAPS RESPONSIVOS ADICIONALES */
+@media (max-width: 768px) {
   .footer {
+    gap: 1.5rem;
     
-    display: flex;
-    width: 100vw;
-    /* max-width: 1076px; */
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 0 auto;
-
-   
-    align-items: center;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 11rem;
-    @media (max-width: 600px) {
-      max-width: 100vw;
-      
-    }
-
     .logo-footer {
-      display: block;
-      margin: 0 auto;
+      margin-bottom: 0.75rem;
     }
-
+    
     .footer-social-media {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
     }
   }
-  .background-footer {
-    display:block block;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-    @media (max-width: 600px) {
-      max-width: 100vw;
-      
+}
+
+@media (max-width: 480px) {
+  .footer {
+    gap: 1rem;
+    
+    .logo-footer {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-social-media {
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
     }
   }
+}
+ 
+  
+  
 }
 
 #messageContainer {
@@ -1224,7 +1348,7 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
   }
 
   .success-message {
-    color: green;
+    color: rgb(0, 128, 75);
   }
 
   .error-message {

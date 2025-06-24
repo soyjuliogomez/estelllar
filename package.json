@@ -1,5 +1,21 @@
 {
 	"scripts": {
 		"sass": "sass --watch --no-source-map styles.scss styles.css --style compressed"
-	}
+	},
+	"name": "estelllar",
+	"version": "1.0.0",
+	"description": "",
+	"main": "script.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/soyjuliogomez/estelllar.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"bugs": {
+		"url": "https://github.com/soyjuliogomez/estelllar/issues"
+	},
+	"homepage": "https://github.com/soyjuliogomez/estelllar#readme"
 }

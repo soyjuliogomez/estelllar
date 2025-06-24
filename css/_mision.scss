@@ -1,0 +1,1485 @@
+// Variables
+$max-width: 1076px;
+$padding-horizontal: 24px;
+$padding-mobile: 16px;
+$navbar-height: 72px;
+$color-primary: #e5204f;
+$color-text: #333;
+$color-light: #fffacd;
+
+// Reset básico
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: $color-text;
+  
+}
+
+// ========================================
+// UTILITY CLASSES (MEJORES PRÁCTICAS)
+// ========================================
+
+// Contenedor base para contenido centrado
+.container {
+  max-width: $max-width;
+  margin: 0 auto;
+  /* padding: 0 $padding-horizontal; */
+  
+  @media (max-width: 1120px) {
+    padding: 0 $padding-mobile;
+  }
+}
+
+// Utility para ancho completo
+.full-width {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+// Utility para contenido centrado dentro de full-width
+.content-centered {
+  max-width: $max-width;
+  margin: 0 auto;
+  /* padding: 0 $padding-horizontal; */
+  
+  @media (max-width: 1120px) {
+    padding: 0 $padding-mobile;
+  }
+}
+
+// ========================================
+// LAYOUT PRINCIPAL
+// ========================================
+
+main {
+  padding-top: $navbar-height;
+  /* padding-top: $navbar-height + 40px; */
+  /* padding-bottom: 40px; */
+  
+  @media (max-width: 768px) {
+    padding-top: $navbar-height;
+  }
+}
+
+// ========================================
+// COMPONENTES DE SECCIONES
+// ========================================
+
+// Estilos base para todas las secciones
+section {
+/*   margin-bottom: 60px;
+ */  
+  @media (max-width: 768px) {
+    margin-bottom: 40px;
+  }
+  
+  // Tipografía base
+  h1, h2, h3 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    font-size: 3.5rem;
+    
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 2rem;
+    }
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    color: $color-primary;
+    
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    color: $color-text;
+    
+    @media (max-width: 768px) {
+      font-size: 1.3rem;
+    }
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+// ========================================
+// SECCIÓN TECNOLOGÍA CON PROPÓSITO
+// ========================================
+
+.tech-section {
+  width: 100%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    padding: 60px 24px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 40px 16px;
+  }
+  
+  .tech-container {
+    position: relative;
+    width: 100%;
+    max-width: 1076px;
+    height: 720px;
+    border-radius: 36px;
+    overflow: hidden;
+    margin: 0 auto;
+    
+    @media (max-width: 1120px) {
+      margin: 0 24px;
+      max-width: calc(100% - 48px);
+    }
+    
+    @media (max-width: 768px) {
+      height: 500px;
+      margin: 0;
+      max-width: 100%;
+    }
+    
+    @media (max-width: 480px) {
+      height: 400px;
+    }
+  }
+  
+  // Imagen de fondo
+  .tech-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70% center;
+    z-index: 1;
+    
+    // Clases de control
+    &.position-top {
+      object-position: center top;
+    }
+    
+    &.position-bottom {
+      object-position: center bottom;
+    }
+    
+    &.position-left {
+      object-position: left center;
+    }
+    
+    &.position-right {
+      object-position: 100% center;
+    }
+    
+    &.contain {
+      object-fit: contain;
+    }
+  }
+  
+  // Contenido de texto púrpura encima
+  .tech-content {
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: $color-secondary-00;
+    border-radius: 32px;
+    padding: 60px 40px;
+    width: 561px;
+    max-width: calc(100% - 120px);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+    
+    @media (max-width: 1024px) {
+      width: 480px;
+      padding: 50px 35px;
+      left: 40px;
+      max-width: calc(100% - 80px);
+    }
+    
+    @media (max-width: 768px) {
+      width: auto;
+      left: 30px;
+      right: 30px;
+      padding: 40px 30px;
+      max-width: none;
+    }
+    
+    @media (max-width: 480px) {
+      left: 20px;
+      right: 20px;
+      padding: 30px 25px;
+    }
+    
+    h2 {
+      color: white;
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      
+      @media (max-width: 1024px) {
+        font-size: 2.5rem;
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 2rem;
+        text-align: center;
+      }
+      
+      @media (max-width: 480px) {
+        font-size: 1.75rem;
+      }
+    }
+  }
+}
+
+
+// Sección de contenido normal
+.contenido-mision {
+
+  .fraseMision{
+    font-size: 36px;
+    font-family: "Fraunces", serif;
+    font-style: oblique;
+    color: #ffffee;
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  padding: 40px 0;
+  
+  @media (max-width: 768px) {
+    padding: 30px 0;
+  }
+}
+
+// ========================================
+// SECCIÓN NUESTRA MISIÓN
+// ========================================
+
+.mission-section {
+  
+  color: white;
+  padding: 100px 0;
+  
+  @media (max-width: 768px) {
+    padding: 80px 0;
+  }
+  
+  .mission-container {
+    max-width: 1076px;
+    margin: 0 auto;
+    
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 80px;
+    align-items: start;
+    
+    @media (max-width: 1120px) {
+      padding: 0 24px;
+      gap: 60px;
+    }
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 0 20px;
+    }
+  }
+  
+  // Columna izquierda - Título
+  .mission-header {
+    .mission-accent {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #8B5CF6 0%, #A855F7 100%);
+      margin-bottom: 24px;
+      border-radius: 2px;
+      
+      @media (max-width: 768px) {
+        width: 60px;
+        margin-bottom: 20px;
+      }
+    }
+    
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0;
+      color: white;
+      
+      @media (max-width: 1024px) {
+        font-size: 3.5rem;
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 2.5rem;
+      }
+      
+      @media (max-width: 480px) {
+        font-size: 2rem;
+      }
+    }
+  }
+  
+  // Columna derecha - Contenido
+  .mission-content {
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 32px;
+      color: #ffffee;
+      
+      @media (max-width: 768px) {
+        font-size: 1.3rem;
+        margin-bottom: 24px;
+      }
+      
+      @media (max-width: 480px) {
+        font-size: 1.2rem;
+      }
+    }
+    
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #94a3b8;
+      margin-bottom: 24px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+// ========================================
+// SECCIÓN ¿POR QUÉ ESTO IMPORTA?
+// ========================================
+
+.importance-section {
+  
+  color: white;
+ 
+  
+  @media (max-width: 768px) {
+    padding: 80px 0;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 60px 0;
+  }
+  
+  .importance-container {
+    max-width: 1076px;
+    margin: 0 auto;
+    
+    
+    @media (max-width: 1120px) {
+      padding: 0 24px;
+    }
+    
+    @media (max-width: 768px) {
+      padding: 0 20px;
+    }
+    
+    @media (max-width: 480px) {
+      padding: 0 16px;
+    }
+  }
+  
+  // ========================================
+  // TÍTULO PRINCIPAL
+  // ========================================
+  
+  .main-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 80px;
+    color: white;
+    
+    @media (max-width: 1024px) {
+      font-size: 3rem;
+      margin-bottom: 70px;
+    }
+    
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 2rem;
+      margin-bottom: 50px;
+    }
+  }
+  
+  // ========================================
+  // LAYOUT PRINCIPAL
+  // ========================================
+  
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    justify-content: center;
+    
+    @media (max-width: 1024px) {
+      gap: 60px;
+    }
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+    
+    @media (max-width: 480px) {
+      gap: 40px;
+    }
+  }
+  
+  // ========================================
+  // MENÚ IZQUIERDO
+  // ========================================
+  
+  .menu-left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    
+    @media (max-width: 768px) {
+      gap: 20px;
+    }
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center; // Centrado vertical para los no activos
+    gap: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.4;
+    padding: 16px; // Padding reducido
+    border-radius: 8px;
+    min-height: 48px; // ← Esto respeta el contenido
+    overflow: hidden;
+    
+    @media (max-width: 768px) {
+      gap: 15px;
+      min-height: 36px; // Altura reducida en móvil
+      padding: 6px 8px;
+    }
+    
+    @media (max-width: 480px) {
+      gap: 12px;
+      min-height: 32px;
+      padding: 4px 6px;
+    }
+    
+    &.active {
+      opacity: 1;
+      background: rgba(168, 85, 247, 0.1);
+      height: auto; // Altura automática para el activo
+      align-items: flex-start; // Alineación superior para el activo
+      padding: 16px; // Padding normal para el activo
+      
+      @media (max-width: 768px) {
+        padding: 8px;
+      }
+      
+      @media (max-width: 480px) {
+        padding: 6px;
+      }
+      
+      .menu-content h3 {
+        color: $color-secondary-00;
+      }
+      
+      .progress-fill {
+        animation: fillProgress 4s linear;
+        animation-fill-mode: forwards;
+      }
+    }
+    
+    // Hover effects
+    &:not(.active):hover {
+      opacity: 0.6;
+      background: rgba(255, 255, 255, 0.02);
+      
+      .menu-content h3 {
+        color: #94a3b8;
+      }
+    }
+    
+    &.active:hover {
+      opacity: 1;
+      background: rgba(168, 85, 247, 0.15);
+    }
+  }
+  
+  // ========================================
+  // BARRA DE PROGRESO VERTICAL
+  // ========================================
+  
+  .progress-bar {
+    width: 4px;
+    min-height: 32px; // ← Altura mínima para que aparezca
+    height: 100%; // ← NUEVA: Ocupa toda la altura del contenido
+    background: rgba(255, 255, 255, 0.648);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    align-self: stretch; // ← NUEVA: Se estira al contenedor
+    min-height: 100%; // Ocupa toda la altura del activo
+    height: auto; // Altura automática para el activo
+    
+    @media (max-width: 768px) {
+      min-height: 20px; // ← Altura mínima en móvil
+    }
+    
+    @media (max-width: 480px) {
+      min-height: 16px; // ← Altura mínima en móvil pequeño
+      width: 3px;
+    }
+  }
+  
+  .menu-item.active .progress-bar {
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 1;
+    min-height: 100%; // Ocupa toda la altura del activo
+    height: auto; // Altura automática para el activo
+    
+    
+    @media (max-width: 768px) {
+      min-height: 60px;
+      }
+    
+    @media (max-width: 480px) {
+      min-height: 48px;
+    }
+  }
+  
+  .progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, #A855F7 0%, #8B5CF6 100%);
+    border-radius: 2px;
+    transition: height 0.3s ease;
+  }
+  
+  // ========================================
+  // CONTENIDO DEL MENÚ
+  // ========================================
+  
+  .menu-content {
+    flex: 1;
+    
+    h3 {
+      font-size: 40px; // Tamaño solicitado
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #64748b; // Gris por defecto
+      transition: color 0.3s ease;
+      line-height: 1.1; // Para que encaje mejor en 48px
+      margin: 0; // Eliminar márgenes para mejor control
+      
+      @media (max-width: 1024px) {
+        font-size: 32px;
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 24px; // Tamaño más pequeño en móvil
+      }
+      
+      @media (max-width: 480px) {
+        font-size: 18px;
+      }
+    }
+    
+    
+  }
+  
+  .menu-item.active .menu-content {
+    h3 {
+      color: $color-secondary-00; // Púrpura cuando está activo
+      margin-bottom: 12px; // Margen solo cuando está activo
+      
+      @media (max-width: 768px) {
+        margin-bottom: 8px;
+      }
+    }
+    
+    p {
+      opacity: 1; // Visible solo cuando está activo
+      max-height: 100px; // Altura suficiente para el texto
+      
+      @media (max-width: 768px) {
+        max-height: 80px;
+      }
+    }
+  }
+  
+  // ========================================
+  // IMAGEN DERECHA
+  // ========================================
+  
+  .image-right {
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 620px;
+      border-radius: 20px;
+      overflow: hidden;
+      
+      @media (max-width: 1024px) {
+        height: 350px;
+      }
+      
+      @media (max-width: 768px) {
+        height: 300px;
+      }
+      
+      @media (max-width: 480px) {
+        height: 250px;
+        border-radius: 16px;
+      }
+    }
+    
+    .tab-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+      
+      &.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .tab-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 20px;
+      
+      @media (max-width: 480px) {
+        border-radius: 16px;
+      }
+    }
+    
+    // Placeholder para desarrollo (remover cuando tengas imágenes reales)
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #475569;
+      border-radius: 20px;
+      font-size: 4rem;
+      
+      @media (max-width: 768px) {
+        font-size: 3rem;
+        border-radius: 16px;
+      }
+      
+      @media (max-width: 480px) {
+        font-size: 2rem;
+      }
+      
+      span {
+        font-size: 1.2rem;
+        color: #94a3b8;
+        margin-top: 16px;
+        font-weight: 500;
+        
+        @media (max-width: 768px) {
+          font-size: 1rem;
+          margin-top: 12px;
+        }
+        
+        @media (max-width: 480px) {
+          font-size: 0.9rem;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+  
+  // ========================================
+  // ANIMACIONES
+  // ========================================
+  
+  @keyframes fillProgress {
+    0% {
+      height: 0%;
+    }
+    100% {
+      height: 100%;
+    }
+  }
+}
+
+.statistics-section {
+/*   background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+ */  
+  position: relative;
+  width: 100%;
+  // QUITAR overflow: hidden para permitir desborde
+
+  .statistics-container {
+      max-width: 1076px; // Tu ancho específico
+      margin: 0 auto;
+      /* padding: 0 20px; */
+      position: relative;
+  }
+
+  .statistics-header {
+      margin-bottom: 50px;
+  }
+
+  .statistics-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+  }
+
+  .statistics-subtitle {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #94a3b8;
+      max-width: 600px;
+  }
+
+  .statistics-slider-container {
+      position: relative;
+      overflow: visible;
+      width: 100%;
+  }
+
+  .statistics-slider-controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+      background: $neutral-dark-60;
+      border-radius: 44px;
+      width:fit-content;
+      padding: 6px;
+  }
+
+  .statistics-slider-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+      }
+
+      &--prev,
+      &--next {
+        background: $neutral-dark-60;
+          &::before {
+              background: $neutral-dark-60;
+          }
+      }
+
+      &:hover {
+          &::before {
+              background: $color-secondary-00;
+          }
+
+          svg {
+              transform: scale(1.1);
+          }
+      }
+
+      &:active {
+        background: $color-secondary-00;
+
+          &::before {
+              background: $color-secondary-00;
+          }
+      }
+
+      svg {
+          width: 16px;
+          height: 16px;
+          fill: white;
+          position: relative;
+          z-index: 1;
+          transition: transform 0.2s ease;
+      }
+
+      &:disabled {
+          background: $neutral-dark-60;
+          cursor: not-allowed;
+
+          &:hover {
+              &::before {
+                  background: $neutral-dark-60;
+              }
+
+              svg {
+                  transform: none;
+              }
+          }
+      }
+  }
+
+  .statistics-slider-track {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: auto;
+      padding-bottom: 10px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      
+      // SOLUCIÓN DIRECTA: Escapar completamente del contenedor
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      width: 100vw;
+      
+      // Padding para alinear el contenido inicial
+      padding-left: calc(50vw - 538px); // Centrar y alinear a la izquierda del contenedor 1076px
+      padding-right: calc(50vw - 538px); // Espacio simétrico a la derecha
+      
+      cursor: grab;
+      will-change: scroll-position;
+      transform: translate3d(0, 0, 0);
+
+      &:active {
+          cursor: grabbing;
+      }
+
+      &::-webkit-scrollbar {
+          display: none;
+      }
+
+      &.statistics-rubber-band {
+          transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+  }
+
+  .statistics-card {
+      max-width: 520px; // Ancho de 520px
+      flex-shrink: 0;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      border-radius: 16px;
+      padding: 30px;
+      position: relative;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      
+      // Layout: contenido arriba, imagen abajo
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 300px;
+
+      &:hover {
+          transform: translateY(-8px);
+          border-color: rgba(124, 58, 237, 0.3);
+          box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+      }
+
+      /* &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #7c3aed, #a855f7);
+          border-radius: 16px 16px 0 0;
+      } */
+  }
+
+  .statistics-card-content {
+      flex-grow: 1;
+      margin-bottom: 25px;
+  }
+
+  .statistics-card-percentage {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+  }
+
+  .statistics-card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #f1f5f9;
+      line-height: 1.3;
+  }
+
+  .statistics-card-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #94a3b8;
+  }
+
+  .statistics-card-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: auto;
+
+      img {
+          width: 100%;
+          height: 320px;
+          border-radius: 12px;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+          
+      }
+
+      &:hover img {
+          transform: scale(1.05);
+      }
+  }
+
+  @keyframes statistics-slideInUp {
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+
+  // Responsive
+  @media (max-width: 1120px) {
+      .statistics-container {
+          max-width: 100%;
+          padding: 0 20px;
+      }
+      
+      .statistics-slider-track {
+          padding-left: 20px;
+          padding-right: 20px;
+      }
+  }
+
+  @media (max-width: 768px) {
+      .statistics-title {
+          font-size: 2rem;
+      }
+      
+      .statistics-card {
+          min-width: 400px;
+          min-height: 280px;
+          padding: 25px;
+      }
+      
+      .statistics-container {
+          padding: 0 15px;
+      }
+      
+      .statistics-slider-track {
+          padding-left: 15px;
+          padding-right: 15px;
+      }
+
+      .statistics-card-percentage {
+          font-size: 2.8rem;
+      }
+
+      .statistics-card-title {
+          font-size: 1.3rem;
+      }
+
+      .statistics-card-description {
+          font-size: 0.95rem;
+      }
+
+      .statistics-card-image img {
+          width: 100px;
+          height: 100px;
+      }
+  }
+
+  @media (max-width: 480px) {
+      .statistics-card {
+          min-width: 320px;
+          padding: 20px;
+      }
+
+      .statistics-card-percentage {
+          font-size: 2.5rem;
+      }
+
+      .statistics-card-title {
+          font-size: 1.2rem;
+      }
+
+      .statistics-card-image img {
+          width: 90px;
+          height: 90px;
+      }
+  }
+}
+
+// ========================================
+// STACKING CARDS SECTION
+// ========================================
+
+.stacking-section {
+  
+  position: relative;
+  width: 100%;
+}
+
+.stacking-header {
+  margin-bottom: -160px; // Para superponer el header con las cards
+}
+.stacking-container {
+  position: relative;
+  height: 800vh; // Aumentado para mejor control del scroll
+  
+  
+  @media (max-width: 768px) {
+    height: 450vh;
+  }
+}
+
+// ========================================
+// VIEWPORT STICKY
+// ========================================
+
+.cards-viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+// ========================================
+// STACKING CARDS
+// ========================================
+
+.stacking-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1076px;
+  height: 500px;
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: none; // Control total con JavaScript
+  will-change: transform;
+  opacity: 1; // Siempre visible
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    height: 600px;
+    width: 95%;
+  }
+  
+  @media (max-width: 480px) {
+    height: 500px;
+    border-radius: 16px;
+  }
+}
+
+// ========================================
+// CONTENIDO DE LAS CARDS
+// ========================================
+
+.card-content {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  
+  @media (max-width: 768px) {
+    padding: 40px;
+    text-align: center;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 24px;
+  }
+}
+
+.card-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    order: -1; // Imagen arriba en móvil
+    height: 200px;
+  }
+}
+
+.card-illustration {
+  font-size: 8rem;
+  opacity: 0.8;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  
+  @media (max-width: 768px) {
+    font-size: 4rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 3rem;
+  }
+}
+
+.card-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  color: white;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+    margin-bottom: 16px;
+  }
+}
+
+.card-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 30px;
+  color: white;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+}
+
+.card-metric-invertir {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; // Espacio entre el ícono y el texto, ajustado para la imagen
+
+  // SE HAN QUITADO:
+  // border: 2px dotted #7B61FF;
+  // padding: 1.5rem 2rem;
+  // background-color: #E8E2FF;
+  
+  border-radius: 8px; // Bordes ligeramente redondeados (se mantiene si quieres la forma de la tarjeta)
+
+  .metric-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .metric-icon-img {
+      width: 60px; // Ajusta el tamaño de la imagen del ícono
+      height: 60px;
+      object-fit: contain; // Asegura que la imagen se ajuste sin distorsionarse
+    }
+  }
+
+  .metric-text {
+    display: flex;
+    flex-direction: column; // Para que el número y la descripción estén uno debajo del otro
+    line-height: 1.2; // Ajusta el espaciado entre las líneas de texto
+    
+    .metric-value {
+      font-size: 2.5rem; // Tamaño de fuente grande para el número
+      font-weight: 600; // Semi-negrita
+      color: #33205B; // Color oscuro para el número
+    }
+
+    .metric-description {
+      font-size: 1.1rem; // Tamaño de fuente para la descripción
+      font-weight: 400; // Normal
+      color: #33205B; // Color oscuro para la descripción
+    }
+  }
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    // padding: 1rem 1.5rem; // También se quita el padding responsivo si ya no hay borde/fondo
+
+    .metric-icon .metric-icon-img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .metric-text {
+      .metric-value {
+        font-size: 2rem;
+      }
+      .metric-description {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column; // En pantallas muy pequeñas, apilar el ícono y el texto
+    text-align: center; // Centrar el texto si se apilan
+    gap: 0.5rem;
+    // padding: 1rem; // También se quita el padding responsivo si ya no hay borde/fondo
+
+    .metric-icon .metric-icon-img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .metric-text {
+      .metric-value {
+        font-size: 1.8rem;
+      }
+      .metric-description {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+.metric-icon {
+  font-size: 1.5rem;
+  
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+  }
+}
+
+// ========================================
+// COLORES DE LAS CARDS
+// ========================================
+
+.card-1 {
+  background: linear-gradient(135deg, $color-secondary-30 0%, $color-secondary-00 100%);
+  
+  .card-visual {
+    background: linear-gradient(135deg, #4c669f 0%, #3b5998 100%);
+  }
+}
+
+.card-2 {
+  background: linear-gradient(135deg, $neutral-light-color-10 0%, $neutral-light-color-30 100%);
+  
+  .card-visual {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+}
+
+.card-3 {
+  background: linear-gradient(135deg, $color-secondary-30 0%, $color-secondary-30 100%);
+  
+  .card-visual {
+    background: linear-gradient(135deg, $neutral-light-color-10 0%, $neutral-light-color-10 100%);
+  }
+}
+
+.card-4 {
+  background: linear-gradient(135deg, $neutral-light-color-10 0%, $neutral-light-color-40 100%);
+  
+  .card-visual {
+    background: linear-gradient(135deg, $color-secondary-00 0%, #ba90e4 100%);
+  }
+}
+
+// ========================================
+// INDICADOR DE PROGRESO
+// ========================================
+
+.progress-indicator {
+  position: fixed;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+  
+  @media (max-width: 768px) {
+    right: 20px;
+    gap: 8px;
+  }
+  
+  @media (max-width: 480px) {
+    right: 16px;
+    gap: 6px;
+  }
+}
+
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  @media (max-width: 480px) {
+    width: 6px;
+    height: 6px;
+  }
+  
+  &.active {
+    background: #667eea;
+    transform: scale(1.5);
+    
+    @media (max-width: 480px) {
+      transform: scale(1.3);
+    }
+  }
+}
+
+// ========================================
+// PERFORMANCE Y ACCESIBILIDAD
+// ========================================
+
+// GPU acceleration para elementos animados
+.stacking-card {
+  will-change: transform;
+}
+
+// Reducir motion para usuarios que lo prefieren
+@media (prefers-reduced-motion: reduce) {
+  .stacking-card,
+  .progress-dot {
+    transition: none;
+  }
+}
+// ========================================
+// FOOTER
+// ========================================
+
+/* footer {
+
+  padding: 40px 0;
+  text-align: center;
+  margin-top: 60px;
+  color: #666;
+  
+  @media (max-width: 768px) {
+    padding: 30px 0;
+    margin-top: 40px;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+} */
+
+// ========================================
+// NAVBAR
+// ========================================
+

@@ -1,5 +1,27 @@
 $color-primary-00: #f44857;
+$color-primary-00: #f44857;
 $color-primary-10: #E53F4C;
+
+$neutral-light-color-00: #F6F5FF;
+$neutral-light-color-10: #ECEBFF;
+$neutral-light-color-20: #E2E0FF;
+$neutral-light-color-30: #CFCCFF;
+$neutral-light-color-40: #C1BDFF;
+
+
+
+
+$color-secondary-00: #7868f6;
+$color-secondary-10: #8378E5;
+$color-secondary-20: #7B70D6;
+$color-secondary-30: #6960B8;
+
+$neutral-dark-60: #39317A;
+$neutral-dark-70: #2B255C;
+
+
+
+ 
 
 * {
   box-sizing: border-box;
@@ -232,15 +254,14 @@ $9xl: 176; */
     margin-bottom: $m;
   }
 
-  &--mb-l {
-    margin-bottom: $l;
-  }
+  
+  
 }
 
 .h2__page {
   color: #ffffee;
   font-family: "Poppins", sans-serif;
-  font-size: 2rem;
+  font-size: 48px;
   text-align: center;
   line-height: 140%;
   @media (max-width: 600px) {
@@ -254,11 +275,193 @@ $9xl: 176; */
   &--alignleft {
     text-align: left;
   }
+  &--aligncenter {
+    text-align: center;
+  }
+
+  // Márgenes inferiores
+  &--mb-s {
+    margin-bottom: $s;
+  }
+
+  &--mb-m {
+    margin-bottom: $m;
+  }
+
+  &--mb-l {
+    margin-bottom: $l;
+  }
+
+  &--mb-l {
+    margin-bottom: $l;
+  }
+  &--mb-xxxxl {
+    margin-bottom: $xxxxl;
+  }
+
+  &--mt-xxxxl {
+    margin-top: 140px;
+  }
+}
+
+.h3__page {
+  color: #ffffee;
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  text-align: center;
+  line-height: 140%;
+  
+  @media (max-width: 600px) {
+    font-size: 32px;
+  }
+
+  &--section {
+    margin-top: $m;
+  }
+
+  &--alignleft {
+    text-align: left;
+  }
+
+  // =============================
+  // MODO CLARO - NUEVAS CLASES
+  // =============================
+
+  // Clase modificadora para modo claro
+  &--light {
+    color: $neutral-dark-70; // Color oscuro para modo claro
+  }
+
+  // Variantes de color para modo claro
+  &--light-soft {
+    color: #2d2d2d; // Gris oscuro más suave
+  }
+
+  &--light-medium {
+    color: #404040; // Gris medio
+  }
+
+  &--light-strong {
+    color: #000000; // Negro puro para máximo contraste
+  }
+
+  // =============================
+  // DETECCIÓN AUTOMÁTICA DE MODO CLARO
+  // =============================
+
+  // Si el sistema prefiere modo claro, cambiar automáticamente
+  @media (prefers-color-scheme: light) {
+    &--auto {
+      color: #1a1a1a;
+    }
+  }
+
+  // Si hay una clase en el body/html para modo claro
+  .light-mode & {
+    &--adaptive {
+      color: #1a1a1a;
+    }
+  }
+
+  // Si hay data attribute para tema
+  [data-theme="light"] & {
+    &--themed {
+      color: #1a1a1a;
+    }
+  }
+
+  // =============================
+  // COMBINACIONES CON OTRAS CLASES
+  // =============================
+
+  // Modo claro + sección
+  &--light.h3__page--section,
+  &--light-soft.h3__page--section,
+  &--light-medium.h3__page--section,
+  &--light-strong.h3__page--section {
+    margin-top: $m;
+  }
+
+  // Modo claro + alineación izquierda
+  &--light.h3__page--alignleft,
+  &--light-soft.h3__page--alignleft,
+  &--light-medium.h3__page--alignleft,
+  &--light-strong.h3__page--alignleft {
+    text-align: left;
+  }
+
+  // =============================
+  // TRANSICIONES SUAVES PARA CAMBIO DE TEMA
+  // =============================
+
+  &--smooth {
+    transition: color 0.3s ease;
+    
+    &.h3__page--light {
+      color: $neutral-dark-70;
+    }
+  }
+
+  // =============================
+  // SOPORTE PARA BACKGROUNDS ESPECÍFICOS
+  // =============================
+
+  // Para usar sobre fondos blancos/claros
+  &--on-light-bg {
+    color: #1a1a1a;
+  }
+
+  // Para usar sobre fondos grises claros
+  &--on-gray-bg {
+    color: #2d2d2d;
+  }
+
+  // Para usar sobre fondos con color
+  &--on-colored-bg {
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  // =============================
+  // ESTADOS ESPECIALES EN MODO CLARO
+  // =============================
+
+  // Hover en modo claro
+  &--light-interactive {
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #404040;
+    }
+
+    &:active {
+      color: #000000;
+    }
+  }
+
+  // Link en modo claro
+  &--light-link {
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #0066cc;
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: #663399;
+    }
+  }
 }
 
 .paragraph {
   color: #ffffff;
   font-family: "Poppins", sans-serif;
+  /* text-wrap: balance; */
 
   &__large {
     color: #ffffff;
@@ -303,6 +506,334 @@ $9xl: 176; */
     }
     @media (max-width: 600px) {
       font-size: 0.875rem;
+    }
+  }
+
+  // =============================
+  // MODO CLARO - NUEVAS CLASES
+  // =============================
+
+  // Clase modificadora para modo claro (base)
+  &--light {
+    color: #2d2d2d; // Color oscuro para modo claro
+  }
+
+  // Variantes de intensidad para modo claro (base)
+  &--light-soft {
+    color: #404040; // Gris oscuro más suave
+  }
+
+  &--light-medium {
+    color: #1a1a1a; // Gris muy oscuro
+  }
+
+  &--light-strong {
+    color: #000000; // Negro puro para máximo contraste
+  }
+
+  // =============================
+  // MODO CLARO PARA PARAGRAPH__LARGE
+  // =============================
+
+  &__large {
+    // Clases de modo claro para large
+    &.paragraph--light {
+      color: #2d2d2d;
+    }
+
+    &.paragraph--light-soft {
+      color: #404040;
+    }
+
+    &.paragraph--light-medium {
+      color: #1a1a1a;
+    }
+
+    &.paragraph--light-strong {
+      color: #000000;
+    }
+
+    // Combinaciones con modificadores existentes (large + light)
+    &.paragraph--light {
+      &.paragraph__large--sectionLarge {
+        margin-top: 3rem;
+      }
+      &.paragraph__large--sectionMedium {
+        margin-top: 2rem;
+      }
+      &.paragraph__large--aligncenter {
+        text-align: center;
+      }
+      &.paragraph__large--alignleft {
+        text-align: left;
+      }
+    }
+
+    // Responsive para large + light
+    &.paragraph--light {
+      @media (max-width: 600px) {
+        font-size: 1.125rem;
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  // =============================
+  // MODO CLARO PARA PARAGRAPH__SMALL
+  // =============================
+
+  &__small {
+    // Clases de modo claro para small
+    &.paragraph--light {
+      color: #2d2d2d;
+    }
+
+    &.paragraph--light-soft {
+      color: #404040;
+    }
+
+    &.paragraph--light-medium {
+      color: #1a1a1a;
+    }
+
+    &.paragraph--light-strong {
+      color: #000000;
+    }
+
+    // Combinaciones con modificadores existentes (small + light)
+    &.paragraph--light {
+      &.paragraph__small--section {
+        margin-top: $m;
+      }
+      &.paragraph__small--aligncenter {
+        text-align: center;
+      }
+      &.paragraph__small--alignleft {
+        text-align: left;
+      }
+    }
+
+    // Responsive para small + light
+    &.paragraph--light {
+      @media (max-width: 600px) {
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  // =============================
+  // DETECCIÓN AUTOMÁTICA DE MODO CLARO
+  // =============================
+
+  // Si el sistema prefiere modo claro, cambiar automáticamente
+  @media (prefers-color-scheme: light) {
+    &--auto {
+      color: #2d2d2d;
+    }
+
+    &__large.paragraph--auto {
+      color: #2d2d2d;
+    }
+
+    &__small.paragraph--auto {
+      color: #2d2d2d;
+    }
+  }
+
+  // Si hay una clase en el body/html para modo claro
+  .light-mode & {
+    &--adaptive {
+      color: #2d2d2d;
+    }
+
+    &__large.paragraph--adaptive {
+      color: #2d2d2d;
+    }
+
+    &__small.paragraph--adaptive {
+      color: #2d2d2d;
+    }
+  }
+
+  // Si hay data attribute para tema
+  [data-theme="light"] & {
+    &--themed {
+      color: #2d2d2d;
+    }
+
+    &__large.paragraph--themed {
+      color: #2d2d2d;
+    }
+
+    &__small.paragraph--themed {
+      color: #2d2d2d;
+    }
+  }
+
+  // =============================
+  // TRANSICIONES SUAVES PARA CAMBIO DE TEMA
+  // =============================
+
+  &--smooth {
+    transition: color 0.3s ease;
+    
+    &.paragraph--light {
+      color: #2d2d2d;
+    }
+  }
+
+  &__large.paragraph--smooth {
+    transition: color 0.3s ease;
+    
+    &.paragraph--light {
+      color: #2d2d2d;
+    }
+  }
+
+  &__small.paragraph--smooth {
+    transition: color 0.3s ease;
+    
+    &.paragraph--light {
+      color: #2d2d2d;
+    }
+  }
+
+  // =============================
+  // SOPORTE PARA BACKGROUNDS ESPECÍFICOS
+  // =============================
+
+  // Para usar sobre fondos blancos/claros
+  &--on-light-bg,
+  &__large.paragraph--on-light-bg,
+  &__small.paragraph--on-light-bg {
+    color: #2d2d2d;
+  }
+
+  // Para usar sobre fondos grises claros
+  &--on-gray-bg,
+  &__large.paragraph--on-gray-bg,
+  &__small.paragraph--on-gray-bg {
+    color: #1a1a1a;
+  }
+
+  // Para usar sobre fondos con color
+  &--on-colored-bg,
+  &__large.paragraph--on-colored-bg,
+  &__small.paragraph--on-colored-bg {
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  // =============================
+  // ESTADOS ESPECIALES EN MODO CLARO
+  // =============================
+
+  // Interactive paragraphs en modo claro
+  &--light-interactive,
+  &__large.paragraph--light-interactive,
+  &__small.paragraph--light-interactive {
+    color: #2d2d2d;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #1a1a1a;
+    }
+
+    &:active {
+      color: #000000;
+    }
+  }
+
+  // Links en modo claro
+  &--light-link,
+  &__large.paragraph--light-link,
+  &__small.paragraph--light-link {
+    color: #2d2d2d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #0066cc;
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: #663399;
+    }
+  }
+
+  // =============================
+  // VARIANTES SEMÁNTICAS
+  // =============================
+
+  // Para texto de baja prioridad en modo claro
+  &--light-muted,
+  &__large.paragraph--light-muted,
+  &__small.paragraph--light-muted {
+    color: #666666;
+  }
+
+  // Para texto de énfasis en modo claro
+  &--light-emphasis,
+  &__large.paragraph--light-emphasis,
+  &__small.paragraph--light-emphasis {
+    color: #000000;
+    font-weight: 500;
+  }
+
+  // Para texto de ayuda/secondary en modo claro
+  &--light-secondary,
+  &__large.paragraph--light-secondary,
+  &__small.paragraph--light-secondary {
+    color: #757575;
+  }
+
+  // =============================
+  // ACCESIBILIDAD Y LEGIBILIDAD
+  // =============================
+
+  // Para mejorar contraste en modo claro
+  &--light-high-contrast,
+  &__large.paragraph--light-high-contrast,
+  &__small.paragraph--light-high-contrast {
+    color: #000000;
+    font-weight: 400;
+  }
+
+  // Para reducir fatiga visual
+  &--light-reading,
+  &__large.paragraph--light-reading,
+  &__small.paragraph--light-reading {
+    color: #2d2d2d;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+
+  // =============================
+  // RESPONSIVE ESPECÍFICO PARA MODO CLARO
+  // =============================
+
+  // Ajustes móviles para modo claro
+  @media (max-width: 600px) {
+    &--light,
+    &--light-soft,
+    &--light-medium,
+    &--light-strong {
+      // Mantener los colores en móvil
+      // Los tamaños ya están definidos en las clases originales
+    }
+  }
+
+  // =============================
+  // PRINT STYLES PARA MODO CLARO
+  // =============================
+
+  @media print {
+    &--light,
+    &__large.paragraph--light,
+    &__small.paragraph--light {
+      color: #000000 !important; // Asegurar que sea negro en impresión
     }
   }
 }
