@@ -487,29 +487,37 @@
   </div>
 </section>
     <section class="data" id="dataSection">
-      <img class="map-image" src="./image/mapaQuito.svg" alt="" />
-      <div class="father-right">
-        <p class="label__page label__page--left">Ubicación</p>
-        <h1 class="h1__page h1__page--section h1__page--alignleft">
+      <div class="degradadoAtras">
+        <img class="map-image" src="./image/mapaQuito.svg" alt="" />
+    </div>
+    <div class="father-right">
+      <p class="label__page label__page--left">Ubicación</p>
+    
+      <!-- Tabs Navigation -->
+      <div class="tabs-container">
+        <div class="tabs-nav">
+          <button class="tab-button active" data-tab="registro">Registro</button>
+          <button class="tab-button" data-tab="verificacion">Verificación</button>
+        </div>
+      </div>
+    
+      <!-- Message Container for verification results -->
+      <div id="verificationMessage" class="verification-message" style="display: none;">
+        <div class="message-content">
+          <i class="message-icon"></i>
+          <span class="message-text"></span>
+        </div>
+      </div>
+    
+      <!-- Tab Content: Registro -->
+      <div id="registro-content" class="tab-content active">
+        <h1 class="h1__page h1__page--alignleft">
           Nos vemos en Quito. ¡Inscríbete ya!
         </h1>
-        <!-- <div id="messageContainer" style="display: none;">
-          <div id="spinner">Cargando...</div>
-          <div id="messageContent"></div>
-        </div> -->
-        <div id="messageContainer" style="display: none;">
-  
-          <div id="spinner">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="shadow"></div>
-            <div class="shadow"></div>
-            <div class="shadow"></div>
-          </div>
-          <div id="messageContent"></div>
-        </div>
-
+        <!-- <p class="subheading">
+          Al registrarte obtienes acceso exclusivo al evento tech más grande de Ecuador
+        </p> -->
+        
         <form id="registrationForm">
           <div class="container-input">
             <div class="input__2">
@@ -525,33 +533,27 @@
             <div class="input__2">
               <div class="username-nombres">
                 <label class="label__input">Correo electronico</label>
-                <input name="email" type="email" placeholder="Ingresa aquí tu correo" class="input" required
-                  id="input2" />
+                <input name="email" type="email" placeholder="Ingresa aquí tu correo" class="input" required id="input2" />
               </div>
               <div class="username">
                 <label class="label__input">Número de celular</label>
-                <input name="phone" type="text" placeholder="Ingresa aquí tu número de celular" class="input"
-                  required />
+                <input name="phone" type="tel" placeholder="Ingresa aquí tu número de celular" class="input" required />
               </div>
             </div>
             <div class="input__2">
               <div class="username-nombres">
                 <label class="label__input">Fecha de nacimiento</label>
-                <input name="dateOfBirth" type="date" placeholder="Ingrese su fecha de nacimiento" class="input"
-                  required />
+                <input name="dateOfBirth" type="date" placeholder="Ingrese su fecha de nacimiento" class="input" required />
               </div>
               <div class="username-nombres">
                 <label class="label__input">Industria de interes</label>
-                <select name="industryId" class="select padding_select">
+                <select name="industryId" class="select padding_select input">
                 </select>
               </div>
             </div>
           </div>
-          <p class="caption" class="roboto-regular">
-            Al dar clic en el botón registrarte estas aceptando entregar tus
-            datos con fines de marketing y brindarte una mejor experiencia con
-            respecto a tus intereses. Si eres menos edad previamente tus padres
-            debieron leer junto contigo este termino de uso de datos.
+          <p class="caption roboto-regular">
+            Al registrarte obtienes acceso exclusivo a conferencias magistrales, networking con expertos y material digital premium. ¡Únete a la revolución tecnológica de Ecuador!
           </p>
           <button type="submit" class="data_button" id="submitButton">
             <span class="button-loading" style="display: none;">
@@ -561,41 +563,62 @@
             <span class="button-icon">&nbsp;<i class="fa-solid fa-arrow-right"></i></span>
           </button>
         </form>
-
-        <!-- Panel informativo para usuarios ya registrados - reemplazará al formulario cuando corresponda -->
-        <div id="alreadyRegisteredPanel" style="display: none;">
-          <!-- Título de confirmación con el nombre del usuario -->
-          <h2 class="h2__page h2__page--alignleft">¡Gracias por registrarte, <span
-              id="userRegisteredName">Nombre</span>!</h2>
-
-          <!-- Información del evento - puedes modificar estos datos según necesites -->
-          <p class="paragraph paragraph__medium">
-            Tu lugar para Stelllar 2025 está confirmado. Te esperamos el <strong id="eventDate">15 de junio</strong> a
-            las <strong id="eventTime">9:00 am</strong> en el <strong id="eventLocation">Centro de Convenciones
-              Quito</strong> (Av. Amazonas y Naciones Unidas).
-          </p>
-
-          <!-- Instrucciones adicionales -->
-          <p class="paragraph paragraph__small">
-            No olvides llevar tu identificación para el check-in. Hemos enviado todos los detalles a tu correo
-            electrónico.
-          </p>
-
-          <!-- Contenedor para los botones -->
-          <div class="buttons-container" style="margin-top: 2rem; display: flex; gap: 1rem;">
-            <!-- Botón para agregar al calendario -->
-            <button id="addToCalendarBtn" class="button button__primary">
-              <i class="fa-solid fa-calendar-plus"></i>&nbsp;Agregar a calendario
-            </button>
-
-            <!-- Botón para compartir en stories -->
-            <button id="shareToStoriesBtn" class="button button__primary">
-              <i class="fa-solid fa-share-nodes"></i>&nbsp;Compartir en mis stories
-            </button>
-          </div>
-        </div>
-        <!-- find de Usuario ya registra AI -->
       </div>
+    
+      <!-- Tab Content: Verificación -->
+      <div id="verificacion-content" class="tab-content">
+        <h1 class="h1__page h1__page--alignleft">
+          ¡Confirma tu lugar en Quito!
+        </h1>
+        <p class="paragraph paragraph__large">
+          Verifica tu registro en segundos
+        </p>
+        
+        <form id="verificationForm">
+          <div class="container-input">
+            <div class="input__2">
+              <div class="username-nombres verification-input-full">
+                <label class="label__input">Correo electronico</label>
+                <input name="verificationEmail" type="email" placeholder="Ingrese su correo electrónico" class="input" required id="verificationEmailInput" />
+              </div>
+            </div>
+          </div>
+          <p class="caption roboto-regular">
+            Confirma tu lugar en el evento tecnológico que definirá el futuro de Ecuador.
+          </p>
+          <button type="submit" class="data_button" id="verifyButton">
+            <span class="button-loading" style="display: none;">
+              <i class="fa-solid fa-spinner fa-spin"></i>&nbsp;
+            </span>
+            <span class="button-text">Verificación</span>
+            <span class="button-icon">&nbsp;<i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+        </form>
+      </div>
+    
+      <!-- Panel informativo para usuarios ya registrados -->
+      <div id="alreadyRegisteredPanel" style="display: none;">
+        <h2 class="h2__page h2__page--alignleft">¡Gracias por registrarte, <span id="userRegisteredName">Nombre</span>!</h2>
+        <p class="paragraph paragraph__medium">
+          Tu lugar para Stelllar 2025 está confirmado. Te esperamos el <strong id="eventDate">15 de junio</strong> a
+          las <strong id="eventTime">9:00 am</strong> en el <strong id="eventLocation">Centro de Convenciones
+            Quito</strong> (Av. Amazonas y Naciones Unidas).
+        </p>
+        <p class="paragraph paragraph__small">
+          No olvides llevar tu identificación para el check-in. Hemos enviado todos los detalles a tu correo
+          electrónico.
+        </p>
+        <div class="buttons-container" style="margin-top: 2rem; display: flex; gap: 1rem;">
+          <button id="addToCalendarBtn" class="button button__primary">
+            <i class="fa-solid fa-calendar-plus"></i>&nbsp;Agregar a calendario
+          </button>
+          <button id="shareToStoriesBtn" class="button button__primary">
+            <i class="fa-solid fa-share-nodes"></i>&nbsp;Compartir en mis stories
+          </button>
+        </div>
+      </div>
+    </div>
+      <!-- fin de father right -->
     </section>
   </main>
   <section class="hrcontainer">
@@ -674,6 +697,9 @@
   <script src="components/navbar.js"></script>
   <script src="scriptsEstelllar/timelineScript.js"></script>
   <script src="components/footer.js"></script>
+  <script src="scriptsEstelllar/formScriptYTabs.js"></script>
+
+  
 <!--   <script src="sponsorsControlar.js"></script> -->
 
   

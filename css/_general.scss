@@ -970,10 +970,10 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 0rem $m;
-  background: #0e0e25;
+  background: #240e4850;
   border-radius: $x;
   height: 3rem;
-  background-color: none;
+  /* background-color: none; */
   outline: none;
   margin: $x 0;
   border-style: solid;
@@ -981,7 +981,8 @@ a {
   border-color: rgba(255, 255, 255, 0.2);
   font-size: 0.875rem;
   color: #ffffff;
-  color-scheme: dark;
+  /* color-scheme: dark; */
+  backdrop-filter: blur(16px) saturate(100%);
 
   /* &--type {} */
 
@@ -997,8 +998,8 @@ a {
     
     border-width: 1px;
     outline-offset: 5px; */
-    border: 0.0625rem solid #2997ff;
-    outline: 0.25rem solid #2997ff27;
+    border: 0.0625rem solid #7975fd;
+    outline: 0.4rem solid #5429ff38;
     /* outline-offset: 4px; */
   }
   &--margin-top {
