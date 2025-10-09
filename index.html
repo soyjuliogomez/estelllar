@@ -11,6 +11,7 @@
 
     gtag('config', 'G-NEJ315ET4E');
   </script>
+  
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,6 +26,7 @@
     rel="stylesheet" />
   <!-- "material symbols" -->
   <!-- Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -34,6 +36,7 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
   <script src="script.js" defer></script>
+  <!-- <script src="registroFormCorregido2025.js" defer></script> -->
 </head>
 
 <body>
@@ -60,13 +63,17 @@
   <main>
     <section class="hero_image">
 
-      <a class="ubication" title="CV"><img src="./image/ubication.svg" class="logo-search" /><span> </span>Quito,
-        Ecuador</a>
+      
+        <div class="heroFechaUbication">
+          <img src="./image/fechaHero/calendario.svg" class="logo-search" />
+          <span>Viernes 21 de Noviembre - Quito, Ecuador</span>
+
+        </div>
       <!-- <h1 class="display display__desktop">
             Conferencia para apasionados<br>de la <span class="typing">tecnología</span>
           </h1> -->
           <h1 class="display display__desktop heroAncho">
-            <span>Conferencia Tech Quito Ecuador 2025</span>
+            <span>Conferencia Tech Quito</span>
             <div class="typing-container">
               <span id="changing-word" class="gradient-text">Innovación</span>
               <span class="cursor"></span>
@@ -487,8 +494,8 @@
   </div>
 </section>
     <section class="data" id="dataSection">
-      <div class="degradadoAtras">
-        <img class="map-image" src="./image/mapaQuito.svg" alt="" />
+      <div class="degradadoAtrasMap">
+        <img class="map-image" src="./image/mapaSalonDeLaCiudad.svg" alt="" />
     </div>
     <div class="father-right">
       <p class="label__page label__page--left">Ubicación</p>
@@ -646,48 +653,12 @@
     <p class="paragraph paragraph__small">Copyright © EstellarConf <span id="currentYear"></span>. All rights reserved.
     </p>
   </footer> -->
-  
-  <img class="background-footer" src="./image/bg-footer.png" alt="bg-footer" />
-  <img class="gradient-1" src="./image/gradient.svg" alt="eclipse-imagen-de-fondo" />
+  <div class="background-footer-wrapper">
+    <!-- <img class="background-footer" src="./image/bg-footer.png" alt="bg-footer" /> -->
+  </div>
   <img class="background-image-desktop" src="./image/background-image.png" alt="personas-en-conferencia" />
   <img class="background-image-mobile" src="./image/background-image-mobile.png" alt="personas-en-conferencia" />
-  <script>
-    // Actualizar el año automáticamente
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-  </script>
-
-  <script>
-    function scrollToData() {
-      // Encontrar el elemento con la clase "data"
-      const dataSection = document.querySelector('.data');
-      if (dataSection) {
-        // Desplazarse hacia el elemento con un pequeño espacio encima
-        window.scrollTo({
-          top: dataSection.offsetTop - 110, // Restamos 110px de la posición original
-          behavior: 'smooth'
-        });
-      }
-    }
-  </script>
-  <script>
-    // Obtener ambos inputs
-    const input1 = document.getElementById('input1');
-    const input2 = document.getElementById('input2');
-
-    // Función para sincronizar el valor de ambos inputs
-    function syncInputs(event) {
-      // Actualizar el valor del otro input
-      if (event.target === input1) {
-        input2.value = input1.value;
-      } else if (event.target === input2) {
-        input1.value = input2.value;
-      }
-    }
-
-    // Escuchar el evento 'input' en ambos campos
-    input1.addEventListener('input', syncInputs);
-    input2.addEventListener('input', syncInputs);
-  </script>
+  
   <script src="scriptsEstelllar/smoothScroll.js" defer></script>
   <script src="scriptsEstelllar/enviandoBoton.js" defer></script>
   <script src="scriptsEstelllar/cambiarPalabrasHero.js" defer></script>
@@ -699,6 +670,12 @@
   <script src="components/footer.js"></script>
   <script src="scriptsEstelllar/formScriptYTabs.js"></script>
 
+  <script>
+    // Actualizar el año automáticamente
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+
+  
   
 <!--   <script src="sponsorsControlar.js"></script> -->
 

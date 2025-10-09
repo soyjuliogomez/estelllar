@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // CONFIGURACIÓN DE LA ANIMACIÓN - AJUSTA ESTOS VALORES
   // Configuración para Desktop
   const desktopConfig = {
-    triggerStart: -400,        // Cuando comienza el efecto (negativo = comienza antes de ver la sección)
-    triggerFull: 400,          // Cuando el efecto está al máximo (mayor valor = expansión más lenta)
+    triggerStart: -1000,        // Cuando comienza el efecto (negativo = comienza antes de ver la sección)
+    triggerFull: 600,          // Cuando el efecto está al máximo (mayor valor = expansión más lenta)
     offsetActivation: 100      // Ajusta este valor para controlar el punto de inicio
   };
   
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (window.innerWidth > 1024) {
       // Obtener el porcentaje inicial desde las clases CSS
       switch(cardClass) {
-        case 'card-innovation': return 30;
+        case 'card-innovation': return 70;
         case 'card-machine-learning': return 20;
         case 'card-ai': return 40;
         case 'card-cybersecurity': return 10;

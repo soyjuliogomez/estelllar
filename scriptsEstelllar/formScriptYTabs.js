@@ -3,9 +3,15 @@ const StellarApp = {
     // Configuration
     config: {
         apiBaseUrl: 'https://api.estelllar.com',
-        redirectDelay: 1500, // Aumentado para mostrar mensaje breve
+        redirectDelay: 1500,
         verificationDelay: 1000,
-        successMessageDelay: 800 // Nuevo: tiempo para mostrar mensaje rápido
+        successMessageDelay: 800,
+        // NUEVO: Endpoints configurables
+        endpoints: {
+            register: '/register',
+            checkEmail: '/register', // Usamos el mismo endpoint de registro para verificar
+            industries: '/industry-interests'
+        }
     },
 
     // Almacenamiento local para emails registrados (sincronizado)
@@ -26,7 +32,9 @@ const StellarApp = {
         this.initTabs();
         this.initForms();
         this.loadIndustries();
-        this.loadRegisteredEmails(); // Cargar emails del almacenamiento local
+        this.loadRegisteredEmails();
+        this.initEmailSync();
+        this.initRegistrationEmailVerification(); // NUEVO: Verificar email mientras escribe en registro
     },
 
     // Cache DOM elements to avoid repeated queries
@@ -39,25 +47,41 @@ const StellarApp = {
             tabButtons: document.querySelectorAll('.tab-button'),
             tabContents: document.querySelectorAll('.tab-content'),
             
-            // Forms
-            registrationForm: document.getElementById('registrationForm'),
-            verificationForm: document.getElementById('verificationForm'),
+            // Forms - Compatible con ambos HTMLs
+            registrationForm: document.getElementById('registrationForm') || document.querySelector('#registro-content form'),
+            verificationForm: document.getElementById('verificationForm') || document.querySelector('#verificacion-content form'),
             
             // Buttons
             submitButton: document.getElementById('submitButton'),
             verifyButton: document.getElementById('verifyButton'),
             
-            // Messages
+            // Messages - Compatible con ambos HTMLs
             verificationMessage: document.getElementById('verificationMessage'),
             messageContainer: document.getElementById('messageContainer'),
             messageContent: document.getElementById('messageContent'),
             spinner: document.getElementById('spinner'),
             
             // Inputs
-            selectElement: document.querySelector('.select.padding_select'),
-            verificationEmailInput: document.getElementById('verificationEmailInput'),
-            registrationEmailInput: document.getElementById('input2')
+            selectElement: document.querySelector('select[name="industryId"]') || document.querySelector('.select.padding_select'),
+            verificationEmailInput: document.querySelector('input[name="verificationEmail"]') || document.getElementById('verificationEmailInput'),
+            registrationEmailInput: document.getElementById('input2'),
+            heroEmailInput: document.getElementById('input1')
         };
+    },
+
+    // ===== EMAIL SYNC FUNCTIONALITY =====
+    initEmailSync() {
+        const { heroEmailInput, registrationEmailInput } = this.elements;
+        
+        if (!heroEmailInput || !registrationEmailInput) return;
+
+        heroEmailInput.addEventListener('input', () => {
+            registrationEmailInput.value = heroEmailInput.value;
+        });
+
+        registrationEmailInput.addEventListener('input', () => {
+            heroEmailInput.value = registrationEmailInput.value;
+        });
     },
 
     // ===== CARDS SCROLLING FUNCTIONALITY =====
@@ -110,24 +134,18 @@ const StellarApp = {
             button.addEventListener('click', (e) => {
                 const targetTab = e.target.getAttribute('data-tab');
                 
-                // Remove active class from all tabs and contents
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 tabContents.forEach(content => content.classList.remove('active'));
                 
-                // Add active class to clicked tab and corresponding content
                 e.target.classList.add('active');
                 const targetContent = document.getElementById(`${targetTab}-content`);
                 if (targetContent) {
                     targetContent.classList.add('active');
                 }
                 
-                // Hide verification message when switching tabs
                 this.hideVerificationMessage();
-
-                // Reset buttons to default state when switching tabs
                 this.resetAllButtons();
 
-                // Auto-fill verification email from registration
                 if (targetTab === 'verificacion') {
                     this.copyEmailToVerification();
                 }
@@ -143,61 +161,133 @@ const StellarApp = {
     },
 
     initRegistrationForm() {
-        const { registrationForm, submitButton } = this.elements;
+        const { registrationForm, submitButton, messageContainer, messageContent, spinner } = this.elements;
         
-        if (!registrationForm) return;
-
-        const buttonController = this.createButtonController(submitButton);
+        if (!registrationForm) {
+            console.log('Registration form not found');
+            return;
+        }
 
         registrationForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             
-            buttonController.start('Registrando...');
-            this.hideVerificationMessage();
+            console.log('🚀 Formulario enviado');
 
-            try {
-                const formData = new FormData(registrationForm);
-                const data = {
-                    firstName: formData.get('firstName'),
-                    lastName: formData.get('lastName'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    dateOfBirth: formData.get('dateOfBirth'),
-                    industryId: formData.get('industryId')
-                };
+            // Obtener valores
+            const formData = new FormData(registrationForm);
+            const firstName = formData.get('firstName')?.trim();
+            const lastName = formData.get('lastName')?.trim();
+            const email = formData.get('email')?.trim().toLowerCase();
+            const phone = formData.get('phone')?.trim();
+            const dateOfBirth = formData.get('dateOfBirth');
+            const industryIdValue = formData.get('industryId');
 
-                // Verificar si el email ya está registrado
-                const isEmailRegistered = this.isEmailRegistered(data.email);
+            console.log('📝 Valores:', { firstName, lastName, email, phone, dateOfBirth, industryIdValue });
+
+            // Validaciones
+            if (!firstName || !lastName || !email || !phone || !dateOfBirth || !industryIdValue) {
+                this.showMessage('error', 'Por favor, completa todos los campos correctamente.');
+                return;
+            }
+
+            const industryId = parseInt(industryIdValue);
+            if (isNaN(industryId)) {
+                this.showMessage('error', 'Por favor, selecciona una industria válida.');
+                return;
+            }
+
+            if (!this.isValidEmail(email)) {
+                this.showMessage('error', 'Por favor, ingresa un correo electrónico válido.');
+                return;
+            }
+
+            const data = {
+                firstName,
+                lastName,
+                email,
+                phone,
+                dateOfBirth,
+                industryId
+            };
+
+            // Control de UI - Compatible con ambos sistemas
+            if (submitButton) {
+                const buttonText = submitButton.querySelector('.button-text');
+                const buttonIcon = submitButton.querySelector('.button-icon');
+                const buttonLoading = submitButton.querySelector('.button-loading');
                 
-                if (isEmailRegistered) {
-                    // Cambiar al tab de verificación
-                    this.switchToVerificationTab(data.email);
-                    buttonController.stop('Inscríbete Hoy');
-                    return;
+                if (buttonText) buttonText.textContent = 'Registrando...';
+                if (buttonLoading) buttonLoading.style.display = 'flex';
+                if (buttonIcon) buttonIcon.style.display = 'none';
+                submitButton.disabled = true;
+            }
+
+            // Sistema de mensajes del HTML simple
+            if (messageContainer) messageContainer.style.display = 'block';
+            if (spinner) spinner.style.display = 'block';
+            if (messageContent) messageContent.innerHTML = '';
+
+            console.log('📤 Enviando:', data);
+
+                            try {
+                // NO verificar antes de registrar - solo intentar registrar directamente
+                // Si el email existe, la API devolverá error
+                
+                console.log('🌐 POST a:', `${this.config.apiBaseUrl}${this.config.endpoints.register}`);
+                
+                const response = await fetch(`${this.config.apiBaseUrl}${this.config.endpoints.register}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                console.log('📥 Status:', response.status);
+
+                const result = await response.json();
+                console.log('📥 Resultado:', result);
+
+                if (spinner) spinner.style.display = 'none';
+
+                if (response.ok) {
+                    console.log('✅ Registro exitoso');
+                    
+                    this.addRegisteredEmail(email);
+                    this.showMessage('success', result.message || '¡Registro exitoso! Redirigiendo...');
+                    
+                    if (messageContent) {
+                        messageContent.innerHTML = `<p class="success-message">${result.message || '¡Registro exitoso!'}</p>`;
+                    }
+                    
+                    registrationForm.reset();
+                    
+                    setTimeout(() => {
+                        window.location.href = 'registro.html';
+                    }, 1000);
+                } else {
+                    console.error('❌ Error:', result);
+                    const errorMsg = result.error || result.message || 'Error al registrar';
+                    this.showMessage('error', errorMsg);
+                    
+                    if (messageContent) {
+                        messageContent.innerHTML = `<p class="error-message">${errorMsg}</p>`;
+                    }
                 }
 
-                // Simular llamada a la API (reemplazar con API real)
-                await this.simulateApiCall();
-
-                // Agregar email a la lista de registrados
-                this.addRegisteredEmail(data.email);
-
-                // Mostrar mensaje de éxito rápido
-                this.showVerificationMessage('success', '¡Registro exitoso!');
-                
-                // Reset form
-                registrationForm.reset();
-                buttonController.stop('Inscríbete Hoy');
-
-                // Redireccionar después de mostrar mensaje breve
-                setTimeout(() => {
-                    window.location.href = 'registro.html';
-                }, this.config.successMessageDelay);
-
             } catch (error) {
-                console.error('Registration error:', error);
-                this.showVerificationMessage('error', 'Ocurrió un error durante el registro. Por favor, inténtalo nuevamente.');
-                buttonController.stop('Inscríbete Hoy');
+                console.error('💥 Error:', error);
+                if (spinner) spinner.style.display = 'none';
+                
+                const errorMsg = error.message || 'Ocurrió un error durante el registro.';
+                this.showMessage('error', errorMsg);
+                
+                if (messageContent) {
+                    messageContent.innerHTML = `<p class="error-message">${errorMsg}</p>`;
+                }
+            } finally {
+                this.resetButton(submitButton);
             }
         });
     },
@@ -205,49 +295,54 @@ const StellarApp = {
     initVerificationForm() {
         const { verificationForm, verifyButton } = this.elements;
         
-        if (!verificationForm) return;
-
-        const buttonController = this.createButtonController(verifyButton);
+        if (!verificationForm) {
+            console.log('Verification form not found (normal si no hay tabs)');
+            return;
+        }
 
         verificationForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             
-            buttonController.start('Verificando...');
-            this.hideVerificationMessage();
+            const email = document.querySelector('input[name="verificationEmail"]')?.value.trim().toLowerCase();
+
+            if (!email) {
+                this.showMessage('error', 'Por favor, ingresa un correo electrónico.');
+                return;
+            }
+
+            if (verifyButton) {
+                const buttonText = verifyButton.querySelector('.button-text');
+                const buttonIcon = verifyButton.querySelector('.button-icon');
+                const buttonLoading = verifyButton.querySelector('.button-loading');
+                
+                if (buttonText) buttonText.textContent = 'Verificando...';
+                if (buttonLoading) buttonLoading.style.display = 'flex';
+                if (buttonIcon) buttonIcon.style.display = 'none';
+                verifyButton.disabled = true;
+            }
 
             try {
-                const formData = new FormData(verificationForm);
-                const email = formData.get('verificationEmail');
-
-                if (!email) {
-                    this.showVerificationMessage('error', 'Por favor, ingresa un correo electrónico válido.');
-                    buttonController.stop('Verificación');
-                    return;
-                }
-
-                // Simular delay de API
-                await new Promise(resolve => setTimeout(resolve, 500));
-
-                const isRegistered = this.isEmailRegistered(email);
-
-                if (isRegistered) {
-                    this.showVerificationMessage('success', '¡Este correo está registrado! Tu lugar está confirmado para el evento.');
-                } else {
-                    // Mostrar mensaje y luego cambiar al tab de registro
-                    this.showVerificationMessage('info', 'Este correo no está registrado. Te llevaremos al registro...');
+                const response = await fetch(`${this.config.apiBaseUrl}${this.config.endpoints.checkEmail}?email=${encodeURIComponent(email)}`);
+                
+                if (response.ok) {
+                    const result = await response.json();
                     
-                    // Esperar 1.5 segundos y cambiar al tab de registro
-                    setTimeout(() => {
-                        this.switchToRegistrationTab(email);
-                    }, 1500);
+                    if (result.exists) {
+                        this.showMessage('success', '¡Este correo está registrado! Tu lugar está confirmado.');
+                    } else {
+                        this.showMessage('info', 'Este correo no está registrado. Te llevaremos al registro...');
+                        setTimeout(() => {
+                            this.switchToRegistrationTab(email);
+                        }, 1500);
+                    }
+                } else {
+                    this.showMessage('error', 'Error al verificar el correo.');
                 }
-
-                buttonController.stop('Verificación');
-
             } catch (error) {
-                console.error('Verification error:', error);
-                this.showVerificationMessage('error', 'Ocurrió un error durante la verificación. Por favor, inténtalo nuevamente.');
-                buttonController.stop('Verificación');
+                console.error('Error:', error);
+                this.showMessage('error', 'Error al verificar el correo.');
+            } finally {
+                this.resetButton(verifyButton);
             }
         });
     },
@@ -255,7 +350,10 @@ const StellarApp = {
     initRealTimeVerification() {
         const { verificationEmailInput } = this.elements;
         
-        if (!verificationEmailInput) return;
+        if (!verificationEmailInput) {
+            console.log('Verification email input not found (normal si no hay tab de verificación)');
+            return;
+        }
 
         let verificationTimeout;
 
@@ -264,177 +362,341 @@ const StellarApp = {
             
             clearTimeout(verificationTimeout);
             this.hideVerificationMessage();
+            this.removeEmailIndicator(verificationEmailInput);
 
             if (this.isValidEmail(email)) {
-                verificationTimeout = setTimeout(() => {
-                    const isRegistered = this.isEmailRegistered(email);
-                    
-                    if (isRegistered) {
-                        this.showVerificationMessage('success', '✓ Este correo está registrado.');
-                    } else {
-                        this.showVerificationMessage('info', 'ℹ Este correo no está registrado aún.');
+                // Mostrar indicador de "verificando..."
+                this.addEmailIndicator(verificationEmailInput, 'loading', '🔍 Verificando...');
+                
+                verificationTimeout = setTimeout(async () => {
+                    try {
+                        console.log('🔍 Verificando email:', email);
+                        
+                        // Intentar registrar con datos falsos para verificar si el email existe
+                        const testData = {
+                            firstName: 'Test',
+                            lastName: 'Verification',
+                            email: email,
+                            phone: '0000000000',
+                            dateOfBirth: '1990-01-01',
+                            industryId: 1
+                        };
+                        
+                        const url = `${this.config.apiBaseUrl}${this.config.endpoints.checkEmail}`;
+                        console.log('🌐 URL:', url);
+                        
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(testData)
+                        });
+                        
+                        console.log('📥 Status:', response.status);
+                        
+                        const responseText = await response.text();
+                        console.log('📥 Response raw:', responseText);
+                        
+                        this.removeEmailIndicator(verificationEmailInput);
+                        
+                        let result;
+                        try {
+                            result = JSON.parse(responseText);
+                        } catch (e) {
+                            console.error('Error parseando JSON:', e);
+                            result = { error: responseText };
+                        }
+                        
+                        console.log('📥 Resultado:', result);
+                        
+                        // Verificar si el email ya está registrado
+                        const errorMessage = (result.error || result.message || '').toLowerCase();
+                        
+                        console.log('🔍 Mensaje de error:', errorMessage);
+                        
+                        // Detectar si el email ya existe
+                        const emailExists = response.status === 409 || 
+                            (errorMessage.includes('correo') || errorMessage.includes('email')) && (
+                                errorMessage.includes('en uso') ||
+                                errorMessage.includes('está en uso') ||
+                                errorMessage.includes('uso') ||
+                                errorMessage.includes('existe') ||
+                                errorMessage.includes('registrado') ||
+                                errorMessage.includes('duplicate') ||
+                                errorMessage.includes('already') ||
+                                errorMessage.includes('taken')
+                            );
+                        
+                        if (emailExists) {
+                            // Email YA REGISTRADO ✓
+                            console.log('✅ Email ya registrado en BD');
+                            this.showMessage('success', '✓ Este correo está registrado. Tu lugar está confirmado.');
+                            this.addEmailIndicator(verificationEmailInput, 'success', '✓ Registrado');
+                        } else if (response.ok) {
+                            // Si fue exitoso, significa que NO estaba registrado
+                            // (pero esto no debería pasar porque usamos datos falsos)
+                            console.log('⚠️ Email NO estaba registrado (se registró con datos de prueba)');
+                            this.showMessage('info', 'ℹ Este correo no está registrado. Ve al tab "Registro" para inscribirte.');
+                            this.addEmailIndicator(verificationEmailInput, 'error', '✗ No registrado');
+                        } else if (response.status === 400) {
+                            // Error de validación - probablemente el email NO está registrado
+                            console.log('⚠️ Email NO registrado (error de validación)');
+                            this.showMessage('info', 'ℹ Este correo no está registrado. Ve al tab "Registro" para inscribirte.');
+                            this.addEmailIndicator(verificationEmailInput, 'error', '✗ No registrado');
+                        } else {
+                            // Otro tipo de error
+                            console.error('❌ Error desconocido:', response.status, result);
+                            this.showMessage('error', 'Error al verificar. Intenta nuevamente.');
+                        }
+                        
+                    } catch (error) {
+                        console.error('💥 Error en verificación:', error);
+                        this.removeEmailIndicator(verificationEmailInput);
+                        this.showMessage('error', `Error: ${error.message}`);
                     }
                 }, this.config.verificationDelay);
             }
         });
     },
 
-    // ===== HELPER FUNCTIONS =====
-    createButtonController(button) {
-        if (!button) return { start: () => {}, stop: () => {} };
+    // NUEVO: Verificación en tiempo real para el formulario de REGISTRO
+    initRegistrationEmailVerification() {
+        const { registrationEmailInput } = this.elements;
+        
+        if (!registrationEmailInput) return;
 
+        let verificationTimeout;
+
+        registrationEmailInput.addEventListener('input', (e) => {
+            const email = e.target.value.trim();
+            
+            clearTimeout(verificationTimeout);
+            
+            // Limpiar mensajes previos
+            this.hideVerificationMessage();
+            this.removeEmailIndicator(registrationEmailInput);
+
+            if (this.isValidEmail(email)) {
+                this.addEmailIndicator(registrationEmailInput, 'loading', '🔍 Verificando...');
+                
+                verificationTimeout = setTimeout(async () => {
+                    try {
+                        console.log('🔍 Verificando email en registro:', email);
+                        
+                        // Intentar registrar con datos falsos
+                        const testData = {
+                            firstName: 'Test',
+                            lastName: 'Verification',
+                            email: email,
+                            phone: '0000000000',
+                            dateOfBirth: '1990-01-01',
+                            industryId: 1
+                        };
+                        
+                        const response = await fetch(`${this.config.apiBaseUrl}${this.config.endpoints.register}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(testData)
+                        });
+                        
+                        const responseText = await response.text();
+                        console.log('📥 Status:', response.status, 'Response:', responseText);
+                        
+                        let result;
+                        try {
+                            result = JSON.parse(responseText);
+                        } catch (e) {
+                            result = { error: responseText };
+                        }
+                        
+                        this.removeEmailIndicator(registrationEmailInput);
+                        
+                        const errorMessage = (result.error || result.message || '').toLowerCase();
+                        console.log('🔍 Mensaje de error registro:', errorMessage);
+                        
+                        // Detectar si el email ya existe
+                        const emailExists = response.status === 409 || 
+                            (errorMessage.includes('correo') || errorMessage.includes('email')) && (
+                                errorMessage.includes('en uso') ||
+                                errorMessage.includes('está en uso') ||
+                                errorMessage.includes('uso') ||
+                                errorMessage.includes('existe') ||
+                                errorMessage.includes('registrado') ||
+                                errorMessage.includes('duplicate') ||
+                                errorMessage.includes('already') ||
+                                errorMessage.includes('taken')
+                            );
+                        
+                        if (emailExists) {
+                            // Email YA REGISTRADO
+                            console.log('⚠️ Email ya registrado');
+                            this.showMessage('error', '⚠️ Este correo ya está registrado.');
+                            this.addEmailIndicator(registrationEmailInput, 'error', '✗ Ya registrado');
+                        } else {
+                            // Email DISPONIBLE
+                            console.log('✅ Email disponible');
+                            this.showMessage('success', '✓ Correo disponible.');
+                            this.addEmailIndicator(registrationEmailInput, 'success', '✓ Disponible');
+                        }
+                    } catch (error) {
+                        console.log('Error verificación email registro:', error);
+                        this.removeEmailIndicator(registrationEmailInput);
+                    }
+                }, this.config.verificationDelay);
+            }
+        });
+    },
+
+    // NUEVO: Agregar indicador visual al input
+    addEmailIndicator(input, type, text) {
+        this.removeEmailIndicator(input);
+        
+        const indicator = document.createElement('span');
+        indicator.className = `email-indicator email-indicator--${type}`;
+        indicator.textContent = text;
+        indicator.style.cssText = `
+            position: absolute;
+            right: 8px;
+            top: 43%;
+            
+            font-size: 0.875rem;
+            font-weight: 600;
+            pointer-events: none;
+            z-index: 10;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        `;
+        
+        if (type === 'error') {
+            indicator.style.color = '#ff4757';
+            indicator.style.background = 'rgba(255, 71, 87, 0.1)';
+        } else if (type === 'success') {
+            indicator.style.color = '#2ed573';
+            indicator.style.background = 'rgba(46, 213, 115, 0.1)';
+        } else if (type === 'loading') {
+            indicator.style.color = '#ffa502';
+            indicator.style.background = 'rgba(255, 165, 2, 0.1)';
+        }
+        
+        // Asegurarse de que el padre tenga position relative
+        const parent = input.parentElement;
+        if (parent) {
+            const currentPosition = window.getComputedStyle(parent).position;
+            if (currentPosition === 'static') {
+                parent.style.position = 'relative';
+            }
+            parent.appendChild(indicator);
+        }
+    },
+
+    // NUEVO: Remover indicador visual
+    removeEmailIndicator(input) {
+        if (!input || !input.parentElement) return;
+        
+        const existingIndicator = input.parentElement.querySelector('.email-indicator');
+        if (existingIndicator) {
+            existingIndicator.remove();
+        }
+    },
+
+    // ===== HELPER FUNCTIONS =====
+    resetButton(button) {
+        if (!button) return;
+        
         const buttonText = button.querySelector('.button-text');
         const buttonIcon = button.querySelector('.button-icon');
         const buttonLoading = button.querySelector('.button-loading');
         
-        // Remove inline style that prevents CSS from working
-        if (buttonLoading) {
-            buttonLoading.removeAttribute('style');
+        if (buttonText) {
+            buttonText.textContent = button.id === 'verifyButton' ? 'Verificación' : 'Inscríbete Hoy';
         }
-        
-        return {
-            start: (text = 'Enviando...') => {
-                if (buttonText) buttonText.textContent = text;
-                if (buttonLoading) {
-                    buttonLoading.style.display = 'flex';
-                    buttonLoading.style.opacity = '1';
-                    buttonLoading.style.visibility = 'visible';
-                }
-                if (buttonIcon) buttonIcon.style.display = 'none';
-                button.disabled = true;
-            },
-            stop: (text = 'Inscríbete Hoy') => {
-                if (buttonText) buttonText.textContent = text;
-                if (buttonLoading) {
-                    buttonLoading.style.display = 'none';
-                    buttonLoading.style.opacity = '0';
-                    buttonLoading.style.visibility = 'hidden';
-                }
-                if (buttonIcon) buttonIcon.style.display = 'inline-flex';
-                button.disabled = false;
-            }
-        };
+        if (buttonLoading) buttonLoading.style.display = 'none';
+        if (buttonIcon) buttonIcon.style.display = 'inline-flex';
+        button.disabled = false;
     },
 
-    // Nueva función: resetear todos los botones a su estado por defecto
     resetAllButtons() {
-        const { submitButton, verifyButton } = this.elements;
-        
-        // Resetear botón de registro
-        if (submitButton) {
-            const submitController = this.createButtonController(submitButton);
-            submitController.stop('Inscríbete Hoy');
-        }
-        
-        // Resetear botón de verificación
-        if (verifyButton) {
-            const verifyController = this.createButtonController(verifyButton);
-            verifyController.stop('Verificación');
-        }
+        this.resetButton(this.elements.submitButton);
+        this.resetButton(this.elements.verifyButton);
     },
 
-    // Nueva función: cambiar al tab de registro cuando email no existe
     switchToRegistrationTab(email) {
         const { tabButtons, tabContents, registrationEmailInput } = this.elements;
         
-        // Encontrar y activar el tab de registro
         const registrationTab = Array.from(tabButtons).find(btn => 
             btn.getAttribute('data-tab') === 'registro'
         );
         
         if (registrationTab) {
-            // Remover clase active de todos los tabs
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabContents.forEach(content => content.classList.remove('active'));
             
-            // Activar tab de registro
             registrationTab.classList.add('active');
             const registrationContent = document.getElementById('registro-content');
             if (registrationContent) {
                 registrationContent.classList.add('active');
             }
             
-            // Llenar el email en el input de registro
             if (registrationEmailInput) {
                 registrationEmailInput.value = email;
-                // Hacer focus en el email para mejor UX
                 registrationEmailInput.focus();
             }
             
-            // Mostrar mensaje motivacional después del cambio
             setTimeout(() => {
-                this.showVerificationMessage('info', '¡Completa tu registro con este correo!');
+                this.showMessage('info', '¡Completa tu registro con este correo!');
             }, 300);
         }
     },
 
-    // Nueva función: cambiar al tab de verificación cuando email ya existe
     switchToVerificationTab(email) {
         const { tabButtons, tabContents, verificationEmailInput } = this.elements;
         
-        // Encontrar y activar el tab de verificación
         const verificationTab = Array.from(tabButtons).find(btn => 
             btn.getAttribute('data-tab') === 'verificacion'
         );
         
         if (verificationTab) {
-            // Remover clase active de todos los tabs
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabContents.forEach(content => content.classList.remove('active'));
             
-            // Activar tab de verificación
             verificationTab.classList.add('active');
             const verificationContent = document.getElementById('verificacion-content');
             if (verificationContent) {
                 verificationContent.classList.add('active');
             }
             
-            // Llenar el email en el input de verificación
             if (verificationEmailInput) {
                 verificationEmailInput.value = email;
             }
             
-            // Mostrar mensaje de que ya está registrado
             setTimeout(() => {
-                this.showVerificationMessage('success', '¡Este correo ya está registrado! Tu lugar está confirmado para el evento.');
+                this.showMessage('success', '¡Este correo ya está registrado! Tu lugar está confirmado.');
             }, 300);
         }
     },
 
-    // Nueva función: verificar si email está registrado (consistente)
     isEmailRegistered(email) {
         return this.registeredEmails.has(email.toLowerCase().trim());
     },
 
-    // Nueva función: agregar email registrado
     addRegisteredEmail(email) {
         const normalizedEmail = email.toLowerCase().trim();
         this.registeredEmails.add(normalizedEmail);
         this.saveRegisteredEmails();
     },
 
-    // Nueva función: validar formato de email
     isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     },
 
-    // Nueva función: simular llamada a API
-    async simulateApiCall() {
-        // Simular delay de API
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // En producción, reemplazar con:
-        // const response = await fetch(`${this.config.apiBaseUrl}/register`, {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(data)
-        // });
-        // if (!response.ok) throw new Error('Error en el registro');
-        // return await response.json();
-    },
-
-    // Nueva función: cargar emails del localStorage
     loadRegisteredEmails() {
         try {
             const stored = localStorage.getItem('registeredEmails');
@@ -443,11 +705,10 @@ const StellarApp = {
                 emails.forEach(email => this.registeredEmails.add(email));
             }
         } catch (error) {
-            console.log('No se pudieron cargar emails almacenados:', error);
+            console.log('No se pudieron cargar emails:', error);
         }
     },
 
-    // Nueva función: guardar emails en localStorage
     saveRegisteredEmails() {
         try {
             const emails = Array.from(this.registeredEmails);
@@ -460,16 +721,21 @@ const StellarApp = {
     async loadIndustries() {
         const { selectElement } = this.elements;
         
-        if (!selectElement) return;
+        if (!selectElement) {
+            console.error('Select element not found');
+            return;
+        }
 
         try {
-            const response = await fetch(`${this.config.apiBaseUrl}/industry-interests`);
+            const response = await fetch(`${this.config.apiBaseUrl}${this.config.endpoints.industries}`);
             
             if (!response.ok) {
-                throw new Error('Error al obtener las industrias de interés');
+                throw new Error('Error al obtener industrias');
             }
 
             const industryInterests = await response.json();
+
+            selectElement.innerHTML = '<option value="">Selecciona una industria</option>';
 
             industryInterests.forEach(industry => {
                 const option = document.createElement('option');
@@ -480,25 +746,45 @@ const StellarApp = {
             });
 
         } catch (error) {
-            console.error('Industries loading error:', error);
-            // Optionally show user-friendly error message
+            console.error('Error cargando industrias:', error);
+            
+            selectElement.innerHTML = `
+                <option value="">Selecciona una industria</option>
+                <option value="1">Desarrollo de Software</option>
+                <option value="2">Inteligencia Artificial</option>
+                <option value="3">Ciberseguridad</option>
+                <option value="4">Cloud Computing</option>
+                <option value="5">Data Science</option>
+            `;
         }
     },
 
-    showVerificationMessage(type, message) {
+    showMessage(type, message) {
         const { verificationMessage } = this.elements;
         
-        if (!verificationMessage) return;
+        if (!verificationMessage) {
+            console.log(message);
+            return;
+        }
 
-        const messageContent = verificationMessage.querySelector('.message-text');
-        if (messageContent) {
-            messageContent.textContent = message;
+        const messageText = verificationMessage.querySelector('.message-text');
+        const messageIcon = verificationMessage.querySelector('.message-icon');
+        
+        if (messageText) {
+            messageText.textContent = message;
         }
         
-        // Remove all type classes (incluyendo la nueva clase)
+        if (messageIcon) {
+            const icons = {
+                'success': 'fa-circle-check',
+                'error': 'fa-circle-exclamation',
+                'info': 'fa-circle-info'
+            };
+            messageIcon.className = `message-icon fa-solid ${icons[type]}`;
+        }
+        
         verificationMessage.classList.remove('msg-success', 'msg-error', 'msg-info');
         
-        // Mapear tipos a nombres de clases específicos
         const classMap = {
             'success': 'msg-success',
             'error': 'msg-error', 
@@ -508,7 +794,6 @@ const StellarApp = {
         verificationMessage.classList.add(classMap[type]);
         verificationMessage.style.display = 'block';
         
-        // Auto-hide después de 3 segundos (reducido para mensajes más rápidos)
         setTimeout(() => {
             this.hideVerificationMessage();
         }, 3000);
@@ -519,21 +804,6 @@ const StellarApp = {
         if (verificationMessage) {
             verificationMessage.style.display = 'none';
         }
-    },
-
-    showLoadingSpinner() {
-        const { messageContainer, spinner, messageContent } = this.elements;
-        
-        if (messageContainer) messageContainer.style.display = 'block';
-        if (spinner) spinner.style.display = 'block';
-        if (messageContent) messageContent.innerHTML = '';
-    },
-
-    hideLoadingSpinner() {
-        const { messageContainer, spinner } = this.elements;
-        
-        if (messageContainer) messageContainer.style.display = 'none';
-        if (spinner) spinner.style.display = 'none';
     },
 
     copyEmailToVerification() {
