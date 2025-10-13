@@ -37,6 +37,23 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
   <script src="script.js" defer></script>
   <!-- <script src="registroFormCorregido2025.js" defer></script> -->
+   <!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '713801034660874');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=713801034660874&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -84,18 +101,31 @@
         Expande tu círculo social, haz nuevos amigos y crece en el mundo de la tecnología.
 
       </p>
-      <div class="first-data-mobile">
-        <input name="correo" type="" placeholder="Ingresa aquí tus nombres"
-          class="input input--margin-top input--margin-botton" required />
-        <a class="button button__primary button__primary--width100" title="CV" href="#" target="_blank">Registrarme<img
-            src="./image/arrow_forward_ios.svg" class="logo-search" alt="Descargar CV" /></a>
-      </div>
-      <div class="first-data">
-        <input type="email" placeholder="Ingrese su correo electronico" class="first-data__placeholder" id="input1" />
+      <div class="botonesPrincipales">
+        <!-- HTML - Primer formulario (Mobile) -->
+        <div class="first-data-mobile">
+          <input name="correo" type="email" placeholder="Ingrese su correo electronico"
+            class="input input--margin-top input--margin-botton" id="email-mobile" required />
+          <button type="button" class="button button__primary button__primary--width100" onclick="scrollToData('mobile')"
+            title="Registrarme">
+            Registrarme<img src="./image/arrow_forward_ios.svg" class="logo-search" alt="Descargar CV" />
+          </button>
+          <button type="button" class="button button__WhatsApp button__WhatsApp--width100"
+            onclick="scrollToData('desktop')">
+            Registrarme&nbsp;<i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
 
-        <a class="button button__primary button__primary--absolute" onclick="scrollToData()"
-          class="logo-search">Registrarme&nbsp;<i class="fa-solid fa-arrow-right"></i> </a>
-      </div>
+<!-- Primer formulario (Desktop) -->
+<div class="first-data">
+  <input type="email" placeholder="Ingrese su correo electronico" 
+    class="first-data__placeholder" id="email-desktop" />
+  <button type="button" class="button button__primary button__primary--absolute" 
+    onclick="scrollToData('desktop')">
+    Registrarme&nbsp;<i class="fa-solid fa-arrow-right"></i>
+  </button>
+</div>
+</div>
     </section>
 
     <section class="avatarImageCards">
@@ -540,7 +570,8 @@
             <div class="input__2">
               <div class="username-nombres">
                 <label class="label__input">Correo electronico</label>
-                <input name="email" type="email" placeholder="Ingresa aquí tu correo" class="input" required id="input2" />
+                <input name="email" type="email" placeholder="Ingresa aquí tu correo" 
+                  class="input" required id="email-final" />
               </div>
               <div class="username">
                 <label class="label__input">Número de celular</label>
@@ -669,11 +700,14 @@
   <script src="scriptsEstelllar/timelineScript.js"></script>
   <script src="components/footer.js"></script>
   <script src="scriptsEstelllar/formScriptYTabs.js"></script>
+  <script src="scriptsEstelllar/scrollToFormularioDeRegistro.js"></script>
 
   <script>
     // Actualizar el año automáticamente
     document.getElementById('currentYear').textContent = new Date().getFullYear();
   </script>
+
+  
 
   
   

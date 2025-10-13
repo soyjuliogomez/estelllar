@@ -1,0 +1,109 @@
+.button {
+    color: #ffffff;
+    height: 3rem;
+  
+    font-size: 1.125rem;
+    font-weight: 500;
+    padding: 0 2rem;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+  
+    display: flex;
+    align-items: center;
+    border-style: none;
+  
+    &__primary {
+      background-color: $color-primary-00;
+      box-sizing: border-box;
+      text-decoration: none;
+      border-radius: 2.5rem;
+      &:hover {
+        background-color: $color-primary-10;
+        
+      }
+  
+      &--absolute {
+        position: absolute;
+        right: $xs;
+      }
+  
+      &--width100 {
+        width: 100%;
+      }
+      &--widthfit {
+        width:fit-content;
+      }
+    }
+  
+      &__secondary {
+    
+        /* box-sizing: border-box; */
+        text-decoration: none;
+    
+        border-radius: 2.5rem;
+        border-width: 0.125rem;
+        color: #000000;
+        /* Cambiado de border-style a border-width */
+        border-style: solid;
+        /* Agregado border-style */
+        border-color: #ffffff;
+    
+        &:hover {
+          background-color: #ffffff19;
+          
+        }
+    
+        &--width100 {
+          width: 100%;
+        }
+    
+        &--widthfit {
+          width: fit-content;
+        }
+  
+        &--space {
+          display: flex;
+          gap: $x;
+          
+        }
+      }
+
+      &__WhatsApp {
+    
+        /* box-sizing: border-box; */
+        text-decoration: none;
+    
+        border-radius: 2.5rem;
+        border-width: 0.125rem;
+        color: #009e5f;
+        /* Cambiado de border-style a border-width */
+        border-style: solid;
+        /* Agregado border-style */
+        border-color: #ffffff;
+    
+        &:hover {
+          background-color: #ffffff19;
+          
+        }
+    
+        &--width100 {
+          width: 100%;
+        }
+    
+        &--widthfit {
+          width: fit-content;
+        }
+  
+        &--space {
+          display: flex;
+          gap: $x;
+          
+        }
+      }
+  
+    .logo-search {
+      padding-right: $x;
+      display: inline-block;
+    }
+  }

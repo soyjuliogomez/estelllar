@@ -6,6 +6,7 @@
 @import "css/_sponsorSection.scss";
 @import "css/_spacingSections.scss";
 @import "css/_footer.scss";
+@import "css/_botones.scss";
 
 
 
@@ -1612,9 +1613,31 @@ $card-mobile-init-width: 75%;     // Ancho inicial en móviles
       width: 100%;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      
       /* margin-top: 8rem; */
       gap: 0px;
+
+      .botonesPrincipales {
+        /* width: 100%; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      
+        gap: 16px;
+        margin-top: 32px;
+
+        .first-data-mobile {
+          display: none;
+          
+  
+          @media (max-width: 600px) {
+            display: contents;
+            display: flex;
+          flex-direction: column;
+          width: 100%;
+          }
+        }
+      }
 
       .heroFechaUbication{
         margin-top: 24px;
@@ -1706,13 +1729,7 @@ background: rgba(255, 255, 255, 0.08);
         margin-bottom: 1rem;
       }
 
-      .first-data-mobile {
-        display: none;
-
-        @media (max-width: 600px) {
-          display: contents;
-        }
-      }
+      
       .card {
         width: 12.5rem;
         height: 16.875rem;
