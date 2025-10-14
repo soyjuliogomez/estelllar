@@ -22,6 +22,11 @@
         background-color: $color-primary-10;
         
       }
+
+      &:active {
+        transform: scale(0.95)
+
+    }
   
       &--absolute {
         position: absolute;
@@ -43,7 +48,7 @@
     
         border-radius: 2.5rem;
         border-width: 0.125rem;
-        color: #000000;
+        color: #ffffff;
         /* Cambiado de border-style a border-width */
         border-style: solid;
         /* Agregado border-style */
@@ -78,13 +83,21 @@
         border-width: 0.125rem;
         color: #009e5f;
         /* Cambiado de border-style a border-width */
-        border-style: solid;
+        
         /* Agregado border-style */
-        border-color: #ffffff;
+        
+        background: #ffffff;
     
         &:hover {
-          background-color: #ffffff19;
+          background-color: #009e5f;
+          color: #ffffff;
+          border-style: none;
           
+        }
+
+        &:active {
+            transform: scale(0.95)
+
         }
     
         &--width100 {
@@ -100,6 +113,17 @@
           gap: $x;
           
         }
+
+        &--paddingLeft {
+            display: flex;
+            gap: $x;
+            
+          }
+          &--paddingTop {
+            
+            margin-top: $s;
+            
+          }
       }
   
     .logo-search {

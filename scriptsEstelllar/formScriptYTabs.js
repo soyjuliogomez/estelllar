@@ -9,7 +9,7 @@ const StellarApp = {
         // NUEVO: Endpoints configurables
         endpoints: {
             register: '/register',
-            checkEmail: '/register', // Usamos el mismo endpoint de registro para verificar
+            verifyEmail: '/verify', // NUEVO: Endpoint real de verificación
             industries: '/industry-interests'
         }
     },
@@ -21,6 +21,9 @@ const StellarApp = {
         'carlos.rodriguez@yahoo.com',
         'ana.martinez@hotmail.com'
     ]),
+
+    // Cache de verificaciones para evitar múltiples peticiones
+    verificationCache: new Map(),
 
     // DOM elements cache
     elements: {},
@@ -34,7 +37,8 @@ const StellarApp = {
         this.loadIndustries();
         this.loadRegisteredEmails();
         this.initEmailSync();
-        this.initRegistrationEmailVerification(); // NUEVO: Verificar email mientras escribe en registro
+        // DESACTIVADO: No verificar en tiempo real para evitar registros falsos
+        // this.initRegistrationEmailVerification();
     },
 
     // Cache DOM elements to avoid repeated queries
@@ -322,14 +326,21 @@ const StellarApp = {
             }
 
             try {
-                const response = await fetch(`${this.config.apiBaseUrl}${this.config.endpoints.checkEmail}?email=${encodeURIComponent(email)}`);
+                const response = await fetch(`${this.config.apiBaseUrl}${this.config.endpoints.verifyEmail}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
                 
                 if (response.ok) {
                     const result = await response.json();
                     
-                    if (result.exists) {
+                    if (result.registered === true) {
                         this.showMessage('success', '¡Este correo está registrado! Tu lugar está confirmado.');
-                    } else {
+                    } else if (result.registered === false) {
                         this.showMessage('info', 'Este correo no está registrado. Te llevaremos al registro...');
                         setTimeout(() => {
                             this.switchToRegistrationTab(email);
@@ -355,108 +366,17 @@ const StellarApp = {
             return;
         }
 
-        let verificationTimeout;
-
+        // DESACTIVADO: La verificación en tiempo real crea registros falsos
+        console.log('⚠️ Verificación en tiempo real DESACTIVADA para evitar registros falsos en la BD');
+        
+        // Solo mostrar mensaje informativo cuando escriban
         verificationEmailInput.addEventListener('input', (e) => {
             const email = e.target.value.trim();
             
-            clearTimeout(verificationTimeout);
-            this.hideVerificationMessage();
-            this.removeEmailIndicator(verificationEmailInput);
-
             if (this.isValidEmail(email)) {
-                // Mostrar indicador de "verificando..."
-                this.addEmailIndicator(verificationEmailInput, 'loading', '🔍 Verificando...');
-                
-                verificationTimeout = setTimeout(async () => {
-                    try {
-                        console.log('🔍 Verificando email:', email);
-                        
-                        // Intentar registrar con datos falsos para verificar si el email existe
-                        const testData = {
-                            firstName: 'Test',
-                            lastName: 'Verification',
-                            email: email,
-                            phone: '0000000000',
-                            dateOfBirth: '1990-01-01',
-                            industryId: 1
-                        };
-                        
-                        const url = `${this.config.apiBaseUrl}${this.config.endpoints.checkEmail}`;
-                        console.log('🌐 URL:', url);
-                        
-                        const response = await fetch(url, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            },
-                            body: JSON.stringify(testData)
-                        });
-                        
-                        console.log('📥 Status:', response.status);
-                        
-                        const responseText = await response.text();
-                        console.log('📥 Response raw:', responseText);
-                        
-                        this.removeEmailIndicator(verificationEmailInput);
-                        
-                        let result;
-                        try {
-                            result = JSON.parse(responseText);
-                        } catch (e) {
-                            console.error('Error parseando JSON:', e);
-                            result = { error: responseText };
-                        }
-                        
-                        console.log('📥 Resultado:', result);
-                        
-                        // Verificar si el email ya está registrado
-                        const errorMessage = (result.error || result.message || '').toLowerCase();
-                        
-                        console.log('🔍 Mensaje de error:', errorMessage);
-                        
-                        // Detectar si el email ya existe
-                        const emailExists = response.status === 409 || 
-                            (errorMessage.includes('correo') || errorMessage.includes('email')) && (
-                                errorMessage.includes('en uso') ||
-                                errorMessage.includes('está en uso') ||
-                                errorMessage.includes('uso') ||
-                                errorMessage.includes('existe') ||
-                                errorMessage.includes('registrado') ||
-                                errorMessage.includes('duplicate') ||
-                                errorMessage.includes('already') ||
-                                errorMessage.includes('taken')
-                            );
-                        
-                        if (emailExists) {
-                            // Email YA REGISTRADO ✓
-                            console.log('✅ Email ya registrado en BD');
-                            this.showMessage('success', '✓ Este correo está registrado. Tu lugar está confirmado.');
-                            this.addEmailIndicator(verificationEmailInput, 'success', '✓ Registrado');
-                        } else if (response.ok) {
-                            // Si fue exitoso, significa que NO estaba registrado
-                            // (pero esto no debería pasar porque usamos datos falsos)
-                            console.log('⚠️ Email NO estaba registrado (se registró con datos de prueba)');
-                            this.showMessage('info', 'ℹ Este correo no está registrado. Ve al tab "Registro" para inscribirte.');
-                            this.addEmailIndicator(verificationEmailInput, 'error', '✗ No registrado');
-                        } else if (response.status === 400) {
-                            // Error de validación - probablemente el email NO está registrado
-                            console.log('⚠️ Email NO registrado (error de validación)');
-                            this.showMessage('info', 'ℹ Este correo no está registrado. Ve al tab "Registro" para inscribirte.');
-                            this.addEmailIndicator(verificationEmailInput, 'error', '✗ No registrado');
-                        } else {
-                            // Otro tipo de error
-                            console.error('❌ Error desconocido:', response.status, result);
-                            this.showMessage('error', 'Error al verificar. Intenta nuevamente.');
-                        }
-                        
-                    } catch (error) {
-                        console.error('💥 Error en verificación:', error);
-                        this.removeEmailIndicator(verificationEmailInput);
-                        this.showMessage('error', `Error: ${error.message}`);
-                    }
-                }, this.config.verificationDelay);
+                this.showMessage('info', 'ℹ Haz clic en "Verificación" para comprobar tu registro.');
+            } else {
+                this.hideVerificationMessage();
             }
         });
     },
@@ -479,6 +399,23 @@ const StellarApp = {
             this.removeEmailIndicator(registrationEmailInput);
 
             if (this.isValidEmail(email)) {
+                // Verificar si ya tenemos este email en caché
+                if (this.verificationCache.has(email)) {
+                    const cachedResult = this.verificationCache.get(email);
+                    console.log('📦 Usando caché para email en registro:', email, cachedResult);
+                    
+                    this.removeEmailIndicator(registrationEmailInput);
+                    
+                    if (cachedResult.exists) {
+                        this.showMessage('error', '⚠️ Este correo ya está registrado.');
+                        this.addEmailIndicator(registrationEmailInput, 'error', '✗ Ya registrado');
+                    } else {
+                        this.showMessage('success', '✓ Correo disponible.');
+                        this.addEmailIndicator(registrationEmailInput, 'success', '✓ Disponible');
+                    }
+                    return;
+                }
+                
                 this.addEmailIndicator(registrationEmailInput, 'loading', '🔍 Verificando...');
                 
                 verificationTimeout = setTimeout(async () => {
@@ -535,11 +472,19 @@ const StellarApp = {
                         if (emailExists) {
                             // Email YA REGISTRADO
                             console.log('⚠️ Email ya registrado');
+                            
+                            // Guardar en caché
+                            this.verificationCache.set(email, { exists: true });
+                            
                             this.showMessage('error', '⚠️ Este correo ya está registrado.');
                             this.addEmailIndicator(registrationEmailInput, 'error', '✗ Ya registrado');
                         } else {
                             // Email DISPONIBLE
                             console.log('✅ Email disponible');
+                            
+                            // Guardar en caché
+                            this.verificationCache.set(email, { exists: false });
+                            
                             this.showMessage('success', '✓ Correo disponible.');
                             this.addEmailIndicator(registrationEmailInput, 'success', '✓ Disponible');
                         }
@@ -561,17 +506,18 @@ const StellarApp = {
         indicator.textContent = text;
         indicator.style.cssText = `
             position: absolute;
-            right: 8px;
-            top: 43%;
-            
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
             font-size: 0.875rem;
             font-weight: 600;
             pointer-events: none;
             z-index: 10;
-            padding: 6px 12px;
-            border-radius: 20px;
+            padding: 4px 8px;
+            border-radius: 4px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            white-space: nowrap;
         `;
         
         if (type === 'error') {
@@ -585,24 +531,49 @@ const StellarApp = {
             indicator.style.background = 'rgba(255, 165, 2, 0.1)';
         }
         
-        // Asegurarse de que el padre tenga position relative
-        const parent = input.parentElement;
-        if (parent) {
+        // Buscar el contenedor más cercano que sea el wrapper del input
+        let parent = input.parentElement;
+        
+        // Si el padre directo no es adecuado, buscar el contenedor correcto
+        while (parent && !parent.classList.contains('username-nombres') && !parent.classList.contains('username') && parent !== document.body) {
+            parent = parent.parentElement;
+        }
+        
+        // Si encontramos el contenedor correcto
+        if (parent && parent !== document.body) {
             const currentPosition = window.getComputedStyle(parent).position;
             if (currentPosition === 'static') {
                 parent.style.position = 'relative';
             }
             parent.appendChild(indicator);
+        } else {
+            // Fallback: usar el padre directo del input
+            const directParent = input.parentElement;
+            if (directParent) {
+                const currentPosition = window.getComputedStyle(directParent).position;
+                if (currentPosition === 'static') {
+                    directParent.style.position = 'relative';
+                }
+                directParent.appendChild(indicator);
+            }
         }
     },
 
     // NUEVO: Remover indicador visual
     removeEmailIndicator(input) {
-        if (!input || !input.parentElement) return;
+        if (!input) return;
         
-        const existingIndicator = input.parentElement.querySelector('.email-indicator');
-        if (existingIndicator) {
-            existingIndicator.remove();
+        // Buscar en el padre directo y en el contenedor padre
+        let parent = input.parentElement;
+        
+        // Buscar hasta 3 niveles arriba
+        for (let i = 0; i < 3 && parent; i++) {
+            const existingIndicator = parent.querySelector('.email-indicator');
+            if (existingIndicator) {
+                existingIndicator.remove();
+                return;
+            }
+            parent = parent.parentElement;
         }
     },
 

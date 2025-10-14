@@ -2603,6 +2603,8 @@ html, body {
     border-radius: 2.5rem; }
     .button__primary:hover {
       background-color: #E53F4C; }
+    .button__primary:active {
+      transform: scale(0.95); }
     .button__primary--absolute {
       position: absolute;
       right: 0.375rem; }
@@ -2615,7 +2617,7 @@ html, body {
     text-decoration: none;
     border-radius: 2.5rem;
     border-width: 0.125rem;
-    color: #000000;
+    color: #ffffff;
     /* Cambiado de border-style a border-width */
     border-style: solid;
     /* Agregado border-style */
@@ -2636,11 +2638,14 @@ html, body {
     border-width: 0.125rem;
     color: #009e5f;
     /* Cambiado de border-style a border-width */
-    border-style: solid;
     /* Agregado border-style */
-    border-color: #ffffff; }
+    background: #ffffff; }
     .button__WhatsApp:hover {
-      background-color: #ffffff19; }
+      background-color: #009e5f;
+      color: #ffffff;
+      border-style: none; }
+    .button__WhatsApp:active {
+      transform: scale(0.95); }
     .button__WhatsApp--width100 {
       width: 100%; }
     .button__WhatsApp--widthfit {
@@ -2648,6 +2653,11 @@ html, body {
     .button__WhatsApp--space {
       display: flex;
       gap: 0.5rem; }
+    .button__WhatsApp--paddingLeft {
+      display: flex;
+      gap: 0.5rem; }
+    .button__WhatsApp--paddingTop {
+      margin-top: 0.75rem; }
   .button .logo-search {
     padding-right: 0.5rem;
     display: inline-block; }
@@ -3666,21 +3676,22 @@ body {
           padding-right: 0.5rem;
           display: inline-block; }
     body main .hero_image {
-      display: flex;
       width: 100%;
+      display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
       /* margin-top: 8rem; */
       gap: 0px;
       /* efecto en texto */
       /* fin efecto texto */ }
       body main .hero_image .botonesPrincipales {
-        /* width: 100%; */
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 16px;
-        margin-top: 32px; }
+        /* margin-top: 32px; */ }
         body main .hero_image .botonesPrincipales .first-data-mobile {
           display: none; }
           @media (max-width: 600px) {
@@ -3689,6 +3700,46 @@ body {
               display: flex;
               flex-direction: column;
               width: 100%; } }
+        body main .hero_image .botonesPrincipales .registroYbotonesDesktop {
+          display: flex;
+          flex-direction: column;
+          gap: 32px; }
+          @media (max-width: 37.5rem) {
+            body main .hero_image .botonesPrincipales .registroYbotonesDesktop {
+              display: none; } }
+          body main .hero_image .botonesPrincipales .registroYbotonesDesktop .first-data {
+            position: relative;
+            width: 38.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 2rem; }
+            body main .hero_image .botonesPrincipales .registroYbotonesDesktop .first-data__placeholder {
+              position: absolute;
+              /* top: 0; */
+              font-size: 1rem;
+              /* padding-left: 16px; */
+              padding-left: 1.5rem;
+              border-style: solid;
+              border-color: #ffffff80;
+              border-width: 1px;
+              outline: none;
+              width: 100%;
+              height: 4rem;
+              color: #ffffff;
+              outline: none;
+              background-color: #ffffff17;
+              border-radius: 2rem; }
+              body main .hero_image .botonesPrincipales .registroYbotonesDesktop .first-data__placeholder:hover {
+                border-style: solid;
+                border-color: #d2e9ff;
+                border-width: 1px; }
+              body main .hero_image .botonesPrincipales .registroYbotonesDesktop .first-data__placeholder:focus {
+                /* border-style: solid;
+                border-color: #2997ff;
+                border-width: 1px; */
+                border: 0.0625rem solid #2997ff;
+                outline: 0.25rem solid #2997ff27; }
       body main .hero_image .heroFechaUbication {
         margin-top: 24px;
         display: flex;
@@ -3698,7 +3749,8 @@ body {
         gap: 16px;
         border-radius: 32px;
         border: 1px solid #FFF;
-        background: rgba(255, 255, 255, 0.08); }
+        background: rgba(255, 255, 255, 0.08);
+        width: fit-content; }
         body main .hero_image .heroFechaUbication span {
           color: #FFF; }
       body main .hero_image .display.display__desktop.heroAncho {
@@ -3765,43 +3817,6 @@ body {
         box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
         text-align: center;
         font-family: Arial, sans-serif; }
-      body main .hero_image .first-data {
-        margin-top: 2rem;
-        position: relative;
-        width: 38.75rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-top: 2rem; }
-        @media (max-width: 37.5rem) {
-          body main .hero_image .first-data {
-            display: none; } }
-        body main .hero_image .first-data__placeholder {
-          position: absolute;
-          /* top: 0; */
-          font-size: 1rem;
-          /* padding-left: 16px; */
-          padding-left: 1.5rem;
-          border-style: solid;
-          border-color: #ffffff80;
-          border-width: 1px;
-          outline: none;
-          width: 100%;
-          height: 4rem;
-          color: #ffffff;
-          outline: none;
-          background-color: #ffffff17;
-          border-radius: 2rem; }
-          body main .hero_image .first-data__placeholder:hover {
-            border-style: solid;
-            border-color: #d2e9ff;
-            border-width: 1px; }
-          body main .hero_image .first-data__placeholder:focus {
-            /* border-style: solid;
-            border-color: #2997ff;
-            border-width: 1px; */
-            border: 0.0625rem solid #2997ff;
-            outline: 0.25rem solid #2997ff27; }
   body .avatarImageCards {
     margin-top: 4.5rem;
     display: flex;
